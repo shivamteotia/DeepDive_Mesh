@@ -1,14 +1,47 @@
   cor-charging-network         corpus    According to our uploaded document, how many public 
-    uploaded india-ev-ecosystem-2026.pdf -> 01a154d3 (None tokens embedded)
-    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0
+    uploaded india-ev-ecosystem-2026.pdf -> 01a154d6 (None tokens embedded)
+    claims 2/2 accepted, 10 passages, 0 searches, loopbacks 0
   cor-pli-acc-scheme           corpus    What does our uploaded document say about the outlay
-    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0
+    claims 4/4 accepted, 10 passages, 0 searches, loopbacks 0
   cor-two-market-forecasts     corpus    What growth does our uploaded document project for I
-    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0
+    claims 9/9 accepted, 10 passages, 0 searches, loopbacks 0
   cor-edrive-bus-allocation    corpus    How much has our uploaded document allocated for ele
-    claims 9/9 accepted, 38 passages, 4 searches, loopbacks 0
+    claims 5/5 accepted, 28 passages, 4 searches, loopbacks 0
   cor-export-growth            corpus    What does our uploaded document report about India's
-    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0
+    claims 4/4 accepted, 15 passages, 0 searches, loopbacks 0
   cor-iemi-index               corpus    What is the India Electric Mobility Index described 
-    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0
+    claims 4/4 accepted, 10 passages, 0 searches, loopbacks 0
   cor-lithium-absent           corpus    What does our uploaded document say about India's de
+    claims 12/12 accepted, 26 passages, 3 searches, loopbacks 0, abstain MISSED
+  cor-cafe-norms               corpus    What CO2 targets does our uploaded document give for
+    claims 3/3 accepted, 20 passages, 3 searches, loopbacks 0
+
+  snapshot
+  cases.run                                    8
+  cases.skipped                                0
+  ground.claim_support_rate                    0.9645
+  ground.hallucinated_citation_rate            0.0000
+  ground.span_resolves_rate                    1.0000
+  ground.unsupported_claim_rate                0.0000
+  ops.byok_fallback_steps                      0
+  ops.latency.p50_ms                           14029
+  ops.latency.p95_ms                           41728
+  ops.reliability.success_rate                 1.0000
+  ops.tokens.completion_total                  9992
+  ops.tokens.prompt_total                      446673
+  ops.websearch.calls_per_run                  3.3300
+  ops.websearch.cost_usd_est                   0.1080
+  ops.websearch.engine_mix.tinyfish            10
+  retrieval.corpus_only_rate                   0.5536
+  retrieval.domain_diversity                   0.8940
+  retrieval.nonempty_rate                      1.0000
+  retrieval.page_content_rate                  0.9667
+  retrieval.truncated_rate                     0.0233
+  verify.abstain_rate                          0.0000
+  verify.abstain_rate.n                        1
+  verify.loopback_rate                         0.0000
+
+  ! websearch=live, so compare.py downgrades every gate to a guardrail and this snapshot cannot FAIL. Record fixtures once, then run with --mode replay to gate.
+
+  -> C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\baselines\candidate.json   (compare: python -m evals.compare)
+  -> C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\report.json
