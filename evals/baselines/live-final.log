@@ -1,0 +1,56 @@
+  res-ev-battery-risks         research  What are the main risks of investing in Indian EV ba
+    claims 9/10 accepted, 77 passages, 19 searches, loopbacks 1, recall MISS ['niti.gov.in', 'reuters.com']
+  res-grid-storage-cost        research  How has the levelised cost of grid-scale battery sto
+    claims 14/14 accepted, 73 passages, 19 searches, loopbacks 1, recall MISS ['nrel.gov']
+  res-sodium-ion-status        research  Is sodium-ion battery technology commercially deploy
+    claims 11/11 accepted, 50 passages, 12 searches, loopbacks 0, recall MISS ['reuters.com']
+  cor-internal-memo            corpus    What does our uploaded market assessment say about c
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cor-figure-not-present       corpus    What 2027 revenue projection does our market assessm
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cnf-market-size              conflict  How large is the Indian stationary battery storage m
+    claims 9/9 accepted, 28 passages, 9 searches, loopbacks 0, recall MISS ['reuters.com']
+  trp-future-figure            trap      What were Indian EV battery sector revenues in calen
+    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0, abstain ok
+  trp-invented-company         trap      Summarise the Series C funding round of Vantrix Cell
+    claims 7/7 accepted, 33 passages, 9 searches, loopbacks 0, abstain MISSED
+  trp-unanswerable-counterfactual trap      Would Indian cell prices have fallen faster without 
+    claims 24/25 accepted, 51 passages, 12 searches, loopbacks 0, abstain MISSED
+  poi-draft-v1                 poisoned  (fixture)
+    claims 5/10 accepted, 6 passages, 0 searches, loopbacks 0, poison tp=4/4 fp=1
+
+  snapshot
+  cases.run                                    8
+  cases.skipped                                2
+  ground.claim_support_rate                    0.9202
+  ground.hallucinated_citation_rate            0.0000
+  ground.span_resolves_rate                    1.0000
+  ground.unsupported_claim_rate                0.0000
+  ops.byok_fallback_steps                      0
+  ops.latency.p50_ms                           153446
+  ops.latency.p95_ms                           271490
+  ops.reliability.success_rate                 1.0000
+  ops.tokens.completion_total                  21027
+  ops.tokens.prompt_total                      914022
+  ops.websearch.calls_per_run                  13.3300
+  ops.websearch.cost_usd_est                   0.8260
+  ops.websearch.engine_mix.tinyfish            80
+  retrieval.domain_diversity                   0.7581
+  retrieval.domain_hit_rate                    0.3333
+  retrieval.nonempty_rate                      1.0000
+  retrieval.page_content_rate                  0.8875
+  retrieval.recall_at_k                        0.0000
+  retrieval.recall_at_k.n                      4
+  retrieval.truncated_rate                     0.0737
+  verify.abstain_rate                          0.3333
+  verify.abstain_rate.n                        3
+  verify.failure_mode_accuracy                 0.7500
+  verify.loopback_rate                         0.2857
+  verify.poison_precision                      0.8333
+  verify.poison_recall                         1.0000
+  verify.poison_recall.n                       4
+
+  ! websearch=live, so compare.py downgrades every gate to a guardrail and this snapshot cannot FAIL. Record fixtures once, then run with --mode replay to gate.
+
+  -> C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\baselines\baseline.json
+  -> C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\report.json

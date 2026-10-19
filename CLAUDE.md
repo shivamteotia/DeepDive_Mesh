@@ -149,97 +149,83 @@ contain ₹ and curly quotes, which crash cp1252.
 
 ## Status
 
-Pipeline, UI and eval harness all run. First full baseline (8 cases run, 2 skipped, live
-web search, no judge):
+**Valid baseline recorded 2026-10-19** (`evals/baselines/baseline.json`), live web search, no
+judge, 8 cases run / 2 skipped, models: planner+drafter+synthesizer `gpt-4.1-mini`, verifier
+`gpt-4o-mini`, scoring `jev-1.13`. Cost $0.83.
 
-| | |
-|---|---|
-| `verify.poison_recall` / `poison_precision` | **1.00** / 0.83 |
-| `verify.failure_mode_accuracy` | 0.75 |
-| `ground.hallucinated_citation_rate` | **0.00** across 69 claims / 88 citations |
-| `ground.unsupported_claim_rate` / `span_resolves_rate` | 0.00 / **1.00** |
-| `ground.claim_support_rate` | 0.87 |
-| `retrieval.page_content_rate` / `nonempty_rate` | 0.85 / 0.99 |
-| `retrieval.recall_at_k` | 0.50 — see below |
-| `retrieval.domain_diversity` | 0.69 |
-| `verify.abstain_rate` | 0.67 — the Vantrix defect |
-| `verify.loopback_rate` | **0.00** — see below |
-| `ops.latency` p50 / p95 | 161s / 232s |
-| cost | ~$3.90 for the pass ($0.69 of it web search) |
-
-**Three findings from it:**
-
-1. **The loop never fires.** `loopback_rate` is 0.00 across every case. `_needs_more()` only
-   triggers on a `needs_evidence` verdict, which `verify()` only assigns for
-   `irrelevant_source` / `wrong_attribution` — and real drafts produce neither. The
-   self-correction loop is wired and tested but has never run on live data. This is the
-   headline judging criterion, so it needs widening before submission.
-2. **`recall_at_k 0.50` is a labelling artefact, not a retrieval failure.** Both misses are
-   `reuters.com`, which never appears in any result. The seeds named it plausibly, not
-   verifiably. What *does* come back includes youtube.com, reddit.com and facebook.com — so
-   source authority is a real gap that `domain_diversity` does not capture.
-3. **The Vantrix trap resolves to a different real company** (cellworks.life, crunchbase,
-   biospace). Entity resolution, as described below.
-
-Eval harness runs. `evals/run.py` measures every metric in [evals/README.md](evals/README.md);
-`evals/compare.py` gives the PASS/REVIEW/FAIL verdict and downgrades gates to guardrails on a
-live-mode candidate.
-
-**Known defect the harness found:** `trp-invented-company` does not abstain. "Vantrix" is a
-real company (Montreal, media software), so the researcher found it and the drafter wrote a
-report on its 2010 Series C — correctly noting it is not a Pune battery startup, but writing
-the report anyway. Claim-level verification cannot catch this: every claim *is* supported by
-its source. The failure is at the question level — nothing checks that the retrieved sources
-are about the entity the question names. Needs an entity-grounding step, and the fixture needs
-a name with no real homonym.
-
-### Cheap-model run, 2026-10-16 — the loop fires, but quality fell
-
-`loopbacks 1` on all four research and conflict cases (capped at 1 for budget). The
-self-correction loop went from never running to running every time.
-
-The cost shows up in acceptance:
-
-| | frontier | cheap |
+| metric | value | vs frontier run |
 |---|---|---|
-| claims accepted | ~95% (96/99) | **56% (20/36)** |
-| claims per case | 10–24 | 8–10 |
-| searches per case | 12–15 | 13–19 |
+| `verify.poison_recall` | **1.00** | = |
+| `verify.poison_precision` | 0.83 | = |
+| `verify.failure_mode_accuracy` | 0.75 | = |
+| `ground.hallucinated_citation_rate` | **0.00** | = |
+| `ground.unsupported_claim_rate` | 0.00 | = |
+| `ground.span_resolves_rate` | **1.00** | = |
+| `ground.claim_support_rate` | 0.92 | +0.05 |
+| `retrieval.page_content_rate` | 0.89 | +0.04 |
+| `retrieval.nonempty_rate` | **1.00** | +0.01 |
+| `retrieval.domain_diversity` | 0.76 | +0.07 |
+| `verify.loopback_rate` | 0.29 | +0.29 (loop now fires) |
+| `verify.abstain_rate` | **0.33** | **-0.34 REGRESSION** |
+| `retrieval.recall_at_k` | 0.00 | -0.50 (labelling artefact) |
+| `ops.latency` p50/p95 | 153s / 271s | slower |
+| claims accepted | 43/44 = 98% | nano was 56% |
 
-Two causes are confounded here and one run cannot separate them: the cheap drafter writes
-weaker claims, *and* the loop now re-drafts, so the final verify judges a second draft. Hold
-one constant before concluding which.
+**The model question is settled:** `gpt-4.1-mini` beats `gpt-4.1-nano` decisively (98% vs 56%
+acceptance, same verifier) at a twelfth of `gpt-5.5`'s price.
 
-**There is currently no valid baseline.** `baselines/baseline.json` still holds the
-all-abstained garbage from the killed gpt-4o-mini run. The cheap run that would have replaced
-it died on its last case.
+### The one serious open defect: question-level grounding
 
-**Why it died: the key has a $5.00 spend cap, and total spend hit $5.0075** — HTTP 402
-`spend_limit_exceeded`. That is the binding limit, not the balance (which still showed $1.18).
-Raise the cap on the Mesh dashboard before the next run. Nothing will run until you do.
+`abstain_rate` fell to 0.33 — **two of three traps now produce confident, fully cited reports
+about things that do not exist**:
 
-Where the $5.01 went, from the dashboard:
+- `trp-invented-company` asserts "Vantrix Cellworks, a Pune-based battery startup, raised
+  $15.5 million in a Series C on June 30, 2020." The company is invented. Earlier runs at
+  least noted the mismatch; this one stitches real funding data onto the invented name.
+- `trp-unanswerable-counterfactual` asks whether *battery* cell prices would have fallen
+  faster without PLI. It returns a report on **solar** cells — wrong domain, and it answers a
+  factual question in place of the counterfactual.
+
+**Why per-claim verification cannot catch either:** every claim genuinely is supported by the
+passage it cites, so `hallucinated_citation_rate` reads a perfect 0.00 while the report as a
+whole is fabricated. The failure is at the question level — nothing checks that the retrieved
+evidence is about the entity, domain and question actually asked.
+
+**The fix** is one `/v1/evaluate` call after research and before drafting: "do these passages
+describe the entity and question asked?" Below a threshold, abstain. Cheap, uses a primitive
+already in `mesh.py`, and it is the highest-value change left — `abstain_rate` is a gate and
+"knowing when to stop" is a judged criterion.
+
+Secondary: `recall_at_k 0.00` is the known labelling artefact. The misses are reuters.com (x3),
+niti.gov.in and nrel.gov — domains the seeds named plausibly that retrieval never returns.
+Relabel from what actually comes back, or drop the metric from the gate set.
+
+### Submission state
+
+- Public repo: https://github.com/shivamteotia/DeepDive_Mesh — pushed, `.env` excluded, verified
+  no key-shaped strings in the tree.
+- Registered: `Submission_Token` is in `.env`.
+- **STILL NEEDED:** `workflow.yaml` from the portal into `.github/workflows/`, plus repo
+  secrets `MESH_API_KEY` and `SUBMISSION_TOKEN`. Without it the submission is never collected.
+- Document upload is built but has never been run with a real file. `doc202685944701.pdf`
+  ("Roads Reimagined: The Rise of Electric Vehicles Ecosystem", Aug 2026) sits untracked in the
+  project root and would serve as both the corpus fixture and the upload test.
+
+### Cost, measured
 
 | | cost | recurs? |
 |---|---|---|
-| `gpt-5.5` (old drafter + synthesizer) | $2.544 | no |
-| `tinyfish-search`, 205 searches @ ~$0.0100 | $2.053 | **yes** |
-| `gpt-5.6-terra` (old planner) | $0.336 | no |
-| everything on the cheap set combined | **$0.073** | yes |
+| this baseline pass (8 cases) | $0.83 | yes |
+| of which web search, 80 searches | $0.826 | yes |
+| of which all tokens (914k prompt) | ~$0.37 | yes |
 
-**With cheap models, web search is ~95% of cost.** A full 10-case live pass is ~76 searches
-≈ $0.76 against ~$0.06 of tokens, so the levers are replay mode and `MAX_SUBQUESTIONS` — not
-the model picker. 191 fixtures are now recorded, which is what makes replay runs nearly free.
+Search remains the dominant cost. `ops.websearch.cost_usd_est` is validated against real
+billing to 0.5%. A MeshAPI key carries a **spend cap as well as a balance** and the cap bites
+first — ours silently blocked everything at $5.00 while the balance read $1.18.
 
-`ops.websearch.cost_usd_est` is validated: it predicted $2.063 against $2.053 billed, 0.5%
-error. Trust it.
+### Known gaps
 
-The harness now survives this: a `MeshError` on one case records that case as skipped and the
-pass still writes a snapshot, and a 402 stops cleanly with the remaining cases marked. It used
-to lose every completed case.
-
-Not done: golden seeds unlabelled, corpus fixture missing,
-`retrieval.precision_at_k` needs relevance labels, `--from-report`/`--from-plan` unimplemented,
-not registered on the portal, `workflow.yaml` not downloaded, `cost_usd` comes back `None` from
-chat responses so real cost needs `GET /v1/usage/events` (we estimate web-search cost from the
-documented rates instead).
+Replay mode needs `--from-plan`: the planner rephrases sub-queries between runs, so the fixture
+cache misses and replay cannot currently gate. Golden seeds unlabelled.
+`retrieval.precision_at_k` needs relevance labels. Corpus fixture missing. `cost_usd` is `None`
+on chat responses, so token cost needs `GET /v1/usage/events`.
