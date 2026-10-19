@@ -21,15 +21,15 @@
         "notes": "Simple retrieval with a tempting distractor: 1.32 million is a 2030 target elsewhere in the same document, not a current count. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 9346,
+        "wall_ms": 5926,
         "counts": {
           "claims": 2,
           "accepted": 2,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 10,
+          "passages": 30,
           "web_passages": 0,
-          "corpus_passages": 10
+          "corpus_passages": 30
         },
         "loopbacks": 0,
         "abstained": false,
@@ -41,7 +41,7 @@
         "engines": [],
         "domain_diversity": null,
         "truncated": 0,
-        "passages": 10,
+        "passages": 30,
         "corpus_citations": 1,
         "total_citations": 1,
         "claims": 2,
@@ -49,18 +49,18 @@
         "unsupported": 0,
         "citations": 2,
         "spans_resolve": 2,
-        "support_mean": 0.985
+        "support_mean": 0.98
       },
       "totals": {
         "steps": 8,
-        "prompt_tokens": 22952,
-        "completion_tokens": 586,
-        "latency_ms": 9333,
+        "prompt_tokens": 53668,
+        "completion_tokens": 596,
+        "latency_ms": 5906,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Public EV Charging Stations in India: Quantity and Fast Charging Availability\n\nAs of July 2026, India has a total of 52,718 public electric vehicle (EV) charging stations. Among these, 16,561 stations are equipped with fast charging capabilities, providing quicker charging options for EV users [1].\n\n## Total Number of Public EV Charging Stations\n\nIndia's public EV charging infrastructure has expanded to include 52,718 stations as of mid-2026. This reflects the country's growing commitment to supporting electric mobility and addressing the charging needs of an increasing number of EVs on the road [1].\n\n## Availability of Fast Charging Facilities\n\nOut of the total public charging stations, 16,561 offer fast charging services. Fast chargers are critical for reducing charging time and enhancing the convenience of EV usage, thereby encouraging wider adoption of electric vehicles in India [1].\n\n## What We Could Not Establish\n\nThere are no gaps in the data regarding the total number of public EV charging stations and the subset that provides fast charging in India as of July 2026.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#2\n",
+      "report": "# Public EV Charging Stations in India: Quantity and Fast Charging Availability\n\nAs of July 2026, India has a total of 52,718 public electric vehicle (EV) charging stations. Among these, 16,561 stations are equipped with fast charging capabilities, providing quicker charging options for EV users [1].\n\n## Total Number of Public EV Charging Stations\n\nIndia's public EV charging infrastructure has expanded to include 52,718 stations as of mid-2026. This reflects the country's growing commitment to supporting electric mobility and addressing the charging needs of an increasing number of EVs on the road [1].\n\n## Availability of Fast Charging Facilities\n\nOut of the total public charging stations, 16,561 offer fast charging services. Fast chargers are critical for reducing charging time and enhancing the convenience of EV usage, thereby encouraging wider adoption of electric vehicles in India [1].\n\n## What We Could Not Establish\n\nThere are no gaps in the data regarding the total number of public EV charging stations and the subset that provides fast charging in India as of July 2026.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n",
       "status": "done"
     },
     {
@@ -84,15 +84,15 @@
         "notes": "The document carries three different scheme outlays. Rs 2,377.56 crore is PLI-Auto disbursement and Rs 10,900 crore is PM E-DRIVE; both are plausible wrong answers. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 11203,
+        "wall_ms": 11268,
         "counts": {
           "claims": 4,
           "accepted": 4,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 10,
+          "passages": 30,
           "web_passages": 0,
-          "corpus_passages": 10
+          "corpus_passages": 30
         },
         "loopbacks": 0,
         "abstained": false,
@@ -104,26 +104,26 @@
         "engines": [],
         "domain_diversity": null,
         "truncated": 0,
-        "passages": 10,
-        "corpus_citations": 3,
-        "total_citations": 3,
+        "passages": 30,
+        "corpus_citations": 4,
+        "total_citations": 4,
         "claims": 4,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 12,
-        "spans_resolve": 12,
-        "support_mean": 0.9875
+        "citations": 16,
+        "spans_resolve": 16,
+        "support_mean": 0.99
       },
       "totals": {
         "steps": 10,
-        "prompt_tokens": 41830,
-        "completion_tokens": 944,
-        "latency_ms": 11185,
+        "prompt_tokens": 77506,
+        "completion_tokens": 1019,
+        "latency_ms": 11245,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Research Report: Outlay and Capacity Target of the PLI Scheme for Advanced Chemistry Cell Battery Storage\n\nThe Production Linked Incentive (PLI) scheme for the National Programme on Advanced Chemistry Cell (ACC) Battery Storage has a total financial outlay of \u20b918,100 crore. It aims to promote domestic manufacturing by establishing a cumulative ACC capacity target of 50 GWh in India.\n\n## Financial Outlay and Objectives  \nThe PLI ACC Scheme is allocated \u20b918,100 crore to incentivize and boost the domestic production of advanced chemistry cell batteries. This substantial investment underscores the government's commitment to developing a robust battery manufacturing ecosystem within India. The scheme specifically targets the promotion of advanced, long-range electric vehicle (EV) batteries, linking incentives to sales performance to encourage market-driven growth.\n\n## Capacity Target  \nA key goal of the PLI ACC Scheme is to establish a cumulative manufacturing capacity of 50 gigawatt-hours (GWh) of advanced chemistry cell batteries in India. This capacity target is designed to meet the growing demand for EV batteries and support the country's transition to cleaner transportation technologies.\n\n## Implementation Timeline  \nThe performance phase of the scheme is scheduled from 1 January 2025 to 31 December 2029. This five-year period will be critical for achieving the capacity and production targets set under the scheme.\n\n## What We Could Not Establish  \nThere are no gaps in the information regarding the outlay and capacity target of the PLI ACC Scheme based on the uploaded document.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#9\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#9\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n",
+      "report": "# Research Report: Outlay and Capacity Target of the PLI Scheme for Advanced Chemistry Cell Battery Storage\n\nThe Production Linked Incentive (PLI) scheme for the National Programme on Advanced Chemistry Cell (ACC) Battery Storage has a total financial outlay of \u20b918,100 crore. It aims to establish a cumulative ACC manufacturing capacity of 50 GWh in India.\n\n## Financial Outlay\n\nThe PLI scheme dedicated to ACC battery storage is allocated \u20b918,100 crore to incentivize domestic manufacturing and development of advanced battery technologies. This substantial investment underscores the government's commitment to fostering a robust battery manufacturing ecosystem within the country. [1] [2] [3] [4]\n\n## Capacity Target\n\nA key objective of the PLI ACC scheme is to achieve a cumulative production capacity of 50 GWh of advanced chemistry cells. This capacity target is designed to support the growing demand for electric vehicle (EV) batteries and energy storage solutions in India. [1] [2] [3] [4]\n\n## Scheme Focus and Incentives\n\nThe scheme specifically supports the development of advanced, long-range EV batteries by providing incentives linked to sales performance. This approach encourages manufacturers to not only set up production facilities but also to focus on market-driven growth and innovation in battery technology. [1] [2] [3] [4]\n\n## Performance Phase Timeline\n\nThe performance phase of the PLI ACC scheme is scheduled from 1 January 2025 to 31 December 2029. This five-year period is critical for manufacturers to ramp up production capacity and achieve the targeted cumulative output. [1] [2] [3] [4]\n\n## What We Could Not Establish\n\nThere are no gaps in the available information regarding the outlay and capacity targets of the PLI scheme for Advanced Chemistry Cell battery storage.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#9\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#9\n[4] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n",
       "status": "done"
     },
     {
@@ -147,15 +147,15 @@
         "notes": "Two adjacent forecasts with similar shape. Tests that the drafter keeps the pair straight rather than cross-applying a CAGR. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 16855,
+        "wall_ms": 9010,
         "counts": {
-          "claims": 9,
-          "accepted": 9,
+          "claims": 2,
+          "accepted": 2,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 10,
+          "passages": 30,
           "web_passages": 0,
-          "corpus_passages": 10
+          "corpus_passages": 30
         },
         "loopbacks": 0,
         "abstained": false,
@@ -167,26 +167,26 @@
         "engines": [],
         "domain_diversity": null,
         "truncated": 0,
-        "passages": 10,
-        "corpus_citations": 7,
-        "total_citations": 7,
-        "claims": 9,
+        "passages": 30,
+        "corpus_citations": 4,
+        "total_citations": 4,
+        "claims": 2,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 41,
-        "spans_resolve": 41,
-        "support_mean": 0.9522222222222223
+        "citations": 8,
+        "spans_resolve": 8,
+        "support_mean": 0.99
       },
       "totals": {
-        "steps": 15,
-        "prompt_tokens": 86365,
-        "completion_tokens": 1998,
-        "latency_ms": 16833,
+        "steps": 8,
+        "prompt_tokens": 64606,
+        "completion_tokens": 782,
+        "latency_ms": 8989,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Research Report: Growth Projections for India's EV Market and EV Battery Market\n\nIndia's electric vehicle (EV) market has experienced exponential growth, expanding approximately 46 times from 50,000 units sold in 2016 to 2.3 million units projected in 2025. Concurrently, the EV battery manufacturing ecosystem in India is rapidly developing, driven by significant investments from domestic OEMs and global battery manufacturers aiming to establish large-scale production facilities.\n\n## Growth of India's EV Market\n\nIndia's EV market has witnessed remarkable expansion over the past decade, with sales increasing from about 50,000 units in 2016 to an anticipated 2.3 million units in 2025, representing a growth factor of approximately 46 times [1][2][3][6][7]. This growth rate significantly outpaces the global EV sales growth, which rose about 20 times from 918,000 units in 2016 to 18.78 million units in 2024 [1][3][6][7]. The compound annual growth rate (CAGR) of EV registrations in India has exceeded 62% over the last ten years [1][3][4][6][7].\n\nThe adoption rate of EVs in India has also surged, increasing from a mere 0.08% in fiscal year 2015-16 to an estimated 8.26% in fiscal year 2025-26 [1][3][4][6][7]. This reflects a growing consumer acceptance and supportive policy environment.\n\n### Segment-wise Contributions\n\nBy fiscal year 2025, electric two-wheelers are projected to dominate the Indian EV market with sales of approximately 1.28 million units [1][3][6][7]. Electric three-wheelers also contribute significantly, with sales expected to reach 800,000 units in the same period [1][3][6][7]. These segments have been pivotal in driving the overall market expansion.\n\n### Export Growth\n\nIndia's EV exports have similarly expanded, rising from USD 1.2 million in 2020 to USD 84 million in 2024, indicating growing international demand and competitiveness of Indian EV products [1][2][3][4][6][7].\n\n## Development of India's EV Battery Market\n\nThe EV battery manufacturing ecosystem in India is undergoing rapid expansion, supported by substantial investments in research and development, gigafactory construction, and dedicated EV platforms by leading Indian original equipment manufacturers (OEMs) such as Tata Motors, Mahindra, TVS, and Bajaj Auto [1][3][4][5][7]. This domestic push aims to enhance localization and reduce costs.\n\nIn addition to domestic players, global companies including VinFast, Tesla, and prominent Korean and Japanese battery manufacturers are exploring large-scale EV battery production in India [4][5][7]. Their entry is expected to strengthen the local supply chain, improve technology transfer, and boost cost competitiveness in the Indian EV battery market.\n\n## What We Could Not Establish\n\nThe available data does not provide explicit quantitative projections for the size or growth rate of India's EV battery market in terms of production capacity, revenue, or market share. While the ecosystem's expansion and investments are noted, specific growth metrics for the battery segment remain unspecified.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#2\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#1\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#2\n[4] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[5] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[6] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#1\n[7] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n",
+      "report": "# Growth Projections for India's EV Market and EV Battery Market\n\nIndia's electric vehicle (EV) market is expected to experience exponential growth, expanding from USD 3.71 billion in 2025 to USD 191.04 billion by 2034, representing a compound annual growth rate (CAGR) of 54.94%. Meanwhile, the EV battery market in India is projected to grow more moderately, increasing from USD 2.71 billion in 2025 to USD 15.90 billion by 2034, at a CAGR of 21.70% [1][2][3][4].\n\n## India's EV Market Growth\n\nThe Indian EV market is poised for rapid expansion over the forecast period. Starting at a valuation of USD 3.71 billion in 2025, it is projected to reach USD 191.04 billion by 2034. This remarkable growth corresponds to a CAGR of 54.94%, indicating a strong adoption trend and significant market development in the electric vehicle sector [1][2][3][4].\n\n## India's EV Battery Market Growth\n\nIn parallel, the EV battery market in India is also expected to grow substantially, though at a comparatively lower rate. The market size is anticipated to increase from USD 2.71 billion in 2025 to USD 15.90 billion by 2034. This growth trajectory reflects a CAGR of 21.70%, highlighting the increasing demand for battery technologies that support the expanding EV market [1][2][3][4].\n\n## What We Could Not Establish\n\nThere are no gaps in the data regarding the projected growth of India's EV and EV battery markets based on the provided information.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#9\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#11\n[4] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#11\n",
       "status": "done"
     },
     {
@@ -210,22 +210,22 @@
         "notes": "Four bus numbers within one paragraph, plus 10,000 from the separate PM e-Bus Sewa PSM scheme and Rs 2,000 crore earmarked for charging stations, not buses. The hardest retrieval case in the set. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 43431,
+        "wall_ms": 60472,
         "counts": {
           "claims": 5,
           "accepted": 5,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 28,
-          "web_passages": 18,
-          "corpus_passages": 10
+          "passages": 49,
+          "web_passages": 19,
+          "corpus_passages": 30
         },
         "loopbacks": 0,
         "abstained": false,
         "status": "done",
         "searches": 4,
         "results_total": 24,
-        "results_with_text": 23,
+        "results_with_text": 24,
         "searches_nonempty": 4,
         "engines": [
           "tinyfish",
@@ -233,28 +233,28 @@
           "tinyfish",
           "tinyfish"
         ],
-        "domain_diversity": 0.9444444444444444,
+        "domain_diversity": 0.7368421052631579,
         "truncated": 0,
-        "passages": 28,
-        "corpus_citations": 3,
-        "total_citations": 16,
+        "passages": 49,
+        "corpus_citations": 0,
+        "total_citations": 10,
         "claims": 5,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 28,
-        "spans_resolve": 28,
-        "support_mean": 0.952
+        "citations": 21,
+        "spans_resolve": 21,
+        "support_mean": 0.954
       },
       "totals": {
         "steps": 15,
-        "prompt_tokens": 72937,
-        "completion_tokens": 1356,
-        "latency_ms": 43347,
+        "prompt_tokens": 95251,
+        "completion_tokens": 1248,
+        "latency_ms": 60424,
         "web_searches": 4,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Allocation for Electric Buses under the PM E-DRIVE Scheme\n\nThe PM E-DRIVE scheme has allocated \u20b94,391 crore for the procurement of 14,028 electric buses. Of these, 13,800 buses are designated for deployment across seven major cities, with procurement processes underway in phased stages.\n\n## Financial Allocation and Bus Quantity\n\nThe total budget allocated under the PM E-DRIVE scheme for electric buses stands at \u20b94,391 crore, which covers the procurement of 14,028 electric buses [1] [2] [3] [4] [6] [8] [11] [14] [15] [16]. This allocation reflects a significant investment in electrifying public transport fleets across India.\n\n## Distribution Across Cities\n\nOut of the total 14,028 buses, 13,800 have been allocated to seven major cities: Bengaluru, Delhi, Mumbai, Hyderabad, Ahmedabad, Pune, and Surat [2] [7] [14] [15] [16]. This distribution highlights a focus on urban centers with high public transport demand.\n\n## Procurement Phases\n\nThe procurement process is divided into two phases. Phase I has concluded with the procurement of 10,900 electric buses, while tenders for the remaining 2,900 buses under Phase II were floated in early 2026 [2] [5] [7] [14] [15] [16]. This phased approach facilitates systematic deployment and scaling.\n\n## Specific Orders and City Approvals\n\n- Switch Mobility secured an order to supply 840 electric buses for Delhi under Phase I, comprising equal numbers of nine-metre and twelve-metre air-conditioned buses (420 each) [9] [10] [13].\n- Delhi has approved the procurement of 2,800 electric buses under the scheme, split evenly between nine-metre and twelve-metre buses (1,400 each) [12] [14] [15] [16].\n\n# What We Could Not Establish\n\nThere are no gaps in the available information regarding the financial allocation and number of electric buses under the PM E-DRIVE scheme.\n\n## Sources\n[1] PM E-DRIVE: Home \u2014 https://pmedrive.heavyindustries.gov.in/\n[2] PM e-DRIVE SCHEME \u2014 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222604&reg=3&lang=1\n[3] PM-EDRIVE Scheme: A Step Towards Sustainable Future \u2014 https://www.impriindia.com/insights/policy-update/pm-edrive-scheme-a/\n[4] PM E-DRIVE Scheme | Vikaspedia - Energy \u2014 https://energy.vikaspedia.in/viewcontent/energy/policy-support/energy-efficiency/pm-e-drive-scheme?lgn=en\n[5] States seek 10000+ more e-buses beyond PM E-DRIVE ... \u2014 https://m.economictimes.com/industry/renewables/states-seek-10000-more-e-buses-beyond-pm-e-drive-allocation/articleshow/134496401.cms\n[6] PM E-DRIVE Scheme 2024\u201326: Subsidy, Eligibility & Key ... \u2014 https://www.greatpelican.in/resources/blogs/pm-e-drive-scheme-2024-26-subsidy-eligibility-key-benefits\n[7] fame-ii and pm e-drive schemes \u2014 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2241269&reg=1&lang=1\n[8] PM E-Drive Scheme \u2014 https://www.pmfias.com/pm-e-drive-scheme/\n[9] Switch Mobility secures 840-electric-bus order for Delhi ... \u2014 https://www.sustainable-bus.com/news/switch-mobility-840-electric-buses-delhi/\n[10] Switch Mobility wins Delhi e-bus order as PM E-Drive gains ... \u2014 https://supplychain.economictimes.indiatimes.com/news/logistics-and-transport/switch-mobility-wins-delhi-e-bus-order-as-pm-e-drive-gains-traction/134590859\n[11] PM Electric Drive Revolution in Innovation Vehicle ... \u2014 https://heavyindustries.gov.in/sites/default/files/2026-10/pm_e_drive_book.pdf\n[12] PM E-Drive: Delhi Clears Procurement Of 2800 Electric ... \u2014 https://swarajyamag.com/infrastructure/pm-e-drive-delhi-clears-procurement-of-2800-electric-buses-for-dtc-fleet-expansion\n[13] 840 Electric Buses Ordered for Delhi Under PM E-DRIVE \u2014 https://newdelhipulse.in/civic/delhi-840-electric-buses-pm-e-drive-order-2026/\n[14] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#7\n[15] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#8\n[16] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#7\n",
+      "report": "# Allocation for Electric Buses under the PM E-DRIVE Scheme\n\nThe PM E-DRIVE scheme has allocated \u20b94,391 crore specifically for the procurement of 14,028 electric buses. These buses are planned to be deployed nationwide over two years, with a significant portion targeted for seven major cities.\n\n## Financial Allocation and Bus Coverage\n\nThe total outlay for the PM E-DRIVE scheme is \u20b910,900 crore, out of which \u20b94,391 crore is earmarked for electric buses. This allocation covers the procurement of 14,028 electric buses across India [1] [2] [3] [4] [5] [6] [7] [10].\n\n## Deployment Phases and Geographic Focus\n\nOf the 14,028 electric buses, 13,800 are allocated in two phases for deployment in seven cities with populations exceeding four million. These cities include Bengaluru, Delhi, Mumbai, Hyderabad, Ahmedabad, Pune, and Surat [2] [5] [10].\n\n## Tendering Process\n\nThe tendering process for these buses is underway: tenders for 10,900 e-buses under Phase I have been concluded by CESL, while tenders for the remaining 2,900 e-buses under Phase II were floated on January 9, 2026 [2] [5] [8].\n\n## Scheme Objectives\n\nThe overarching goal of the PM E-DRIVE scheme is to deploy 14,028 electric buses nationwide within a two-year timeframe, promoting sustainable urban transport [9].\n\n# What We Could Not Establish\n\nThere are no gaps in the available information regarding the allocation and deployment of electric buses under the PM E-DRIVE scheme.\n\n## Sources\n[1] PM E-DRIVE: Home \u2014 https://pmedrive.heavyindustries.gov.in/\n[2] PM e-DRIVE SCHEME \u2014 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2222604&reg=3&lang=1\n[3] PM-EDRIVE Scheme: A Step Towards Sustainable Future \u2014 https://www.impriindia.com/insights/policy-update/pm-edrive-scheme-a/\n[4] About Us \u2014 https://pmedrive.heavyindustries.gov.in/about-us\n[5] pm e-drive scheme and promotion of electric mobility \u2014 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2290696&lang=2&reg=48\n[6] PM E-Drive Scheme 2026: Eligibility & Subsidy Guide \u2014 https://www.vidaworld.com/blogs/pm-e-drive-scheme-2026.html\n[7] PM E-DRIVE Scheme | Vikaspedia - Energy \u2014 https://energy.vikaspedia.in/viewcontent/energy/policy-support/energy-efficiency/pm-e-drive-scheme?lgn=en\n[8] fame-ii and pm e-drive schemes \u2014 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2241269&reg=1&lang=1\n[9] India rolls out 14028 electric buses under PM E-Drive ... \u2014 https://www.facebook.com/mhi_goi/posts/in-line-with-honble-pm-shri-narendra-modi-s-vision-of-achieving-net-zero-by-2070/1120306580140207/\n[10] government of india \u2014 https://heavyindustries.gov.in/sites/default/files/2025-12/lsauq_255.pdf\n",
       "status": "done"
     },
     {
@@ -275,15 +275,15 @@
         "notes": "Figures appear on two separate pages; tests that the drafter can pull a fact stated twice without garbling it. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 10742,
+        "wall_ms": 23260,
         "counts": {
           "claims": 4,
           "accepted": 4,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 15,
+          "passages": 45,
           "web_passages": 0,
-          "corpus_passages": 15
+          "corpus_passages": 45
         },
         "loopbacks": 0,
         "abstained": false,
@@ -295,26 +295,26 @@
         "engines": [],
         "domain_diversity": null,
         "truncated": 0,
-        "passages": 15,
-        "corpus_citations": 10,
-        "total_citations": 10,
+        "passages": 45,
+        "corpus_citations": 16,
+        "total_citations": 16,
         "claims": 4,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 21,
-        "spans_resolve": 21,
+        "citations": 23,
+        "spans_resolve": 23,
         "support_mean": 0.9824999999999999
       },
       "totals": {
         "steps": 11,
-        "prompt_tokens": 60462,
-        "completion_tokens": 1091,
-        "latency_ms": 10723,
+        "prompt_tokens": 104439,
+        "completion_tokens": 1265,
+        "latency_ms": 23231,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Research Report: India's Electric Vehicle Exports and Their Destinations\n\nIndia's electric vehicle (EV) exports have experienced a remarkable surge, increasing from USD 1.2 million in 2020 to USD 84 million in 2024. The primary export destinations in 2024 were Nepal, Indonesia, and Japan, reflecting India's growing footprint in the global EV market.\n\n## Growth in EV Exports\n\nBetween 2020 and 2024, India's EV export value skyrocketed from a modest USD 1.2 million to USD 84 million [1] [2] [3] [5] [7] [10]. This rapid growth underscores the expanding production capabilities and international demand for Indian-made electric vehicles.\n\n## Key Export Destinations\n\nIn 2024, the leading markets for India's EV exports were Nepal, Indonesia, and Japan [2] [3] [5] [7] [10]. These countries represent strategic regional and international partners, highlighting India's penetration into both neighboring and advanced markets.\n\n## Strategic Developments: Suzuki's 'e VITARA'\n\nA significant milestone in India's EV export landscape was marked by Suzuki's inauguration of its first global strategic Battery Electric Vehicle (BEV), the 'e VITARA', in August 2025. Manufactured in India, the 'e VITARA' is planned for export to over 100 countries, including advanced markets such as Europe and Japan [4] [6] [8] [9] [10]. This development positions India as Suzuki's global manufacturing hub for EVs, further cementing the country's role in the international EV supply chain [4] [6] [8] [9] [10].\n\n## What We Could Not Establish\n\nThere are no notable gaps in the available information regarding India's EV export volumes, destinations, or strategic manufacturing developments as per the uploaded document.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#0\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#2\n[4] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[5] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n[6] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[7] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[8] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#6\n[9] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#6\n[10] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n",
+      "report": "# Research Report: India's Electric Vehicle Exports and Their Destinations\n\nIndia's electric vehicle (EV) exports have experienced a remarkable surge, growing from USD 1.2 million in 2020 to USD 84 million in 2024. The primary export destinations for these EVs include Nepal, Indonesia, and Japan, with ambitions to expand further into advanced markets globally.\n\n## Growth in EV Exports\n\nIndia's EV export market has expanded significantly over the past four years, reflecting the country's increasing role in the global electric mobility sector. The export value jumped from a modest USD 1.2 million in 2020 to an impressive USD 84 million by 2024 [1] [2] [4] [8] [12] [14] [15] [16]. This growth underscores India's evolving manufacturing capabilities and its strategic focus on electric vehicles.\n\n## Key Export Destinations\n\nIn 2024, the top destinations for India's EV exports were Nepal, Indonesia, and Japan [2] [4] [7] [8] [12]. These countries represent a mix of regional neighbors and technologically advanced markets, indicating India's diverse export strategy. The inclusion of Japan, a mature automotive market, highlights India's potential to compete internationally.\n\n## Strategic Industry Developments\n\nA notable milestone in India's EV export journey is Suzuki's launch of its first global strategic Battery Electric Vehicle (BEV), the 'e VITARA', in August 2025. Manufactured in India, this vehicle is targeted for export to over 100 countries, including advanced markets such as Europe and Japan [3] [5] [6] [9] [11] [13]. This initiative exemplifies India's growing capabilities in producing globally competitive EVs.\n\n## Government Support and Ecosystem Strengthening\n\nIndia is actively positioning itself as an emerging EV hub through various government initiatives. Schemes like the National Mission on Manufacturing, the Production Linked Incentive (PLI) Scheme for the Automobile & Auto Components Industry, and the PM Electric Drive Revolution in Innovative Vehicle Enhancement Scheme (PM E-DRIVE) are fostering a self-reliant eMobility ecosystem [1] [10] [15] [16]. These policies aim to boost domestic manufacturing and enhance export potential.\n\n## What We Could Not Establish\n\nThe document does not provide detailed data on the specific models or volumes of EVs exported to each destination, nor does it elaborate on the challenges faced in scaling exports or the competitive landscape in these markets.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#0\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[4] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[5] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#6\n[6] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[7] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n[8] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[9] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#6\n[10] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#1\n[11] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#6\n[12] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#3\n[13] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[14] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[15] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#0\n[16] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#1\n",
       "status": "done"
     },
     {
@@ -337,15 +337,15 @@
         "notes": "Entity-attribution case: several bodies appear in the document (NITI Aayog, MHI, BHEL) and the index belongs to exactly one. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 9808,
+        "wall_ms": 11188,
         "counts": {
           "claims": 4,
           "accepted": 4,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 10,
+          "passages": 30,
           "web_passages": 0,
-          "corpus_passages": 10
+          "corpus_passages": 30
         },
         "loopbacks": 0,
         "abstained": false,
@@ -357,7 +357,7 @@
         "engines": [],
         "domain_diversity": null,
         "truncated": 0,
-        "passages": 10,
+        "passages": 30,
         "corpus_citations": 3,
         "total_citations": 3,
         "claims": 4,
@@ -365,18 +365,18 @@
         "unsupported": 0,
         "citations": 12,
         "spans_resolve": 12,
-        "support_mean": 0.985
+        "support_mean": 0.9824999999999999
       },
       "totals": {
         "steps": 10,
-        "prompt_tokens": 37825,
-        "completion_tokens": 1014,
-        "latency_ms": 9796,
+        "prompt_tokens": 68530,
+        "completion_tokens": 1060,
+        "latency_ms": 11169,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Research Report: India Electric Mobility Index\n\nThe India Electric Mobility Index (IEMI) is a pioneering framework launched by NITI Aayog in August 2025 to monitor and compare the progress of Indian States and Union Territories in electric mobility. It ranks regions based on their ecosystem strength, with Delhi, Maharashtra, and Chandigarh identified as the highest-ranking Frontrunners.\n\n## Overview of the India Electric Mobility Index\n\nThe IEMI serves as a comprehensive tool to evaluate the advancement of electric mobility across India. It assesses performance using 16 indicators organized into three key pillars:\n\n- **Transport Electrification:** Measures the adoption and penetration of electric vehicles.\n- **Charging Infrastructure Readiness:** Evaluates the availability and accessibility of EV charging stations.\n- **EV Research & Innovation:** Assesses the region's efforts in developing new technologies and innovations in electric mobility.\n\nThis multi-dimensional approach provides a clear snapshot of each region's electric mobility ecosystem strength, enabling targeted policy interventions and benchmarking.\n\n## Classification of Regions\n\nBased on their IEMI scores, States and Union Territories are categorized into three groups:\n\n- **Frontrunners:** Regions with robust and mature electric mobility ecosystems.\n- **Performers:** Regions showing steady progress in developing their EV infrastructure and adoption.\n- **Aspirants:** Regions that require significant intervention to improve their electric mobility landscape.\n\n## Top-Ranked Regions\n\nAccording to the latest IEMI results, Delhi, Maharashtra, and Chandigarh have emerged as Frontrunners. These regions demonstrate strong and mature electric vehicle ecosystems, reflecting their leadership in transport electrification, infrastructure readiness, and innovation.\n\n## What We Could Not Establish\n\nThere are no gaps in the available information regarding the India Electric Mobility Index and its regional rankings.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n",
+      "report": "# Research Report: India Electric Mobility Index\n\nThe India Electric Mobility Index (IEMI) is a comprehensive framework launched by NITI Aayog in August 2025 to assess and compare the progress of Indian States and Union Territories in electric mobility. It ranks regions based on their electric mobility ecosystem strength, with Delhi, Maharashtra, and Chandigarh identified as the highest-ranking Frontrunners.\n\n## Overview of the India Electric Mobility Index\n\nThe IEMI was introduced to provide a standardized method for tracking the advancement of electric mobility across India\u2019s diverse regions. It evaluates performance using 16 indicators that are organized into three key pillars:\n\n- **Transport Electrification:** Measures the adoption and penetration of electric vehicles.\n- **Charging Infrastructure Readiness:** Assesses the availability and accessibility of EV charging stations.\n- **EV Research & Innovation:** Gauges the level of innovation and research activities related to electric mobility.\n\nThis multidimensional approach allows for a nuanced understanding of each region\u2019s strengths and challenges in the electric mobility sector.\n\n## Classification and Purpose\n\nThe Index not only quantifies progress but also categorizes States and Union Territories into three groups based on their scores:\n\n- **Frontrunners:** Regions with strong and mature electric vehicle ecosystems.\n- **Performers:** Regions showing steady progress but with room for improvement.\n- **Aspirants:** Regions at the early stages of electric mobility development.\n\nThis classification helps policymakers and stakeholders identify leaders and laggards, facilitating targeted interventions and resource allocation.\n\n## Top-Ranked Regions\n\nAccording to the latest IEMI results, the regions leading the electric mobility transition are:\n\n- **Delhi**\n- **Maharashtra**\n- **Chandigarh**\n\nThese Frontrunners have demonstrated robust ecosystems characterized by high EV adoption rates, well-developed charging infrastructure, and active research and innovation initiatives.\n\n## What We Could Not Establish\n\nThere are no notable gaps in the available information regarding the definition, structure, and rankings of the India Electric Mobility Index as described in the verified claims.\n\n## Sources\n[1] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#4\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#5\n",
       "status": "done"
     },
     {
@@ -397,19 +397,19 @@
         "notes": "The word lithium never appears in the document, though it is a battery report and the answer is well known from general knowledge. This is the strongest hallucination test in the set: the model must say the document is silent rather than fill the gap from memory or from the web. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 38564,
+        "wall_ms": 33382,
         "counts": {
-          "claims": 12,
-          "accepted": 12,
+          "claims": 0,
+          "accepted": 0,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 26,
+          "passages": 46,
           "web_passages": 16,
-          "corpus_passages": 10
+          "corpus_passages": 30
         },
         "loopbacks": 0,
-        "abstained": false,
-        "status": "done",
+        "abstained": true,
+        "status": "abstained",
         "searches": 3,
         "results_total": 18,
         "results_with_text": 18,
@@ -419,30 +419,30 @@
           "tinyfish",
           "tinyfish"
         ],
-        "domain_diversity": 0.9375,
+        "domain_diversity": 0.875,
         "truncated": 2,
-        "passages": 26,
-        "corpus_citations": 2,
-        "total_citations": 13,
-        "claims": 12,
+        "passages": 46,
+        "corpus_citations": 0,
+        "total_citations": 0,
+        "claims": 0,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 27,
-        "spans_resolve": 27,
-        "support_mean": 0.895,
-        "abstain_ok": false
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null,
+        "abstain_ok": true
       },
       "totals": {
-        "steps": 21,
-        "prompt_tokens": 84871,
-        "completion_tokens": 2203,
-        "latency_ms": 38524,
+        "steps": 7,
+        "prompt_tokens": 7276,
+        "completion_tokens": 176,
+        "latency_ms": 33354,
         "web_searches": 3,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# India's Dependence on Imported Lithium: A 2026 Overview\n\nIndia remains entirely dependent on imported lithium as of 2026, with no significant domestic production or refining capacity. This reliance, particularly on finished lithium-ion battery cells from China, presents strategic challenges that the government is actively addressing through incentives, international partnerships, and recycling initiatives.\n\n## Complete Import Dependence\n\nIndia is 100% import-dependent for lithium in 2026 [5] [6] [7] [9] [10]. Domestic lithium production is negligible, limited to preliminary surveys indicating 1,600 tonnes of inferred lithium resources in Karnataka, which is insignificant compared to demand [6]. Although lithium reserves of 5.9 million tons were discovered in Jammu and Kashmir in 2023, extraction has stalled due to low lithium concentration, difficult clay deposits, and security concerns in the disputed region [1] [2] [3]. Furthermore, India currently has effectively zero lithium refining capacity, making it reliant on imports not only for raw lithium but also for refined lithium products [4].\n\n## Import Composition and Sources\n\nIndia\u2019s lithium imports are dominated by finished lithium-ion battery cells and packs, which accounted for 84.32% of the lithium import value in Q1 2026 [5]. These finished products primarily come from China, which is the largest supplier, followed by Vietnam, Japan, South Korea, and the United States [5] [6]. Imports include lithium-ion accumulators (finished cells and packs), battery parts, and lithium compounds, with the majority being finished lithium-ion batteries [5] [6].\n\n## Economic Impact and Strategic Vulnerability\n\nIndia\u2019s lithium import bill surged to $4.7 billion in 2025, nearly nine times the 2018 figure, reflecting rapidly growing demand for lithium-ion batteries in electric vehicles and energy storage [7]. This heavy dependence on imports, especially from China, poses a strategic vulnerability for India\u2019s electric vehicle and energy storage sectors [4] [8] [9] [10].\n\n## Government Initiatives and Future Outlook\n\nTo reduce import dependence, the Indian government has launched a Production Linked Incentive (PLI) scheme with an outlay of Rs. 18,100 crore (~$2.16 billion) aimed at promoting domestic manufacturing of advanced chemistry cell (ACC) batteries [6] [4] [12] [13]. India is also pursuing international partnerships and investments to secure lithium supply, including exploration rights in Argentina and Australia, though production from these sources is expected only after several years [8] [11]. Additionally, India is promoting lithium battery recycling (urban mining) as a domestic source to mitigate import reliance [7].\n\n## What We Could Not Establish\n\nThere are no significant gaps in the available information regarding India\u2019s lithium import dependence as of 2026.\n\n## Sources\n[1] Briefer: India's Lithium Resources in Kashmir Highlight ... \u2014 https://climateandsecurity.org/2023/03/briefer-indias-lithium-resources-in-kashmir-highlight-conflict-risks-around-critical-minerals/\n[2] India's ambitious lithium dreams have stalled \u2014 https://restofworld.org/2024/india-lithium-reserves-halted/\n[3] The global lithium race: Where does India stand? \u2014 https://evreporter.com/the-global-lithium-race-where-does-india-stand/\n[4] Securing India's battery supply chain is more critical than ... \u2014 https://ieefa.org/resources/securing-indias-battery-supply-chain-more-critical-ever\n[5] India imports lithium from which country? Top suppliers \u2014 https://tradeint.com/insights/india-imports-lithium-from-which-country/\n[6] Lithium Import And Production \u2014 https://www.pib.gov.in/Pressreleaseshare.aspx?PRID=1807681\n[7] India's Lithium Demand Drives Urban Mining \u2014 https://www.linkedin.com/posts/batxenergies_india-imports-100-of-its-lithium-what-happens-activity-7472540657568645120-lDps\n[8] India's long road to lithium \u2014 https://eastasiaforum.org/2024/01/27/indias-long-road-to-lithium/\n[9] India's Critical Minerals Challenge in the Electric Mobility Era \u2014 https://www.orfonline.org/research/india-s-critical-minerals-challenge-in-the-electric-mobility-era\n[10] India's critical mineral imports in 2025 and a shift towards ... \u2014 https://ieefa.org/resources/indias-critical-mineral-imports-2025-and-shift-towards-supply-diversification\n[11] India, Chile and the Lithium Supply Chain \u2014 https://idsa.in/publisher/issuebrief/india-chile-and-the-lithium-supply-chain\n[12] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n[13] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n",
-      "status": "done"
+      "report": "# What does our uploaded document say about India's dependence on imported lithium?\n\n**Insufficient evidence.** The uploaded document does not address this question (coverage 0.07, floor 0.55). You asked what the document says, so answering from other sources would misattribute them to it. 16 web sources did discuss the topic; ask without referring to the document and they will be used.\n",
+      "status": "abstained"
     },
     {
       "case": {
@@ -464,15 +464,15 @@
         "notes": "Two paired numbers that are easy to swap between phases. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 35929,
+        "wall_ms": 45976,
         "counts": {
           "claims": 3,
           "accepted": 3,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 20,
-          "web_passages": 15,
-          "corpus_passages": 5
+          "passages": 27,
+          "web_passages": 12,
+          "corpus_passages": 15
         },
         "loopbacks": 0,
         "abstained": false,
@@ -486,28 +486,28 @@
           "tinyfish",
           "tinyfish"
         ],
-        "domain_diversity": 0.8,
+        "domain_diversity": 0.9166666666666666,
         "truncated": 1,
-        "passages": 20,
-        "corpus_citations": 2,
-        "total_citations": 3,
+        "passages": 27,
+        "corpus_citations": 4,
+        "total_citations": 5,
         "claims": 3,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 8,
-        "spans_resolve": 8,
-        "support_mean": 0.9766666666666666
+        "citations": 12,
+        "spans_resolve": 12,
+        "support_mean": 0.9733333333333333
       },
       "totals": {
         "steps": 11,
-        "prompt_tokens": 39431,
-        "completion_tokens": 800,
-        "latency_ms": 35897,
+        "prompt_tokens": 60922,
+        "completion_tokens": 921,
+        "latency_ms": 45939,
         "web_searches": 3,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Research Report: CO2 Targets in Upcoming CAFE Norms for India\n\nThe upcoming CAFE III norms for light-duty vehicles in India set a WLTP-based CO2 emission target of 91.7 grams per kilometer for 2027 to 2032. Subsequently, the CAFE IV norms planned for 2033 to 2037 aim to tighten this target further to 70 grams per kilometer, also based on WLTP standards.\n\n## CAFE III Norms (2027-2032)\n\nThe CAFE III standards propose a WLTP CO2 emission target of 91.7 g/km for light-duty vehicles. To aid original equipment manufacturers (OEMs) in meeting these targets, a super-credit mechanism will be introduced. This mechanism incentivizes increased sales of electric vehicles, allowing OEMs to offset emissions from conventional vehicles and thus facilitate compliance [1] [2] [3].\n\n## CAFE IV Norms (2033-2037)\n\nFollowing the CAFE III phase, India plans to implement CAFE IV norms with a more stringent CO2 emission target of 70 g/km, also measured using the WLTP procedure. This reflects a continued commitment to reducing vehicular emissions and promoting cleaner transportation technologies [2] [3].\n\n## What We Could Not Establish\n\nThere are no gaps in the information regarding the CO2 targets for the upcoming CAFE norms as per the uploaded document.\n\n## Sources\n[1] CAFE III CO2 standards for light-duty vehicles from 2027 to ... \u2014 https://www.iea.org/policies/26565-cafe-iii-co2-standards-for-light-duty-vehicles-from-2027-to-2032-phase-iii\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#11\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#12\n",
+      "report": "# Research Report: CO2 Targets in Upcoming CAFE Norms for India\n\nThe upcoming CAFE III norms for light-duty vehicles in India set a WLTP-based CO2 emission target of 91.7 grams per kilometer for the period 2027 to 2032. Following this, the CAFE IV norms planned for 2033 to 2037 will impose a stricter target of 70 grams per kilometer, also based on the WLTP test procedure.\n\n## CAFE III Norms (2027-2032)\n\nThe CAFE III standards propose a WLTP CO2 emission target of 91.7 g/km for light-duty vehicles. This represents a significant regulatory step aimed at reducing vehicular emissions in India over the five-year period from 2027 to 2032 [1][2][3][4][5].\n\n### Super-Credit Mechanism\n\nTo facilitate compliance with these targets, the CAFE III norms will include a super-credit mechanism. This mechanism allows original equipment manufacturers (OEMs) to meet their CO2 emission targets more easily by promoting increased sales of electric vehicles (EVs) rather than relying solely on conventional internal combustion engine vehicles or non-plug-in hybrids [1][2][3][4].\n\n## CAFE IV Norms (2033-2037)\n\nLooking beyond CAFE III, India plans to implement CAFE IV norms for the period 2033 to 2037. These norms will introduce a more stringent WLTP CO2 emission target of 70 g/km, further tightening emission standards and encouraging the adoption of cleaner vehicle technologies [2][3][4].\n\n## What We Could Not Establish\n\nThere are no gaps in the information regarding the CO2 targets for the upcoming CAFE norms as per the uploaded document. All relevant targets and mechanisms have been clearly outlined.\n\n## Sources\n[1] CAFE III CO2 standards for light-duty vehicles from 2027 to ... \u2014 https://www.iea.org/policies/26565-cafe-iii-co2-standards-for-light-duty-vehicles-from-2027-to-2032-phase-iii\n[2] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#10\n[3] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#11\n[4] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#12\n[5] india-ev-ecosystem-2026.pdf \u2014 corpus://india-ev-ecosystem-2026.pdf#9\n",
       "status": "done"
     }
   ],

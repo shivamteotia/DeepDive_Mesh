@@ -101,6 +101,34 @@ Web search is non-reproducible, so anything that **gates** runs against frozen f
 replay mode. A live-mode candidate has its gates downgraded to guardrails automatically: the
 web moving is not a regression in our code.
 
+## Document questions
+
+Upload a PDF and ask what it says. Two rules the system holds to:
+
+- **A document question is answered from the document, or not at all.** Asked what an
+  uploaded report said about lithium imports — a word it never contains — an earlier build
+  returned an accurate, well-cited account assembled from sixteen web pages. Nothing in it
+  was false and no citation was fabricated, which is precisely why nothing downstream
+  objected. It was still the wrong answer. The system now says the document is silent, and
+  points out that web sources do cover the topic if that is what you wanted.
+- **Web search still runs for general questions**, and document passages simply join the
+  evidence pool. Scope is decided per question, not per upload.
+
+Measured over 8 questions on a real 14-page government EV report, each anchored on facts read
+off the document by hand:
+
+| | |
+|---|---|
+| answered correctly | **8 / 8** |
+| `ground.claim_support_rate` | 0.979 |
+| `ground.hallucinated_citation_rate` | 0.000 |
+| `retrieval.corpus_only_rate` | 0.744 |
+| `verify.abstain_rate` (the silent-subject case) | 1.000 |
+| cost for the suite | $0.11 |
+
+That includes two cases built to be confusable — four bus numbers in one paragraph, and two
+adjacent market forecasts with similar shape — and the system kept both straight.
+
 ## What does not work yet
 
 Stated plainly, because a research tool that hides its own limitations has missed the point.
@@ -115,6 +143,10 @@ Stated plainly, because a research tool that hides its own limitations has misse
   what retrieval actually returns.
 - `retrieval.precision_at_k` needs per-result relevance labels, so it is not emitted at all
   rather than estimated.
+- **Document retrieval ranking is weak**, and this is upstream of us. Querying the gateway's
+  RAG index with an exact phrase from the document can return an unrelated chunk at score
+  1.000. We compensate by over-retrieving (`CORPUS_TOP_K=15`) and letting the verifier discard
+  what does not support a claim, but the scores themselves cannot be trusted for ranking.
 - Replay mode needs `--from-plan` to be robust: when the planner rephrases a sub-query, the
   fixture cache misses.
 
