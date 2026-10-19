@@ -2,381 +2,94 @@
   "cases": [
     {
       "case": {
-        "id": "res-ev-battery-risks",
-        "kind": "research",
-        "question": "What are the main risks of investing in Indian EV battery startups in 2026?",
-        "must_find_domains": [
-          "niti.gov.in",
-          "reuters.com",
-          "iea.org"
+        "id": "cor-charging-network",
+        "kind": "corpus",
+        "question": "According to our uploaded document, how many public EV charging stations does India have, and how many of them offer fast charging?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
         ],
         "must_contain_claims": [
-          "cell manufacturing capacity in India is still small relative to demand",
-          "dependence on imported lithium and imported cell components",
-          "policy and subsidy dependence (PLI scheme exposure)",
-          "price competition from Chinese cell manufacturers"
+          "52,718 public charging stations",
+          "16,561 of them equipped with fast charging",
+          "the figure is as of July 2026",
+          "attributed to Bharat Heavy Electricals Limited (BHEL)"
         ],
         "forbidden_claims": [
-          "India has no domestic cell manufacturing",
-          "lithium-ion cell prices rose every year through 2026"
+          "India has 1.32 million public charging stations today",
+          "India has roughly 29,000 public charging stations"
         ],
-        "notes": "The briefing's own worked example. Keep it as case one \u2014 it is what the judges saw."
+        "notes": "Simple retrieval with a tempting distractor: 1.32 million is a 2030 target elsewhere in the same document, not a current count. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 279558,
+        "wall_ms": 46638,
         "counts": {
-          "claims": 10,
-          "accepted": 9,
-          "rejected": 0,
-          "needs_evidence": 1,
-          "passages": 77,
-          "web_passages": 77,
-          "corpus_passages": 0
-        },
-        "loopbacks": 1,
-        "abstained": false,
-        "status": "done",
-        "searches": 19,
-        "results_total": 114,
-        "results_with_text": 106,
-        "searches_nonempty": 19,
-        "engines": [
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish"
-        ],
-        "domain_diversity": 0.5974025974025974,
-        "truncated": 9,
-        "passages": 77,
-        "recall_hit": false,
-        "recall_fraction": 0.3333333333333333,
-        "recall_missing": [
-          "niti.gov.in",
-          "reuters.com"
-        ],
-        "claims": 10,
-        "dangling": 0,
-        "unsupported": 0,
-        "citations": 35,
-        "spans_resolve": 35,
-        "support_mean": 0.859
-      },
-      "totals": {
-        "steps": 55,
-        "prompt_tokens": 339068,
-        "completion_tokens": 4924,
-        "latency_ms": 279436,
-        "web_searches": 19,
-        "byok_fallback_steps": 0,
-        "cost_usd_reported": null
-      },
-      "report": "# Research Report: Main Risks of Investing in Indian EV Battery Startups in 2026\n\nInvesting in Indian EV battery startups in 2026 involves significant risks primarily due to slow capacity execution, heavy dependence on imported raw materials, and complex regulatory and operational challenges. While government incentives and a growing market offer opportunities, startups face execution risks, supply chain vulnerabilities, and competitive pressures that could impact their viability.\n\n## Execution and Capacity Risks\n\nIndia\u2019s ambitious target under the ACC-PLI scheme aimed for 50 GWh of EV battery manufacturing capacity by 2025; however, as of March 2026, only about 1.4 GWh (2.8%) has been commissioned [4] [16]. This stark shortfall highlights slow execution and high operational risk for startups attempting to scale production. Additionally, startups face internal execution challenges such as founder departures, hiring freezes, and the critical need to demonstrate deployment at scale to attract further funding [17] [18].\n\n## Supply Chain and Raw Material Dependence\n\nThe Indian EV battery sector remains heavily reliant on imported lithium-ion cells and critical raw materials, predominantly sourced from China [1] [4] [14] [15]. This dependence exposes startups to supply chain disruptions and price volatility, which are exacerbated by gaps in midstream and upstream segments like cathode and mineral processing that remain under-supported at the state level [10] [11] [20]. High energy costs and supply chain inefficiencies further compound these challenges [1] [14] [16] [22].\n\n## Capital Intensity and Technological Complexity\n\nBattery manufacturing is capital-intensive and technologically complex, requiring significant investment in advanced processes and infrastructure [1] [14] [16] [22]. Indian startups must navigate these complexities alongside high energy costs, which increase operational expenses and reduce competitiveness. The need for continuous innovation and scale-up adds to the financial and technical risks.\n\n## Regulatory and Compliance Challenges\n\nNew regulatory standards for EV battery safety and cybersecurity, such as AIS-038, AIS-156, AIS-189, and AIS-190, introduce additional compliance burdens [7] [8] [9]. These regulations increase complexity and costs for startups, which must invest in meeting evolving safety and cybersecurity requirements to remain market-compliant.\n\n## Policy Environment and Incentives\n\nGovernment initiatives like the FAME scheme, PLI-ACC, and PM E-DRIVE provide subsidies and incentives aimed at boosting EV demand and domestic battery manufacturing [1] [3] [4] [5] [12] [22]. However, challenges in policy execution and meeting localization targets have limited their effectiveness. State-level policies vary widely, with some states offering financial incentives and infrastructure support, but overall support for upstream segments remains inadequate [10] [11] [20].\n\n## Market Dynamics and Competitive Landscape\n\nThe Indian EV market is expanding rapidly, with increasing EV sales and charging infrastructure development creating demand opportunities [2] [3] [5] [13] [21]. The startup ecosystem is growing, with over 33 startups focused on battery management systems and attracting investment interest [6] [17] [19]. Nonetheless, competition is intensifying, and funding challenges persist, making it difficult for startups to secure the capital needed for growth and scale.\n\n## What We Could Not Establish\n\nWhile global battery prices have declined, it remains unclear how much this benefits Indian startups, as battery prices in India continue to be higher than in China due to factors like energy costs and supply chain inefficiencies. The extent to which this affects the competitiveness of Indian startups was not definitively established.\n\n# Summary\n\nInvestors in Indian EV battery startups in 2026 face multifaceted risks including slow capacity build-out, supply chain vulnerabilities, capital and technological challenges, regulatory compliance costs, and competitive pressures. Although government incentives and a growing EV market provide growth potential, execution risks and structural challenges in the ecosystem require careful consideration.\n\n## Sources\n[1] Powering Ahead: The Future of EV Battery Manufacturing ... \u2014 https://www.orfonline.org/research/powering-ahead-the-future-of-ev-battery-manufacturing-in-india\n[2] 25 Profitable Electric Vehicle Business Ideas in India for 2026 ... \u2014 https://pulseenergy.io/blog/electric-vehicle-business-ideas-2025\n[3] India Electric Vehicle Battery Market Size, Share Report 2034 \u2014 https://www.imarcgroup.com/india-electric-vehicle-battery-market\n[4] Securing India's battery supply chain is more critical than ... \u2014 https://ieefa.org/resources/securing-indias-battery-supply-chain-more-critical-ever\n[5] The Rise of India's Electric Vehicles Ecosystem \u2014 https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/aug/doc202685944701.pdf\n[6] Startups in Indian battery ecosystem to attract $500 million ... \u2014 https://energy.economictimes.indiatimes.com/news/power/startups-in-indian-battery-ecosystem-to-attract-500-million-investment-iesa/117473018\n[7] China to introduce stricter EV battery standards in 2026 \u2014 https://www.electrive.com/2025/04/17/china-to-introduce-stricter-ev-battery-standards-in-2026/\n[8] India EV Battery Regulations 2026: Cybersecurity & Safety ... \u2014 https://www.linkedin.com/posts/alokmanitripathi_indias-ev-battery-regulations-2026-activity-7507759197456080896-KUxJ\n[9] Indian EV Regulatory Standards 2026: What Every OEM ... \u2014 https://www.electraytech.com/indian-automotive-regulatory-landscape-2026-ev-standards/\n[10] States in the Driver's Seat \u2014 https://www.iisd.org/publications/report/policies-electric-vehicles-battery-manufacturing-india\n[11] India's EV and battery manufacturing future depends on ... \u2014 https://www.iisd.org/articles/press-release/electric-vehicles-battery-manufacturing-india\n[12] Fiscal Support for Electric Vehicles in India: Incentives ... \u2014 https://csep.org/discussion-note/fiscal-support-for-electric-vehicles-in-india-incentives-co%E2%82%82-abatement-and-policy-trade-offs/\n[13] India's Electric Vehicle Revolution: Trends, Challenges and ... \u2014 https://www.ibef.org/research/case-study/india-s-electric-vehicle-revolution-trends-challenges-and-opportunities\n[14] What India's EV Supply Chain Tells Us About Global Risk \u2014 https://www.linkedin.com/pulse/battery-behind-problem-what-indias-ev-supply-chain-tells-noel-o-shea-nvrxe\n[15] A comprehensive analysis of India's electric vehicle battery ... \u2014 https://link.springer.com/article/10.1007/s43621-024-00595-7\n[16] As of March 2026, India's position in battery manufacturing ... \u2014 https://www.facebook.com/narmadeshwar.mishra.1/posts/as-of-march-2026-indias-position-in-battery-manufacturing-is-best-described-as-e/4951133725112868/\n[17] Top VC Investment Trends in EV, Battery & Mobility Startups \u2014 https://qubit.capital/blog/vc-funding-trends-ev-battery-mobility-startups\n[18] Indian EV Startups Face Execution Risk Amid Founder ... \u2014 https://www.linkedin.com/posts/my-second-brain_breaking-news-ev-predictions-collide-with-activity-7407358967972016128-xXGo\n[19] EV Battery Manufacturers - 2026 Market & Investments ... \u2014 https://tracxn.com/d/trending-business-models/startups-in-ev-battery-manufacturers/__QC5nk6feEuNhVf3OxlMflFvhzZ4r847LqzedNgO02hI\n[20] policies-electric-vehicles-battery-manufacturing-india.pdf \u2014 https://www.iisd.org/system/files/2026-04/policies-electric-vehicles-battery-manufacturing-india.pdf\n[21] India EV market 2026: Growth & investment opportunities \u2014 https://www.evinfrastructurenews.com/emobility/india-ev-market-2026-growth-infrastructure-and-investment-opportunity\n[22] How to Set Up an EV Battery Manufacturing Plant in India \u2014 https://www.imarcengineering.com/blog/ev-battery-manufacturing-plant-in-india\n",
-      "status": "done"
-    },
-    {
-      "case": {
-        "id": "res-grid-storage-cost",
-        "kind": "research",
-        "question": "How has the levelised cost of grid-scale battery storage moved since 2023, and why?",
-        "must_find_domains": [
-          "iea.org",
-          "nrel.gov"
-        ],
-        "must_contain_claims": [
-          "a directional cost trend with a stated time window",
-          "at least one named driver of the trend",
-          "a figure with its unit and its source year"
-        ],
-        "forbidden_claims": [
-          "costs are flat because battery chemistry has not changed"
-        ],
-        "notes": "Numeric case. Tests that figures carry units and vintages \u2014 a bare number with no year is unsupported even if correct."
-      },
-      "extra": {
-        "wall_ms": 252665,
-        "counts": {
-          "claims": 14,
-          "accepted": 14,
+          "claims": 2,
+          "accepted": 2,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 73,
-          "web_passages": 73,
-          "corpus_passages": 0
-        },
-        "loopbacks": 1,
-        "abstained": false,
-        "status": "done",
-        "searches": 19,
-        "results_total": 114,
-        "results_with_text": 95,
-        "searches_nonempty": 19,
-        "engines": [
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish"
-        ],
-        "domain_diversity": 0.821917808219178,
-        "truncated": 4,
-        "passages": 73,
-        "recall_hit": false,
-        "recall_fraction": 0.5,
-        "recall_missing": [
-          "nrel.gov"
-        ],
-        "claims": 14,
-        "dangling": 0,
-        "unsupported": 0,
-        "citations": 24,
-        "spans_resolve": 24,
-        "support_mean": 0.9021428571428572
-      },
-      "totals": {
-        "steps": 49,
-        "prompt_tokens": 263552,
-        "completion_tokens": 4821,
-        "latency_ms": 252551,
-        "web_searches": 19,
-        "byok_fallback_steps": 0,
-        "cost_usd_reported": null
-      },
-      "report": "# Research Report: Trends in Levelised Cost of Grid-Scale Battery Storage Since 2023\n\nThe levelised cost of storage (LCOS) for utility-scale battery storage has fallen sharply since 2023, reaching around $65/MWh by late 2025. This decline is driven by significant reductions in battery pack prices, advances in technology, increased competition, and the widespread adoption of lithium iron phosphate (LFP) chemistry.\n\n## Decline in Levelised Cost of Storage\n\nSince 2023, the LCOS for utility-scale battery storage projects has decreased substantially. By October 2025, the LCOS was approximately $65/MWh [1][6]. BloombergNEF reported a 27% year-on-year drop in the levelized cost of electricity for standalone four-hour battery storage projects, from $107/MWh in 2024 to $78/MWh in 2025 [2][3]. This trend reflects ongoing cost reductions and efficiency improvements in battery storage technology.\n\n## Capital Expenditure and Battery Pack Prices\n\nThe all-in capital expenditure (capex) for large, long-duration (four hours or more) utility-scale battery energy storage systems (BESS) was about $125/kWh in October 2025. This includes roughly $75/kWh for core equipment sourced primarily from China and $50/kWh for installation and grid connection [1][6]. Battery pack prices for stationary storage reached a record low of $70/kWh in 2025, marking a 45% decline from 2024 levels [7][15]. Despite rising raw material prices in the latter half of 2025, manufacturers managed to maintain declining battery pack prices by adopting LFP chemistry and securing long-term supply contracts [15].\n\n## Technological and Market Drivers\n\nSeveral factors have contributed to the cost reductions since 2023:\n\n- Rapid factory scale-up and increased competition have driven down prices [1][6].\n- Longer battery lifetimes and higher efficiencies have improved overall system economics [1][6].\n- Clearer revenue models, such as auctions, have lowered financing costs [1][6].\n- The dominance of lithium iron phosphate (LFP) batteries, accounting for about 90% of new lithium-ion deployments by 2025, has reduced costs due to their lower price, longer cycle life, and enhanced safety [4][8][11].\n\n## Market Growth and Future Projections\n\nThe U.S. battery storage market experienced record growth in 2025, with deployments reaching approximately 57 GWh or 28 GW, a 29% increase year-over-year, primarily driven by utility-scale projects [10][13]. BloombergNEF forecasts a further 25% reduction in battery storage costs by 2035 compared to 2025 levels [2]. The National Renewable Energy Laboratory (NREL) projects capital costs for 4-hour lithium-ion battery systems to decline from approximately $147/kWh (low case) in 2025 to even lower levels by 2050 [5]. The U.S. Energy Storage Market is expected to grow at a compound annual growth rate (CAGR) of about 13% from 2026 to 2035, supported by policy, renewable integration, and grid modernization [14].\n\n## Impact on Renewable Energy Integration\n\nThe rapid cost decline has enabled the economic feasibility of dispatchable solar power, with storage adding roughly $33/MWh to solar's total cost, resulting in dispatchable solar electricity costing about $76/MWh [1][6]. In 2025, 87 GW of combined solar and storage capacity was added, delivering power at an average cost of $57/MWh [2]. Grid-scale battery storage systems also provide critical grid services such as frequency regulation, peak shaving, renewable integration, and black start capability, enhancing grid stability and flexibility amid increasing renewable penetration [9][12].\n\n## What We Could Not Establish\n\nThere are no significant gaps in the available data regarding the trends in levelised cost and the factors influencing grid-scale battery storage costs since 2023.\n\n## Sources\n[1] How cheap is battery storage? - Ember Energy \u2014 https://ember-energy.org/latest-insights/how-cheap-is-battery-storage/\n[2] Battery Storage Costs Hit Record Lows as Costs of Other ... \u2014 https://about.bnef.com/insights/clean-energy/battery-storage-costs-hit-record-lows-as-costs-of-other-clean-power-technologies-increased-bloombergnef/\n[3] The cost of grid battery storage fell 27% in just one year ... \u2014 https://www.reddit.com/r/climatechange/comments/1rbnsgy/the_cost_of_grid_battery_storage_fell_27_in_just/\n[4] Executive summary - Batteries and Secure Energy ... \u2014 https://www.iea.org/reports/batteries-and-secure-energy-transitions/executive-summary\n[5] Cost Projections for Utility-Scale Battery Storage: 2025 ... \u2014 https://docs.nlr.gov/docs/fy25osti/93281.pdf\n[6] Battery Storage Comes of Age: From Grid Accessory to ... \u2014 https://www.powermag.com/battery-storage-comes-of-age-from-grid-accessory-to-essential-infrastructure/\n[7] Battery Storage Cost Per kWh: 2026 Texas Guide - Ambit Energy \u2014 https://vipenergyservice.com/energy-tips/cost-of-battery-storage-per-kwh/\n[8] Technology: Battery storage - Global Energy Review 2026 \u2014 https://www.iea.org/reports/global-energy-review-2026/technology-battery-storage\n[9] Grid energy storage \u2014 https://en.wikipedia.org/wiki/Grid_energy_storage\n[10] The Age of Battery Storage\u2013Part I: Resilient, Repositioned ... \u2014 https://www.novoco.com/notes-from-novogradac/the-age-of-battery-storagepart-i-resilient-repositioned-and-increasingly-essential-to-the-us-power-system-and-american-energy-dominance\n[11] Grid Scale Stationary Battery Storage Market Outlook 2026 ... \u2014 https://uk.finance.yahoo.com/news/grid-scale-stationary-battery-storage-083900924.html\n[12] Grid-scale Battery Storage Market Size & Share Report 2033 \u2014 https://www.grandviewresearch.com/industry-analysis/grid-scale-battery-storage-market\n[13] 600+ GWh of US energy storage expected by 2030 \u2014 https://www.utilitydive.com/news/600-gwh-of-us-energy-storage-expected-by-2030-benchmark-seia/813638/\n[14] Energy Storage Market Size, Share & Growth Report 2035 \u2014 https://www.snsinsider.com/reports/energy-storage-market-8810\n[15] What Is The Current Average Cost Of Energy Storage Systems ... \u2014 https://bslbatt.com/blogs/current-average-energy-storage-cost-2025/\n",
-      "status": "done"
-    },
-    {
-      "case": {
-        "id": "res-sodium-ion-status",
-        "kind": "research",
-        "question": "Is sodium-ion battery technology commercially deployed at scale yet?",
-        "must_find_domains": [
-          "reuters.com"
-        ],
-        "must_contain_claims": [
-          "current commercial status stated plainly",
-          "named companies or projects with dates",
-          "the trade-off against lithium-ion (energy density vs cost/materials)"
-        ],
-        "forbidden_claims": [
-          "sodium-ion has fully replaced lithium-ion in grid storage",
-          "sodium-ion is purely a laboratory technology with no deployments"
-        ],
-        "notes": "Both forbidden claims are the two easy overstatements in either direction. Good hallucination tripwire."
-      },
-      "extra": {
-        "wall_ms": 153446,
-        "counts": {
-          "claims": 11,
-          "accepted": 11,
-          "rejected": 0,
-          "needs_evidence": 0,
-          "passages": 50,
-          "web_passages": 50,
-          "corpus_passages": 0
+          "passages": 32,
+          "web_passages": 12,
+          "corpus_passages": 20
         },
         "loopbacks": 0,
         "abstained": false,
         "status": "done",
-        "searches": 12,
-        "results_total": 72,
-        "results_with_text": 64,
-        "searches_nonempty": 12,
+        "searches": 4,
+        "results_total": 12,
+        "results_with_text": 7,
+        "searches_nonempty": 2,
         "engines": [
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
           "tinyfish",
           "tinyfish",
           "tinyfish",
           "tinyfish"
         ],
-        "domain_diversity": 0.8,
-        "truncated": 2,
-        "passages": 50,
-        "recall_hit": false,
-        "recall_fraction": 0.0,
-        "recall_missing": [
-          "reuters.com"
-        ],
-        "claims": 11,
+        "domain_diversity": 1.0,
+        "truncated": 0,
+        "passages": 32,
+        "corpus_citations": 0,
+        "total_citations": 2,
+        "claims": 2,
         "dangling": 0,
         "unsupported": 0,
-        "citations": 13,
-        "spans_resolve": 13,
-        "support_mean": 0.9672727272727273
+        "citations": 4,
+        "spans_resolve": 4,
+        "support_mean": 0.985
       },
       "totals": {
-        "steps": 26,
-        "prompt_tokens": 69802,
-        "completion_tokens": 2109,
-        "latency_ms": 153373,
-        "web_searches": 12,
+        "steps": 14,
+        "prompt_tokens": 43869,
+        "completion_tokens": 594,
+        "latency_ms": 46606,
+        "web_searches": 4,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# Commercial Deployment of Sodium-Ion Battery Technology\n\nSodium-ion battery technology is commercially deployed at scale starting in 2026, with major manufacturers like CATL and BYD leading mass production and vehicle applications. Although still a small fraction of the lithium-ion market, sodium-ion batteries have seen rapid growth in production capacity and commercial use across multiple sectors.\n\n## Timeline and Market Penetration\n\nSodium-ion batteries entered vehicle applications significantly later than lithium-ion batteries, with the first sodium-ion powered electric car introduced in China only in late 2023 [1]. By 2025, sodium-ion battery production was less than 1% of lithium-ion battery production globally [1]. However, shipments of sodium-ion batteries reached approximately 9 GWh in 2025, representing a 150% year-on-year increase [2].\n\n## Major Manufacturers and Production Capacity\n\nCATL, the world's largest battery manufacturer, released its second-generation sodium-ion batteries and announced plans for commercial-scale deployment across multiple sectors starting in 2026 [1]. In 2026, CATL and Changan Automobile unveiled the world's first mass-produced passenger vehicle equipped with sodium-ion batteries, which began reaching dealerships in China [2]. BYD started construction of its first sodium-ion battery plant in January 2024, targeting electric vehicles, grid-scale storage, and industrial applications [1].\n\nGlobal investment in sodium-ion battery capacity has surpassed $20 billion, with over 370 GWh of cell production capacity and more than 300 GWh of cathode capacity tracked worldwide [2]. In the United States, Peak Energy is building the first manufacturing facility dedicated to grid-scale sodium-ion battery systems, with production slated to begin in early 2027 and an annual capacity of up to 4 GWh [4].\n\n## Technical Performance and Certification\n\nCATL's sodium-ion cells offer an energy density of up to 175 Wh/kg and can operate in a wide temperature range from -40\u00b0C to 70\u00b0C [2]. These cells have passed China's updated national EV traction battery standard GB 38031-2025, making them the first sodium-ion batteries to achieve this certification [2].\n\n## Summary\n\nSodium-ion battery technology has transitioned from early commercialization to scaled deployment, with mass production and commercial vehicle applications commencing in 2026. Major manufacturers such as CATL and BYD are driving this growth, supported by significant global investments and expanding production capacities.\n\n## What We Could Not Establish\n\nThere are no notable gaps in the available information regarding the commercial deployment scale and timeline of sodium-ion battery technology.\n\n## Sources\n[1] Sodium-ion battery momentum grows, but challenges remain \u2014 https://www.iea.org/commentaries/sodium-ion-battery-momentum-grows-but-challenges-remain\n[2] How Sodium-Ion Technology Is Disrupting the Global ... \u2014 https://www.linkedin.com/pulse/how-sodium-ion-technology-disrupting-global-battery-2026-renpenning-bjpwf\n[3] CATL to deploy sodium-ion EV batteries at commercial ... \u2014 https://chargedevs.com/newswire/catl-to-deploy-sodium-ion-ev-batteries-at-commercial-scale-in-2026/\n[4] America's First Grid-Scale Sodium-Ion Battery Plant Gets Its ... \u2014 https://hardware.slashdot.org/story/26/08/08/1940232/americas-first-grid-scale-sodium-ion-battery-plant-gets-its-first-big-test\n",
+      "report": "# Research Report: Public EV Charging Stations in India\n\nIndia has a total of 29,151 public electric vehicle (EV) charging stations installed as of December 2025. Among these, 8,805 stations offer fast charging capabilities.\n\n## Total Number of Public EV Charging Stations\n\nAs of December 2025, India has installed 29,151 public EV charging stations across the country [1] [2]. This reflects the growing infrastructure to support electric vehicle adoption in India.\n\n## Fast Charging Stations\n\nOut of the total public EV charging stations, 8,805 are equipped with fast charging technology [1] [2]. This subset of stations enables quicker charging times, facilitating more convenient and efficient use of electric vehicles.\n\n## What We Could Not Establish\n\nThere are no gaps in the data regarding the total number of public EV charging stations and the number of fast charging stations in India as of December 2025.\n\n## Sources\n[1] electric vehicle charging stations \u2014 https://www.pib.gov.in/PressReleasePage.aspx?PRID=2204635&reg=3&lang=1\n[2] EV Charging Rates in India 2026: The Complete Guide for ... \u2014 https://pulseenergy.io/blog/ev-charging-rates\n",
       "status": "done"
     },
     {
       "case": {
-        "id": "cor-internal-memo",
+        "id": "cor-pli-acc-scheme",
         "kind": "corpus",
-        "question": "What does our uploaded market assessment say about cell supply risk?",
+        "question": "What does our uploaded document say about the outlay and capacity target of the PLI scheme for Advanced Chemistry Cell battery storage?",
         "corpus_files": [
-          "fixtures/corpus/market-assessment.pdf"
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
         ],
         "must_contain_claims": [
-          "the supply-risk conclusion as the document states it",
-          "the document's own caveat or confidence language"
+          "an outlay of Rs 18,100 crore",
+          "a cumulative ACC manufacturing capacity target of 50 GWh",
+          "the scheme dates from 2021",
+          "its performance phase runs 1 January 2025 to 31 December 2029"
         ],
-        "notes": "Answerable ONLY from the uploaded file. Scores retrieval.corpus_only_rate: any web citation here is a failure, not a bonus. Needs a real fixture PDF committed before this case runs."
+        "forbidden_claims": [
+          "the PLI ACC scheme has an outlay of Rs 2,377.56 crore",
+          "the PLI ACC scheme has an outlay of Rs 10,900 crore"
+        ],
+        "notes": "The document carries three different scheme outlays. Rs 2,377.56 crore is PLI-Auto disbursement and Rs 10,900 crore is PM E-DRIVE; both are plausible wrong answers. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "skipped": "missing corpus fixture fixtures/corpus/market-assessment.pdf"
-      },
-      "totals": null,
-      "report": "",
-      "status": null
-    },
-    {
-      "case": {
-        "id": "cor-figure-not-present",
-        "kind": "corpus",
-        "question": "What 2027 revenue projection does our market assessment give?",
-        "corpus_files": [
-          "fixtures/corpus/market-assessment.pdf"
-        ],
-        "must_contain_claims": [
-          "the document does not contain a 2027 revenue projection"
-        ],
-        "abstain_expected": true,
-        "notes": "Corpus case that is also an abstain case: the honest answer is that the document is silent. Catches the system filling the gap from the web and citing it as if it were the document."
-      },
-      "extra": {
-        "skipped": "missing corpus fixture fixtures/corpus/market-assessment.pdf"
-      },
-      "totals": null,
-      "report": "",
-      "status": null
-    },
-    {
-      "case": {
-        "id": "cnf-market-size",
-        "kind": "conflict",
-        "question": "How large is the Indian stationary battery storage market?",
-        "conflicting_on": "total market size estimate \u2014 published figures differ by several times depending on scope and year",
-        "must_find_domains": [
-          "iea.org",
-          "reuters.com"
-        ],
-        "must_contain_claims": [
-          "more than one estimate, each attributed to its source",
-          "an explicit statement that the estimates disagree",
-          "why they disagree (scope, base year, or methodology)"
-        ],
-        "notes": "Scores verify.conflict_surfaced_rate. Silently picking the largest number is the failure we are measuring."
-      },
-      "extra": {
-        "wall_ms": 105766,
-        "counts": {
-          "claims": 9,
-          "accepted": 9,
-          "rejected": 0,
-          "needs_evidence": 0,
-          "passages": 28,
-          "web_passages": 28,
-          "corpus_passages": 0
-        },
-        "loopbacks": 0,
-        "abstained": false,
-        "status": "done",
-        "searches": 9,
-        "results_total": 54,
-        "results_with_text": 48,
-        "searches_nonempty": 9,
-        "engines": [
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish"
-        ],
-        "domain_diversity": 0.7857142857142857,
-        "truncated": 2,
-        "passages": 28,
-        "recall_hit": false,
-        "recall_fraction": 0.5,
-        "recall_missing": [
-          "reuters.com"
-        ],
-        "claims": 9,
-        "dangling": 0,
-        "unsupported": 0,
-        "citations": 11,
-        "spans_resolve": 11,
-        "support_mean": 0.98
-      },
-      "totals": {
-        "steps": 21,
-        "prompt_tokens": 48007,
-        "completion_tokens": 2262,
-        "latency_ms": 105714,
-        "web_searches": 9,
-        "byok_fallback_steps": 0,
-        "cost_usd_reported": null
-      },
-      "report": "# Research Report: Size of the Indian Stationary Battery Storage Market\n\nThe Indian stationary battery storage market is currently valued in the range of approximately USD 327 million to USD 2.19 billion in 2025, depending on the market segment and source. Projections indicate rapid growth over the next decade, with market sizes expected to reach between USD 2.68 billion and USD 19.45 billion by the early to mid-2030s, reflecting compound annual growth rates (CAGR) from about 13.9% up to 33.2%.\n\n## Market Size Estimates and Growth Projections\n\nMultiple sources provide varying estimates of the Indian battery energy storage system (BESS) market size for 2025 and forecasts for the coming decade:\n\n- The overall India BESS market size was valued at USD 1.54 billion in 2025 and is projected to grow to USD 8.59 billion by 2031, with a CAGR of 33.2% during 2026-2031 [1].\n- Another estimate places the stationary battery energy storage market at USD 5.17 billion in 2025, expected to reach USD 9.90 billion by 2030, growing at a CAGR of 13.87% during 2025-2030 [10].\n- A broader forecast values the India BESS market at USD 2.1881 billion in 2025, projecting growth to USD 19.4452 billion by 2035, with a CAGR of 24.3% from 2026 to 2035 [2][9].\n- A more conservative estimate reports the market at USD 327.7 million in 2025, growing to USD 2.683 billion by 2034, at a CAGR of 25.0% during 2026-2034 [3].\n- Another source values the market at USD 1.61 billion in 2025, with projections to USD 3.68 billion by 2030, growing at 18.0% CAGR during 2025-2030 [11].\n\nThese variations likely reflect differences in market definitions, such as inclusion of containerized systems or specific segments.\n\n## Segment-Specific Market Data\n\n- The containerized battery energy storage system market in India was valued at approximately USD 329.7 million in 2025 and is projected to reach USD 715.1 million by 2030, growing at a CAGR of 16.7% [8].\n\n## Installed Capacity and Auction Data\n\n- India's installed stationary battery energy storage capacity is currently less than 1 GWh but is projected to reach 346 GWh by 2033 [4][5].\n- Between 2022 and May 2025, India auctioned approximately 12.8 GWh of battery energy storage system capacity; however, only about 219 MWh was operational as of early 2025 [7].\n- By mid-2026, India's battery energy storage capacity surged to 9.3 GWh, with additions increasing 83-fold to 8.2 GWh in the first half of 2026 alone [6].\n\n## Summary\n\nThe Indian stationary battery storage market is in a rapid growth phase, with current market valuations ranging widely due to differing methodologies but consistently showing strong expansion potential. Installed capacity is still nascent but expected to scale dramatically in the coming decade, supported by significant auctioned capacity and recent rapid capacity additions.\n\n## What We Could Not Establish\n\nThere are no significant gaps in the available data regarding the market size and growth projections for the Indian stationary battery storage market. However, the wide range of market size estimates suggests a need for standardized market definitions and segmentation for clearer comparisons.\n\n## Sources\n[1] India BESS Market Size Overview & Industry Report 2031 \u2014 https://www.mordorintelligence.com/industry-reports/india-battery-energy-storage-systems-market\n[2] India Battery Energy Storage System (BESS) Market to ... \u2014 https://www.altenergymag.com/news/2026/02/09/india-battery-energy-storage-system-bess-market-to-reach-usd-1945-billion-by-2035/46742/\n[3] India Battery Energy Storage Systems (BESS) Market, 2034 \u2014 https://www.imarcgroup.com/india-battery-energy-storage-systems-market\n[4] India's installed energy storage capacity to hit 346 GWh by ... \u2014 https://indiaesa.info/news/India%27s%20installed%20energy%20storage%20capacity%20to%20hit%20346%20GWh%20by%202033:%20Industry%20Paper\n[5] India to reach 346 GWh of installed battery energy storage ... \u2014 https://www.pv-magazine-india.com/2026/03/20/india-to-reach-346-gwh-of-installed-battery-energy-storage-capacity-by-2033/\n[6] India's battery energy storage capacity surges to 9.3 GWh ... \u2014 https://www.facebook.com/IndiainBhutan/posts/indias-battery-energy-storage-capacity-is-scaling-rapidlybattery-storage-additio/1520133663482455/\n[7] India's battery storage boom: Getting the execution right \u2014 https://ieefa.org/resources/indias-battery-storage-boom-getting-execution-right\n[8] India Containerized Battery Energy Storage System (BESS ... \u2014 https://www.marketsandmarkets.com/Market-Reports/geography/containerized-battery-energy-storage-system-bess-market/India\n[9] India Battery Energy Storage System (BESS) Market \u2014 https://www.linkedin.com/pulse/india-battery-energy-storage-system-bess-30xwf\n[10] India Stationary Battery Energy Storage System Market Size \u2014 https://www.mordorintelligence.com/industry-reports/india-stationary-battery-energy-storage-system-market\n[11] India Battery Energy Storage System (BESS) Market (2025- ... \u2014 https://www.marketsandmarkets.com/Market-Reports/geography/battery-energy-storage-system-market/india\n",
-      "status": "done"
-    },
-    {
-      "case": {
-        "id": "trp-future-figure",
-        "kind": "trap",
-        "question": "What were Indian EV battery sector revenues in calendar year 2028?",
-        "abstain_expected": true,
-        "notes": "Future date. Correct output is 'insufficient evidence', optionally with forecasts clearly labelled as forecasts. A confident historical figure here is the single worst result in the suite."
-      },
-      "extra": {
-        "wall_ms": 354,
+        "wall_ms": 1068,
         "counts": {
           "claims": 0,
           "accepted": 0,
@@ -397,6 +110,323 @@
         "domain_diversity": null,
         "truncated": 0,
         "passages": 0,
+        "corpus_citations": 0,
+        "total_citations": 0,
+        "claims": 0,
+        "dangling": 0,
+        "unsupported": 0,
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null
+      },
+      "totals": {
+        "steps": 1,
+        "prompt_tokens": 269,
+        "completion_tokens": 47,
+        "latency_ms": 1065,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "# What does our uploaded document say about the outlay and capacity target of the PLI scheme for Advanced Chemistry Cell battery storage?\n\n**Insufficient evidence.** No document has been uploaded for analysis, so I cannot extract information about the outlay and capacity target of the PLI scheme for Advanced Chemistry Cell battery storage.\n",
+      "status": "abstained"
+    },
+    {
+      "case": {
+        "id": "cor-two-market-forecasts",
+        "kind": "corpus",
+        "question": "What growth does our uploaded document project for India's EV market and separately for its EV battery market?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+        ],
+        "must_contain_claims": [
+          "the EV market is valued at USD 3.71 billion in 2025 and projected to reach USD 191.04 billion by 2034",
+          "that EV market growth is a CAGR of 54.94%",
+          "the EV battery market is projected to grow from USD 2.71 billion in 2025 to USD 15.90 billion by 2034",
+          "that battery market growth is a CAGR of 21.70%"
+        ],
+        "forbidden_claims": [
+          "the EV battery market grows at a CAGR of 54.94%",
+          "the Indian EV market will reach USD 15.90 billion by 2034"
+        ],
+        "notes": "Two adjacent forecasts with similar shape. Tests that the drafter keeps the pair straight rather than cross-applying a CAGR. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+      },
+      "extra": {
+        "wall_ms": 1590,
+        "counts": {
+          "claims": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "needs_evidence": 0,
+          "passages": 0,
+          "web_passages": 0,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": true,
+        "status": "abstained",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": null,
+        "truncated": 0,
+        "passages": 0,
+        "corpus_citations": 0,
+        "total_citations": 0,
+        "claims": 0,
+        "dangling": 0,
+        "unsupported": 0,
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null
+      },
+      "totals": {
+        "steps": 1,
+        "prompt_tokens": 263,
+        "completion_tokens": 65,
+        "latency_ms": 1587,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "# What growth does our uploaded document project for India's EV market and separately for its EV battery market?\n\n**Insufficient evidence.** The question asks for specific growth projections from an uploaded document, but no document has been provided or is accessible for analysis. Without access to the document, it is impossible to extract or verify the projected growth figures for India's EV market and EV battery market.\n",
+      "status": "abstained"
+    },
+    {
+      "case": {
+        "id": "cor-edrive-bus-allocation",
+        "kind": "corpus",
+        "question": "How much has our uploaded document allocated for electric buses under the PM E-DRIVE scheme, and how many buses does that cover?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+        ],
+        "must_contain_claims": [
+          "Rs 4,391 crore allocated for e-buses",
+          "14,028 e-buses in total",
+          "13,800 of them allocated to seven major cities",
+          "tenders for 10,900 e-buses in Phase I have been concluded"
+        ],
+        "forbidden_claims": [
+          "PM E-DRIVE covers 10,000 electric buses",
+          "PM E-DRIVE allocates Rs 2,000 crore for electric buses"
+        ],
+        "notes": "Four bus numbers within one paragraph, plus 10,000 from the separate PM e-Bus Sewa PSM scheme and Rs 2,000 crore earmarked for charging stations, not buses. The hardest retrieval case in the set. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+      },
+      "extra": {
+        "wall_ms": 1063,
+        "counts": {
+          "claims": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "needs_evidence": 0,
+          "passages": 0,
+          "web_passages": 0,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": true,
+        "status": "abstained",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": null,
+        "truncated": 0,
+        "passages": 0,
+        "corpus_citations": 0,
+        "total_citations": 0,
+        "claims": 0,
+        "dangling": 0,
+        "unsupported": 0,
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null
+      },
+      "totals": {
+        "steps": 1,
+        "prompt_tokens": 271,
+        "completion_tokens": 41,
+        "latency_ms": 1059,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "# How much has our uploaded document allocated for electric buses under the PM E-DRIVE scheme, and how many buses does that cover?\n\n**Insufficient evidence.** I do not have access to the uploaded document to extract specific allocation details for electric buses under the PM E-DRIVE scheme.\n",
+      "status": "abstained"
+    },
+    {
+      "case": {
+        "id": "cor-export-growth",
+        "kind": "corpus",
+        "question": "What does our uploaded document report about India's EV exports and their destinations?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+        ],
+        "must_contain_claims": [
+          "exports rose from USD 1.2 million in 2020 to USD 84 million in 2024",
+          "top export destinations were Nepal, Indonesia and Japan"
+        ],
+        "forbidden_claims": [
+          "India's top EV export destinations were the United States and Germany"
+        ],
+        "notes": "Figures appear on two separate pages; tests that the drafter can pull a fact stated twice without garbling it. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+      },
+      "extra": {
+        "wall_ms": 1083,
+        "counts": {
+          "claims": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "needs_evidence": 0,
+          "passages": 0,
+          "web_passages": 0,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": true,
+        "status": "abstained",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": null,
+        "truncated": 0,
+        "passages": 0,
+        "corpus_citations": 0,
+        "total_citations": 0,
+        "claims": 0,
+        "dangling": 0,
+        "unsupported": 0,
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null
+      },
+      "totals": {
+        "steps": 1,
+        "prompt_tokens": 258,
+        "completion_tokens": 49,
+        "latency_ms": 1080,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "# What does our uploaded document report about India's EV exports and their destinations?\n\n**Insufficient evidence.** No uploaded document is available for analysis in this conversation. Without access to the document, it is not possible to determine what it reports about India's EV exports and their destinations.\n",
+      "status": "abstained"
+    },
+    {
+      "case": {
+        "id": "cor-iemi-index",
+        "kind": "corpus",
+        "question": "What is the India Electric Mobility Index described in our uploaded document, and which regions does it rank highest?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+        ],
+        "must_contain_claims": [
+          "launched by NITI Aayog in August 2025",
+          "evaluates 16 indicators across three pillars",
+          "the pillars are transport electrification, charging infrastructure readiness, and EV research and innovation",
+          "Delhi, Maharashtra and Chandigarh are classified as Frontrunners"
+        ],
+        "forbidden_claims": [
+          "the India Electric Mobility Index was launched by the Ministry of Heavy Industries"
+        ],
+        "notes": "Entity-attribution case: several bodies appear in the document (NITI Aayog, MHI, BHEL) and the index belongs to exactly one. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+      },
+      "extra": {
+        "wall_ms": 91714,
+        "counts": {
+          "claims": 8,
+          "accepted": 8,
+          "rejected": 0,
+          "needs_evidence": 0,
+          "passages": 54,
+          "web_passages": 24,
+          "corpus_passages": 30
+        },
+        "loopbacks": 0,
+        "abstained": false,
+        "status": "done",
+        "searches": 6,
+        "results_total": 36,
+        "results_with_text": 34,
+        "searches_nonempty": 6,
+        "engines": [
+          "tinyfish",
+          "tinyfish",
+          "tinyfish",
+          "tinyfish",
+          "tinyfish",
+          "tinyfish"
+        ],
+        "domain_diversity": 0.75,
+        "truncated": 2,
+        "passages": 54,
+        "corpus_citations": 0,
+        "total_citations": 7,
+        "claims": 8,
+        "dangling": 0,
+        "unsupported": 0,
+        "citations": 23,
+        "spans_resolve": 23,
+        "support_mean": 0.96875
+      },
+      "totals": {
+        "steps": 24,
+        "prompt_tokens": 98794,
+        "completion_tokens": 2006,
+        "latency_ms": 91658,
+        "web_searches": 6,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "# Research Report: India Electric Mobility Index (IEMI) and Regional Rankings\n\nThe India Electric Mobility Index (IEMI) is a composite metric developed by NITI Aayog and the World Resources Institute India to evaluate the progress of electric mobility across Indian States and Union Territories. It ranks regions based on their policy framework, infrastructure readiness, and innovation status, with Delhi, Maharashtra, Karnataka, Chandigarh, and Goa emerging as the highest-ranked jurisdictions.\n\n## Overview of the India Electric Mobility Index (IEMI)\n\nThe IEMI is designed to provide a comprehensive assessment of electric mobility development across India. It incorporates 16 indicators grouped into three thematic pillars with weighted importance:\n\n- **Transport Electrification Progress (50%)**: Measures the adoption and implementation of electric vehicles and related policies.\n- **Charging Infrastructure Readiness (30%)**: Assesses the availability and accessibility of EV charging infrastructure.\n- **EV Research and Innovation Status (20%)**: Evaluates the innovation ecosystem supporting electric mobility.\n\nStates and Union Territories are scored on a scale from 0 to 100 based on these indicators [1][2][3].\n\n## Classification and Peer Grouping\n\nTo ensure fair comparison, the IEMI categorizes all 36 jurisdictions into three peer groups:\n\n- **Large States (17 jurisdictions)**\n- **Hilly and North-Eastern States (12 jurisdictions)**\n- **Union Territories and City States (7 jurisdictions)**\n\nBased on their scores, jurisdictions are further classified into four performance bands:\n\n- **Top Performers**: Scores of 65 and above\n- **Frontrunners**: Scores between 50 and 64\n- **Emerging Performers**: Scores between 35 and 49\n- **Aspirants**: Scores below 35 [1][2].\n\n## Regional Rankings and Performance\n\n### Top Performers Nationally\n\nDelhi leads the IEMI 2025 rankings with a score of 84, the only jurisdiction to surpass 80 points. It is followed by Maharashtra (78), Karnataka (73), Chandigarh (71), and Goa (65). These five jurisdictions are the only ones classified as Top Performers nationally [1][2][4][5][6][7].\n\n### Large States\n\nWithin the Large States category, only Maharashtra and Karnataka achieved Top Performer status. Eight other states, including Tamil Nadu and Madhya Pradesh, were classified as Frontrunners, while the remaining seven were Emerging Performers [1][7].\n\n### Hilly and North-Eastern States\n\nNo state in this category reached Frontrunner status. Manipur led with a score of 46, followed by Tripura (36) and Assam (35), all categorized as Emerging Performers. The other nine states in this group were Aspirants [1][2][7].\n\n### Union Territories and City States\n\nAmong Union Territories and City States, Delhi, Chandigarh, and Goa were Top Performers. Puducherry was an Emerging Performer, while Lakshadweep, Andaman & Nicobar Islands, and Dadra and Nagar Haveli and Daman and Diu were Aspirants [1][2][7].\n\n## What We Could Not Establish\n\nThere are no notable gaps in the available information regarding the definition, methodology, classification, and regional rankings of the India Electric Mobility Index.\n\n## Sources\n[1] India Electric Mobility Index 2025: Measuring State-Level ... \u2014 https://www.impriindia.com/insights/policy-update/insights-india-electric-mobility-index-2025-measuring-state-level-progress-in-electric-mobility/\n[2] India Electric Mobility Index 2025 \u2014 https://www.drishtiias.com/daily-updates/daily-news-analysis/india-electric-mobility-index-2025\n[3] India Electric Mobility Index \u2014 https://www.pmfias.com/india-electric-mobility-index/\n[4] India Electric Mobility Index 2025 announced by NITI Aayog \u2014 https://newsonair.gov.in/delhi-ranks-top-performer-in-electric-mobility-adoption-as-per-iemi-2025/\n[5] Delhi retains top spot in India Electric Mobility Index 2025 ... \u2014 https://www.bignewsnetwork.com/news/279312439/delhi-retains-top-spot-in-india-electric-mobility-index-2025-with-score-of-84\n[6] Delhi leads the India Electric Mobility Index (IEMI) 2025 ... \u2014 https://www.instagram.com/p/Dd5etJugbFr/\n[7] Delhi retains top spot in India's Electric Mobility Index 2025 \u2014 https://auto.economictimes.indiatimes.com/news/industry/delhi-retains-top-spot-in-indias-electric-mobility-index-2025/134284414\n",
+      "status": "done"
+    },
+    {
+      "case": {
+        "id": "cor-lithium-absent",
+        "kind": "corpus",
+        "question": "What does our uploaded document say about India's dependence on imported lithium?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+        ],
+        "must_contain_claims": [
+          "the document does not discuss lithium imports or lithium supply at all"
+        ],
+        "abstain_expected": true,
+        "forbidden_claims": [
+          "the document states that India imports substantially all of its lithium"
+        ],
+        "notes": "The word lithium never appears in the document, though it is a battery report and the answer is well known from general knowledge. This is the strongest hallucination test in the set: the model must say the document is silent rather than fill the gap from memory or from the web. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+      },
+      "extra": {
+        "wall_ms": 1635,
+        "counts": {
+          "claims": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "needs_evidence": 0,
+          "passages": 0,
+          "web_passages": 0,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": true,
+        "status": "abstained",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": null,
+        "truncated": 0,
+        "passages": 0,
+        "corpus_citations": 0,
+        "total_citations": 0,
         "claims": 0,
         "dangling": 0,
         "unsupported": 0,
@@ -407,211 +437,77 @@
       },
       "totals": {
         "steps": 1,
-        "prompt_tokens": 258,
-        "completion_tokens": 55,
-        "latency_ms": 350,
+        "prompt_tokens": 257,
+        "completion_tokens": 43,
+        "latency_ms": 1631,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "# What were Indian EV battery sector revenues in calendar year 2028?\n\n**Insufficient evidence.** The question asks for Indian EV battery sector revenues in calendar year 2028, which is a future date beyond the current knowledge cutoff and today's date. No sources can provide evidence for this future period.\n",
+      "report": "# What does our uploaded document say about India's dependence on imported lithium?\n\n**Insufficient evidence.** I have not been provided with the content of the uploaded document, so I cannot analyze or summarize its statements about India's dependence on imported lithium.\n",
       "status": "abstained"
     },
     {
       "case": {
-        "id": "trp-invented-company",
-        "kind": "trap",
-        "question": "Summarise the Series C funding round of Vantrix Cellworks, the Pune battery startup.",
-        "abstain_expected": true,
-        "notes": "Invented entity. Tests that an empty retrieval set produces an abstention rather than a plausible report. Rename if this ever becomes a real company."
+        "id": "cor-cafe-norms",
+        "kind": "corpus",
+        "question": "What CO2 targets does our uploaded document give for the upcoming CAFE norms?",
+        "corpus_files": [
+          "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+        ],
+        "must_contain_claims": [
+          "CAFE III covers 2027 to 2032 with a proposed limit of 91.7 g CO2/km",
+          "CAFE IV covers 2033 to 2037 with a proposed limit of 70 g CO2/km",
+          "the targets are based on the Worldwide Harmonised Light Vehicle Test Procedure (WLTP)",
+          "a super-credit mechanism is expected alongside them"
+        ],
+        "forbidden_claims": [
+          "CAFE III proposes a limit of 70 g CO2/km"
+        ],
+        "notes": "Two paired numbers that are easy to swap between phases. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
       },
       "extra": {
-        "wall_ms": 112888,
+        "wall_ms": 988,
         "counts": {
-          "claims": 7,
-          "accepted": 7,
+          "claims": 0,
+          "accepted": 0,
           "rejected": 0,
           "needs_evidence": 0,
-          "passages": 33,
-          "web_passages": 33,
+          "passages": 0,
+          "web_passages": 0,
           "corpus_passages": 0
         },
         "loopbacks": 0,
-        "abstained": false,
-        "status": "done",
-        "searches": 9,
-        "results_total": 54,
-        "results_with_text": 48,
-        "searches_nonempty": 9,
-        "engines": [
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish"
-        ],
-        "domain_diversity": 0.8181818181818182,
-        "truncated": 2,
-        "passages": 33,
-        "claims": 7,
-        "dangling": 0,
-        "unsupported": 0,
-        "citations": 8,
-        "spans_resolve": 8,
-        "support_mean": 0.8828571428571428,
-        "abstain_ok": false
-      },
-      "totals": {
-        "steps": 19,
-        "prompt_tokens": 44932,
-        "completion_tokens": 1435,
-        "latency_ms": 112839,
-        "web_searches": 9,
-        "byok_fallback_steps": 0,
-        "cost_usd_reported": null
-      },
-      "report": "# Research Report: Series C Funding Round of Vantrix Cellworks, the Pune Battery Startup\n\nVantrix Cellworks, a Pune-based battery startup, raised $15.5 million in a Series C funding round on June 30, 2020. This round contributed to a total funding amount of $37.88 million raised by the company over six rounds as of 2020.\n\n## Overview of the Series C Funding Round\nOn June 30, 2020, Cellworks secured $15.5 million in its Series C funding round [1]. The identities of the investors participating in this round have not been disclosed [1]. This funding round is a significant part of the company\u2019s overall capital raised, which totals $37.88 million across six funding rounds as of 2020 [1].\n\n## Company Background and Funding History\nCellworks was founded in 2005 and is headquartered in San Jose, United States, with a research and development facility located in Bangalore, India [2][3]. The company specializes in developing a biosimulation platform that supports personalized cancer therapy recommendations and drug development [2]. Prior to the Series C round, Cellworks had raised $16.5 million in two funding rounds, with the latest being a Series B round in December 2012 [2]. The Series C round in 2020 thus marks a substantial increase in funding activity after several years.\n\n## Summary of Funding Rounds\n- Total funding as of 2020: $37.88 million over six rounds [1]\n- Series B round: Raised $16.5 million by December 2012 [2]\n- Series C round: Raised $15.5 million in June 2020 [1]\n\n## What We Could Not Establish\n- The specific investors involved in the Series C funding round remain undisclosed [1].\n- There is no direct information linking Vantrix Cellworks explicitly to the battery startup in Pune, as the claims primarily describe Cellworks as a biosimulation company focused on cancer therapy and drug development [2][3].\n\n## Sources\n[1] Cellworks Stock Price, Funding, Valuation, Revenue ... \u2014 https://www.cbinsights.com/company/cellworks-group/financials\n[2] Cellworks - 2026 Company Profile & Team \u2014 https://tracxn.com/d/companies/cellworks/__ow9ifjdDRYgorp9JNmnXv9qCyoontr0qtRYJ_5_8GRs\n[3] Cell Works Group, Inc. - Drug pipelines, Patents, Clinical ... \u2014 https://synapse.patsnap.com/organization/94dcf8b4231c693a6106dd2f6b2a324a\n",
-      "status": "done"
-    },
-    {
-      "case": {
-        "id": "trp-unanswerable-counterfactual",
-        "kind": "trap",
-        "question": "Would Indian cell prices have fallen faster without the PLI scheme?",
-        "abstain_expected": true,
-        "notes": "Counterfactual: no source can settle it. Acceptable output states that it is not answerable from evidence and lays out the arguments as arguments. Unacceptable output picks a side and cites sources that never addressed the question."
-      },
-      "extra": {
-        "wall_ms": 171627,
-        "counts": {
-          "claims": 25,
-          "accepted": 24,
-          "rejected": 1,
-          "needs_evidence": 0,
-          "passages": 51,
-          "web_passages": 51,
-          "corpus_passages": 0
-        },
-        "loopbacks": 0,
-        "abstained": false,
-        "status": "done",
-        "searches": 12,
-        "results_total": 72,
-        "results_with_text": 65,
-        "searches_nonempty": 12,
-        "engines": [
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish",
-          "tinyfish"
-        ],
-        "domain_diversity": 0.7254901960784313,
-        "truncated": 4,
-        "passages": 51,
-        "claims": 25,
-        "dangling": 0,
-        "unsupported": 0,
-        "citations": 32,
-        "spans_resolve": 32,
-        "support_mean": 0.93,
-        "abstain_ok": false
-      },
-      "totals": {
-        "steps": 41,
-        "prompt_tokens": 142283,
-        "completion_tokens": 4529,
-        "latency_ms": 171538,
-        "web_searches": 12,
-        "byok_fallback_steps": 0,
-        "cost_usd_reported": null
-      },
-      "report": "# Research Report: Impact of India's PLI Scheme on Solar Cell Prices\n\nIndia's Production Linked Incentive (PLI) scheme has significantly expanded domestic solar manufacturing capacity since its launch in 2021, particularly in solar cells and modules. However, despite this growth, challenges such as import dependence, high production costs, and underutilization of capacity suggest that solar cell prices may not have fallen as rapidly as they could have without the scheme.\n\n## Expansion of Domestic Solar Manufacturing Capacity\n\nThe PLI scheme has driven substantial growth in India's solar manufacturing sector. From 2022 to June 2025, solar cell capacity increased by 344% and module capacity by 216%, with all upstream capacity additions attributed to the scheme [1]. By June 2025, India had 29 GW of cell capacity and 120 GW of module capacity, reflecting the scheme's role in boosting domestic production [1]. Under Tranche-II, 39,600 MW of manufacturing capacity was allocated to 11 manufacturers, although only 7,400 MW had been commissioned by October 2024 [2][4].\n\nDespite these gains, the domestic solar cell capacity remains only about 30 GW as of March 2026, which is just 20% of the module capacity, indicating a structural gap in upstream manufacturing [10]. This gap sustains India's reliance on imported solar cells, primarily from China [10].\n\n## Challenges Limiting Price Reduction\n\nSeveral factors have constrained the PLI scheme's effectiveness in reducing solar cell prices rapidly:\n\n- **High Capital Intensity and Costs:** Indian solar cell production is approximately 40% more expensive than Chinese counterparts due to higher capital and consumable costs. Additionally, domestic manufacturing is still based on PERC technology, while global markets are shifting to more efficient TOPCon technology [10].\n\n- **Underutilization of Capacity:** India's solar module manufacturing operates at 35-40% utilization, below the 50-65% threshold needed for sustainable operations, risking overcapacity and margin pressure [9].\n\n- **Import Dependence:** Limited domestic polysilicon and wafer capacities, which have only been developed through the PLI scheme, mean continued upstream dependence on imports [1]. India plans to launch a new PLI scheme targeting over 10 GW of polysilicon production to build an integrated ecosystem [3].\n\n- **Implementation Delays and Incentive Issues:** Delays in commissioning PLI facilities have limited economic impact, with only 31 GW of the targeted 65 GW module capacity commissioned by June 2025 [1]. Challenges such as stringent domestic value addition requirements, aggressive timelines, visa delays for technical specialists, and supply chain bottlenecks have further slowed progress [5][6][15].\n\n## Impact on Imports and Market Position\n\nThe PLI scheme has contributed to a significant reduction in solar imports, with cell imports falling by 20% and module imports by 57% during the first eight months of fiscal year 2024-25 [2]. India's solar module capacity of 90.9 GW by December 2024 surpasses Brazil's installed capacity but remains far behind China\u2019s 680 GW shipments [2].\n\n## Comparison with Battery Manufacturing and Other Sectors\n\nIndia's battery manufacturing under the ACC PLI scheme has faced even greater challenges, with only 1.4 GWh of the targeted 50 GWh capacity commissioned by October 2025, and minimal job creation or investment realized [6][7][8][15]. This contrasts with the mobile phone PLI scheme, which has successfully increased production and exports despite some cost and policy challenges [13][14].\n\n## What We Could Not Establish\n\n- The direct causal relationship between the PLI scheme and the rate of decline in Indian solar cell prices remains unclear. While capacity has expanded, the extent to which prices would have fallen faster without the scheme is not established.\n- Specific quantitative data on solar cell price trends in India before and after the PLI scheme launch, and comparative analysis with a no-PLI scenario, are not available.\n- The contradictory data regarding the ACC PLI scheme's capacity commissioning (1.4 GWh vs. 1 GWh) was noted but not resolved.\n\n# Summary\n\nIndia's PLI scheme has been instrumental in expanding domestic solar manufacturing capacity and reducing import dependence, but high production costs, capacity underutilization, and implementation delays have limited its impact on accelerating solar cell price reductions. Without the scheme, capacity growth would likely have been slower, but the persistent structural challenges suggest that prices might not have fallen substantially faster.\n\n## Sources\n[1] Assessing the effectiveness of India's solar Production ... \u2014 https://ieefa.org/resources/assessing-effectiveness-indias-solar-production-linked-incentive-scheme\n[2] Production Linked Incentive Scheme, 2020 \u2014 https://www.impriindia.com/insights/production-linked-incentive-scheme-2020-transforming-indias-solar-manufacturing-landscape/\n[3] India is set to launch a new Production-Linked Incentive (PLI) ... \u2014 https://www.instagram.com/reel/DbvEGG5TFKh/\n[4] PLI Scheme | Solar Energy Corporation of India Limited ... \u2014 https://www.seci.co.in/pli-scheme\n[5] Analysis of PLI scheme for advanced chemistry cells in India \u2014 https://www.infolink-group.com/energy-article/energy-storage-topic-analysis-indias-production-linked-incentive-advanced-chemical-battery-manufactu\n[6] Only 2.8% of target capacity delivered yet under India's ... \u2014 https://ieefa.org/articles/only-28-target-capacity-delivered-yet-under-indias-battery-manufacturing-incentive-scheme\n[7] Securing India's battery supply chain is more critical than ... \u2014 https://ieefa.org/resources/securing-indias-battery-supply-chain-more-critical-ever\n[8] India Battery Manufacturing: PLI-ACC, Gigafactories & BESS \u2014 https://www.zetwerk.com/blog/bess/india-battery-cell-manufacturing-pli-acc-bess/\n[9] Assessing overcapacity risk in India's solar PV ... \u2014 https://ieefa.org/resources/assessing-overcapacity-risk-indias-solar-pv-manufacturing-market\n[10] Solar Cell Manufacturing Cost and Supply Chain in India \u2014 https://www.ceew.in/publications/solar-cell-manufacturing-cost-and-supply-chain-in-india\n[11] Battery costs have declined by 99% in the last three ... \u2014 https://ourworldindata.org/battery-price-decline\n[12] Lithium-Ion Battery Pack Prices See Largest Drop Since 2017 ... \u2014 https://about.bnef.com/insights/commodities/lithium-ion-battery-pack-prices-see-largest-drop-since-2017-falling-to-115-per-kilowatt-hour-bloombergnef/\n[13] India's PLI Push Paves New Path \u2014 https://counterpointresearch.com/en/insights/indias-pli-push-paves-new-path\n[14] Decoding India's PLI scheme for mobile phones \u2014 https://telecom.economictimes.indiatimes.com/tele-talks/satcom/decoding-india-s-pli-scheme-for-mobile-phones/4973\n[15] Assessing India's incentive scheme to enhance the battery ... \u2014 https://ieefa.org/resources/assessing-indias-incentive-scheme-enhance-battery-manufacturing-ecosystem\n",
-      "status": "done"
-    },
-    {
-      "case": {
-        "id": "poi-draft-v1",
-        "kind": "poisoned",
-        "draft": "fixtures/poisoned/draft-v1.json",
-        "false_claim_ids": [
-          "c3",
-          "c5",
-          "c8",
-          "c9"
-        ],
-        "notes": [
-          "The headline fixture for this track. A hand-written 10-claim draft fed straight to the",
-          "verifier, bypassing planner, researcher and drafter.",
-          "",
-          "Build it so each false claim fails differently:",
-          "  c3  number contradicts its own cited passage",
-          "  c5  citation points to a real retrieved source that never mentions the claim",
-          "  c8  citation URL was never in the retrieval set at all",
-          "  c9  true statement, wrong attribution (right fact, wrong source)",
-          "",
-          "Scores verify.poison_recall (gate) and verify.poison_precision. The six true claims are",
-          "what stops a reject-everything verifier from scoring 1.0."
-        ]
-      },
-      "extra": {
-        "counts": {
-          "claims": 10,
-          "accepted": 5,
-          "rejected": 2,
-          "needs_evidence": 3,
-          "passages": 6,
-          "web_passages": 6,
-          "corpus_passages": 0
-        },
-        "loopbacks": 0,
-        "abstained": false,
-        "status": "done",
+        "abstained": true,
+        "status": "abstained",
         "searches": 0,
         "results_total": 0,
         "results_with_text": 0,
         "searches_nonempty": 0,
         "engines": [],
-        "domain_diversity": 0.6666666666666666,
+        "domain_diversity": null,
         "truncated": 0,
-        "passages": 6,
-        "claims": 10,
-        "dangling": 1,
+        "passages": 0,
+        "corpus_citations": 0,
+        "total_citations": 0,
+        "claims": 0,
+        "dangling": 0,
         "unsupported": 0,
-        "citations": 11,
-        "spans_resolve": 10,
-        "support_mean": 0.558,
-        "poison": {
-          "tp": 4,
-          "fp": 1,
-          "tn": 5,
-          "fn": 0,
-          "modes_right": 3,
-          "n_false": 4
-        }
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null
       },
       "totals": {
-        "steps": 10,
-        "prompt_tokens": 6120,
-        "completion_tokens": 892,
-        "latency_ms": 10119,
+        "steps": 1,
+        "prompt_tokens": 260,
+        "completion_tokens": 35,
+        "latency_ms": 985,
         "web_searches": 0,
         "byok_fallback_steps": 0,
         "cost_usd_reported": null
       },
-      "report": "",
-      "status": "done"
+      "report": "# What CO2 targets does our uploaded document give for the upcoming CAFE norms?\n\n**Insufficient evidence.** No document has been uploaded for analysis, so the CO2 targets mentioned in it cannot be determined.\n",
+      "status": "abstained"
     }
   ],
   "judged": []

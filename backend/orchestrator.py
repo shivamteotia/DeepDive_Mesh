@@ -36,7 +36,8 @@ def run_research(question, corpus_file_ids=None, on_event=None):
         emit("stage", {"stage": name, "status": "done", "run": summary(run)})
 
     try:
-        stage("planner", agents.plan, mesh, run)
+        stage("planner", agents.plan, mesh, run,
+              corpus_files=len(corpus_file_ids or []))
         if run.abstained:
             run.status = "abstained"
             run.report = _abstain_report(question, run.abstain_reason)

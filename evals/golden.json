@@ -96,30 +96,148 @@
       "domains_labelled": "2026-10-19, from domains present in every recorded run"
     },
     {
-      "id": "cor-internal-memo",
+      "id": "cor-charging-network",
       "kind": "corpus",
-      "question": "What does our uploaded market assessment say about cell supply risk?",
+      "question": "According to our uploaded document, how many public EV charging stations does India have, and how many of them offer fast charging?",
       "corpus_files": [
-        "fixtures/corpus/market-assessment.pdf"
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
       ],
       "must_contain_claims": [
-        "the supply-risk conclusion as the document states it",
-        "the document's own caveat or confidence language"
+        "52,718 public charging stations",
+        "16,561 of them equipped with fast charging",
+        "the figure is as of July 2026",
+        "attributed to Bharat Heavy Electricals Limited (BHEL)"
       ],
-      "notes": "Answerable ONLY from the uploaded file. Scores retrieval.corpus_only_rate: any web citation here is a failure, not a bonus. Needs a real fixture PDF committed before this case runs."
+      "forbidden_claims": [
+        "India has 1.32 million public charging stations today",
+        "India has roughly 29,000 public charging stations"
+      ],
+      "notes": "Simple retrieval with a tempting distractor: 1.32 million is a 2030 target elsewhere in the same document, not a current count. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
     },
     {
-      "id": "cor-figure-not-present",
+      "id": "cor-pli-acc-scheme",
       "kind": "corpus",
-      "question": "What 2027 revenue projection does our market assessment give?",
+      "question": "What does our uploaded document say about the outlay and capacity target of the PLI scheme for Advanced Chemistry Cell battery storage?",
       "corpus_files": [
-        "fixtures/corpus/market-assessment.pdf"
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
       ],
       "must_contain_claims": [
-        "the document does not contain a 2027 revenue projection"
+        "an outlay of Rs 18,100 crore",
+        "a cumulative ACC manufacturing capacity target of 50 GWh",
+        "the scheme dates from 2021",
+        "its performance phase runs 1 January 2025 to 31 December 2029"
+      ],
+      "forbidden_claims": [
+        "the PLI ACC scheme has an outlay of Rs 2,377.56 crore",
+        "the PLI ACC scheme has an outlay of Rs 10,900 crore"
+      ],
+      "notes": "The document carries three different scheme outlays. Rs 2,377.56 crore is PLI-Auto disbursement and Rs 10,900 crore is PM E-DRIVE; both are plausible wrong answers. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+    },
+    {
+      "id": "cor-two-market-forecasts",
+      "kind": "corpus",
+      "question": "What growth does our uploaded document project for India's EV market and separately for its EV battery market?",
+      "corpus_files": [
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+      ],
+      "must_contain_claims": [
+        "the EV market is valued at USD 3.71 billion in 2025 and projected to reach USD 191.04 billion by 2034",
+        "that EV market growth is a CAGR of 54.94%",
+        "the EV battery market is projected to grow from USD 2.71 billion in 2025 to USD 15.90 billion by 2034",
+        "that battery market growth is a CAGR of 21.70%"
+      ],
+      "forbidden_claims": [
+        "the EV battery market grows at a CAGR of 54.94%",
+        "the Indian EV market will reach USD 15.90 billion by 2034"
+      ],
+      "notes": "Two adjacent forecasts with similar shape. Tests that the drafter keeps the pair straight rather than cross-applying a CAGR. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+    },
+    {
+      "id": "cor-edrive-bus-allocation",
+      "kind": "corpus",
+      "question": "How much has our uploaded document allocated for electric buses under the PM E-DRIVE scheme, and how many buses does that cover?",
+      "corpus_files": [
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+      ],
+      "must_contain_claims": [
+        "Rs 4,391 crore allocated for e-buses",
+        "14,028 e-buses in total",
+        "13,800 of them allocated to seven major cities",
+        "tenders for 10,900 e-buses in Phase I have been concluded"
+      ],
+      "forbidden_claims": [
+        "PM E-DRIVE covers 10,000 electric buses",
+        "PM E-DRIVE allocates Rs 2,000 crore for electric buses"
+      ],
+      "notes": "Four bus numbers within one paragraph, plus 10,000 from the separate PM e-Bus Sewa PSM scheme and Rs 2,000 crore earmarked for charging stations, not buses. The hardest retrieval case in the set. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+    },
+    {
+      "id": "cor-export-growth",
+      "kind": "corpus",
+      "question": "What does our uploaded document report about India's EV exports and their destinations?",
+      "corpus_files": [
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+      ],
+      "must_contain_claims": [
+        "exports rose from USD 1.2 million in 2020 to USD 84 million in 2024",
+        "top export destinations were Nepal, Indonesia and Japan"
+      ],
+      "forbidden_claims": [
+        "India's top EV export destinations were the United States and Germany"
+      ],
+      "notes": "Figures appear on two separate pages; tests that the drafter can pull a fact stated twice without garbling it. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+    },
+    {
+      "id": "cor-iemi-index",
+      "kind": "corpus",
+      "question": "What is the India Electric Mobility Index described in our uploaded document, and which regions does it rank highest?",
+      "corpus_files": [
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+      ],
+      "must_contain_claims": [
+        "launched by NITI Aayog in August 2025",
+        "evaluates 16 indicators across three pillars",
+        "the pillars are transport electrification, charging infrastructure readiness, and EV research and innovation",
+        "Delhi, Maharashtra and Chandigarh are classified as Frontrunners"
+      ],
+      "forbidden_claims": [
+        "the India Electric Mobility Index was launched by the Ministry of Heavy Industries"
+      ],
+      "notes": "Entity-attribution case: several bodies appear in the document (NITI Aayog, MHI, BHEL) and the index belongs to exactly one. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+    },
+    {
+      "id": "cor-lithium-absent",
+      "kind": "corpus",
+      "question": "What does our uploaded document say about India's dependence on imported lithium?",
+      "corpus_files": [
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+      ],
+      "must_contain_claims": [
+        "the document does not discuss lithium imports or lithium supply at all"
       ],
       "abstain_expected": true,
-      "notes": "Corpus case that is also an abstain case: the honest answer is that the document is silent. Catches the system filling the gap from the web and citing it as if it were the document."
+      "forbidden_claims": [
+        "the document states that India imports substantially all of its lithium"
+      ],
+      "notes": "The word lithium never appears in the document, though it is a battery report and the answer is well known from general knowledge. This is the strongest hallucination test in the set: the model must say the document is silent rather than fill the gap from memory or from the web. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
+    },
+    {
+      "id": "cor-cafe-norms",
+      "kind": "corpus",
+      "question": "What CO2 targets does our uploaded document give for the upcoming CAFE norms?",
+      "corpus_files": [
+        "fixtures/corpus/india-ev-ecosystem-2026.pdf"
+      ],
+      "must_contain_claims": [
+        "CAFE III covers 2027 to 2032 with a proposed limit of 91.7 g CO2/km",
+        "CAFE IV covers 2033 to 2037 with a proposed limit of 70 g CO2/km",
+        "the targets are based on the Worldwide Harmonised Light Vehicle Test Procedure (WLTP)",
+        "a super-credit mechanism is expected alongside them"
+      ],
+      "forbidden_claims": [
+        "CAFE III proposes a limit of 70 g CO2/km"
+      ],
+      "notes": "Two paired numbers that are easy to swap between phases. Roads Reimagined: The Rise of India's Electric Vehicles Ecosystem, 05 August 2026. Every claim below was read off the document by hand before the case was written."
     },
     {
       "id": "cnf-market-size",

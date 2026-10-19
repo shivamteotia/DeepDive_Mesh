@@ -40,15 +40,31 @@ NEEDS_EVIDENCE_MODES = {
 
 
 # ---- 1. planner ----
-def plan(mesh, run):
+def plan(mesh, run, corpus_files=0):
     """Decompose the question, or refuse it. Abstention is a first-class outcome: a question
-    with no answerable evidence base must stop here rather than produce a confident report."""
+    with no answerable evidence base must stop here rather than produce a confident report.
+
+    `corpus_files` must be passed when the user has uploaded documents. Without it the planner
+    only knows about web search, and a question like "what does our uploaded document say about
+    X" reads as unanswerable -- it replies "no document has been uploaded" and abstains, which
+    broke the entire document path until the corpus eval caught it.
+    """
     m = mesh.as_("planner")
     # The date has to be given, not assumed. A model decides "is this period in the future?"
     # against its own training cutoff unless told otherwise, so a cheaper or older model
     # refuses every question about the current year. gpt-4o-mini abstained on all three
     # research cases for exactly this reason.
     today = date.today()
+    corpus_note = ""
+    if corpus_files:
+        corpus_note = (
+            f"\n\nThe user has uploaded {corpus_files} document"
+            f"{'s' if corpus_files > 1 else ''}, which the researcher can search in full. You "
+            "cannot see them, but they are available. A question referring to 'our document', "
+            "'the uploaded document', 'my file' or similar IS answerable — never refuse one for "
+            "lack of a document. Write sub-questions about what those documents contain, and "
+            "give web queries only where outside context would genuinely add to a "
+            "document-scoped answer.\n\n")
     out = m.chat_json("planner", [
         {"role": "system", "content":
             f"Today's date is {today:%d %B %Y}. Any period up to and including today is "
@@ -57,10 +73,12 @@ def plan(mesh, run):
             "You plan a research investigation. Break the question into independent sub-questions, "
             f"at most {config.MAX_SUBQUESTIONS}, each with 1-3 web search queries that would find "
             "evidence for it.\n\n"
+            + corpus_note +
             "Set answerable=false, with a reason, when no amount of searching could settle the "
             "question: it asks for figures from a period after today, names an entity that does "
             "not appear to exist, or is a counterfactual no source can test. Refusing a question "
-            "you cannot evidence is a correct answer, not a failure."},
+            "you cannot evidence is a correct answer, not a failure. Not having seen a document "
+            "yourself is never such a reason."},
         {"role": "user", "content": run.question},
     ], PLAN_SCHEMA)
 

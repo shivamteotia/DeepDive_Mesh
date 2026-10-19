@@ -47,6 +47,9 @@ SUPPORT_THRESHOLD = 0.7   # for the calibrated yes/no questions below
 os.environ.setdefault("DEEPEVAL_TELEMETRY_OPT_OUT", "YES")
 
 
+_UPLOADED = {}  # fixture path -> file_id, so one pass uploads each fixture once
+
+
 # ---------------- executing one case ----------------
 def execute(case, mesh):
     """Run one golden case. Returns (Run, extra) where extra holds kind-specific scoring."""
@@ -76,8 +79,15 @@ def execute(case, mesh):
             path = HERE / rel
             if not path.exists():
                 return None, {"skipped": f"missing corpus fixture {rel}"}
-            status = mesh.upload_file(path.name, path.read_bytes(), _mime(path))
-            file_ids.append(status["file_id"])
+            # Upload each fixture once per pass, not once per case. Eight corpus cases over
+            # one 1.2MB PDF is eight uploads, eight embedding waits and eight copies in the
+            # RAG store, all of the same bytes.
+            if rel not in _UPLOADED:
+                status = mesh.upload_file(path.name, path.read_bytes(), _mime(path))
+                _UPLOADED[rel] = status["file_id"]
+                print(f"    uploaded {path.name} -> {status['file_id'][:8]} "
+                      f"({status.get('total_tokens')} tokens embedded)")
+            file_ids.append(_UPLOADED[rel])
 
     t0 = time.perf_counter()
     try:
