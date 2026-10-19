@@ -3,3 +3,15 @@
   res-grid-storage-cost        research  How has the levelised cost of grid-scale battery sto
     claims 19/19 accepted, 62 passages, 15 searches, loopbacks 0, recall MISS ['nrel.gov']
   res-sodium-ion-status        research  Is sodium-ion battery technology commercially deploy
+    claims 10/10 accepted, 48 passages, 12 searches, loopbacks 0, recall MISS ['reuters.com']
+  cor-internal-memo            corpus    What does our uploaded market assessment say about c
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cor-figure-not-present       corpus    What 2027 revenue projection does our market assessm
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cnf-market-size              conflict  How large is the Indian stationary battery storage m
+    claims 10/10 accepted, 31 passages, 9 searches, loopbacks 0, recall MISS ['reuters.com']
+  trp-future-figure            trap      What were Indian EV battery sector revenues in calen
+    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0, abstain ok
+  trp-invented-company         trap      Summarise the Series C funding round of Vantrix Cell
+    claims 0/0 accepted, 38 passages, 9 searches, loopbacks 0, abstain ok
+  trp-unanswerable-counterfactual trap      Would Indian cell prices have fallen faster without 

@@ -96,9 +96,19 @@ def plan(mesh, run, corpus_files=0):
 # ---- 2. researcher ----
 def research(mesh, run, queries=None, corpus_file_ids=None):
     """Fan out over web search and the uploaded corpus, appending Passages. Deduplicates by
-    URL so a loop-back does not re-add what we already have."""
+    URL so a loop-back does not re-add what we already have.
+
+    Web and corpus are searched from *different* query lists on purpose. Web search wants the
+    planner's keyword queries; the corpus is a semantic vector search, which does better on
+    the sub-question as written than on search keywords. Deriving both from the web queries
+    meant a document-scoped question -- where the planner rightly emits no web queries --
+    searched nothing at all, including the document it was asked about.
+    """
     m = mesh.as_("researcher")
+    explicit = queries is not None
     queries = queries or [q for sq in run.subquestions for q in sq.queries]
+    corpus_queries = queries if explicit else (
+        [sq.text for sq in run.subquestions] or [run.question])
     seen = {p.url for p in run.passages}
     n = len(run.passages)
 
@@ -118,7 +128,7 @@ def research(mesh, run, queries=None, corpus_file_ids=None):
             ))
 
     if corpus_file_ids:
-        for query in queries:
+        for query in corpus_queries:
             for r in m.corpus_search(query, file_ids=corpus_file_ids):
                 n += 1
                 run.passages.append(Passage(
