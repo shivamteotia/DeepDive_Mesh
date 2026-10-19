@@ -81,6 +81,7 @@ class Run:
     loopbacks: int = 0
     abstained: bool = False
     abstain_reason: str = ""
+    grounding: dict = field(default_factory=dict)  # subject/pertinence from ground_check
     trace: list[TraceStep] = field(default_factory=list)
 
     def passage_ids(self):

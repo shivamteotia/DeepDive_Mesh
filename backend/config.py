@@ -79,6 +79,16 @@ WEBSEARCH_RESULTS = int(_env("WEBSEARCH_RESULTS", "6"))
 
 # ---- the verification loop ----
 VERIFY_ACCEPT_THRESHOLD = float(_env("VERIFY_ACCEPT_THRESHOLD", "0.70"))  # noul is a probability, not a bool
+# Floor for the post-research grounding gate: below this on either subject or pertinence
+# the run abstains rather than drafting. Deliberately lower than the per-claim threshold --
+# this one stops the whole report, so it should only fire when retrieval is clearly off.
+#
+# Measured on the saved retrieval sets of 2026-10-19, the separation is wide:
+#   invented company     subject 0.04  pertinence 0.11
+#   counterfactual       subject 0.39  pertinence 0.25
+#   four real questions  subject 0.89-0.96  pertinence 0.82-0.90
+# 0.55 sits in an empty gap. Anything from 0.45 to 0.75 would separate these cases.
+GROUNDING_THRESHOLD = float(_env("GROUNDING_THRESHOLD", "0.55"))
 MAX_LOOPBACKS = int(_env("MAX_LOOPBACKS", "2"))      # hard stop: a loop that never converges must still end
 MAX_SUBQUESTIONS = int(_env("MAX_SUBQUESTIONS", "5"))
 

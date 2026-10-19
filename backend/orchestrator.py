@@ -17,6 +17,12 @@ from .mesh import Mesh
 from .schemas import Run
 
 
+def _abstain_report(question, reason):
+    """The whole output when the system declines. One place, so every abstention reads the
+    same whether the planner refused the question or retrieval failed to ground it."""
+    return f"# {question}\n\n**Insufficient evidence.** {reason}\n"
+
+
 def run_research(question, corpus_file_ids=None, on_event=None):
     run = Run(question=question)
     emit = on_event or (lambda *_, **__: None)
@@ -33,11 +39,22 @@ def run_research(question, corpus_file_ids=None, on_event=None):
         stage("planner", agents.plan, mesh, run)
         if run.abstained:
             run.status = "abstained"
-            run.report = f"# {question}\n\n**Insufficient evidence.** {run.abstain_reason}\n"
+            run.report = _abstain_report(question, run.abstain_reason)
             emit("done", {"run": summary(run)})
             return _persist(run)
 
         stage("researcher", agents.research, mesh, run, corpus_file_ids=corpus_file_ids)
+
+        # Gate between retrieval and drafting. Everything downstream verifies claims against
+        # the passages we hold; if those passages are about the wrong thing, every check
+        # downstream passes and the report is still fabricated.
+        stage("verifier", agents.ground_check, mesh, run)
+        if run.abstained:
+            run.status = "abstained"
+            run.report = _abstain_report(question, run.abstain_reason)
+            emit("done", {"run": summary(run)})
+            return _persist(run)
+
         stage("drafter", agents.draft, mesh, run)
         stage("verifier", agents.verify, mesh, run)
 
@@ -103,6 +120,7 @@ def audit(run):
         "loopbacks": run.loopbacks,
         "abstained": run.abstained,
         "abstain_reason": run.abstain_reason,
+        "grounding": run.grounding,
         "counts": {"claims": len(run.claims), "accepted": len(accepted),
                    "rejected": len(rejected), "needs_evidence": len(pending),
                    "passages": len(run.passages),

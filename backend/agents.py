@@ -112,6 +112,65 @@ def research(mesh, run, queries=None, corpus_file_ids=None):
     return run
 
 
+# ---- 2b. grounding gate ----
+def ground_check(mesh, run):
+    """Do the retrieved passages actually concern the question that was asked?
+
+    Per-claim verification cannot answer this. Every claim in a report about the wrong company
+    is correctly supported by the passage it cites, so hallucinated_citation_rate reads 0.00
+    while the report as a whole is fabricated. The failure lives one level up, between the
+    question and the evidence, and nothing downstream of here can see it.
+
+    Two separate ways a retrieval set can be off:
+      subject    the passages describe a different, similarly-named entity -- "Vantrix
+                 Cellworks" returning a real Montreal software firm and a biotech called
+                 Cellworks, which the drafter then welded a real funding round onto.
+      pertinence the passages are on the right topic but answer a different question -- a
+                 battery-price counterfactual answered with solar manufacturing data.
+
+    Scored with /v1/evaluate, so these are calibrated probabilities, not a model's say-so.
+    """
+    if not run.passages:
+        run.abstained = True
+        run.abstain_reason = "Nothing was retrieved for this question."
+        return run
+
+    m = mesh.as_("verifier")
+    sample = sorted(run.passages, key=lambda p: -(p.score or 0))[:12]
+    answers = m.evaluate(
+        state={"question": run.question,
+               "evidence": [{"title": p.title, "url": p.url, "text": p.text[:1500]}
+                            for p in sample]},
+        questions={
+            "subject": {"type": "noul", "instructions":
+                "Probability that the EVIDENCE is about the specific subject the QUESTION "
+                "names. If the question names an entity and the evidence describes a "
+                "different one that merely has a similar name, this is low."},
+            "pertinence": {"type": "noul", "instructions":
+                "Probability that the EVIDENCE bears on the question actually asked, rather "
+                "than a related but different question. If the question asks what would have "
+                "happened under different conditions, evidence about what did happen does not "
+                "bear on it."},
+        },
+        action="verifier.ground_check")
+
+    subject = float(answers.get("subject", {}).get("noul", 1.0))
+    pertinence = float(answers.get("pertinence", {}).get("noul", 1.0))
+    run.grounding = {"subject": round(subject, 3), "pertinence": round(pertinence, 3)}
+
+    floor = config.GROUNDING_THRESHOLD
+    if subject < floor or pertinence < floor:
+        run.abstained = True
+        which = ("the sources describe a different subject" if subject < floor
+                 else "the sources do not bear on the question as asked")
+        run.abstain_reason = (
+            f"Retrieval did not ground the question: {which} "
+            f"(subject {subject:.2f}, pertinence {pertinence:.2f}, floor {floor:.2f}). "
+            f"Answering from this evidence would produce a confident report about the wrong "
+            f"thing.")
+    return run
+
+
 # ---- 3. drafter ----
 def draft(mesh, run):
     """Turn the evidence into discrete claims, each citing passage ids. One claim = one
