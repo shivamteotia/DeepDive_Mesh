@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "created_at": "2026-10-19T11:41:30+00:00",
+    "evaluate_model": "typesafe/jev-1.13",
+    "git_sha": "unknown",
+    "judge_model": null,
+    "label": "cheap set, loop widened, replay",
+    "max_loopbacks": 1,
+    "max_subquestions": 5,
+    "models": {
+      "drafter": "openai/gpt-4.1-nano",
+      "planner": "openai/gpt-4.1-mini",
+      "researcher": "openai/gpt-4o-mini",
+      "synthesizer": "openai/gpt-4.1-nano",
+      "utility": "openai/gpt-5-nano",
+      "verifier": "openai/gpt-4o-mini"
+    },
+    "n_cases": 10,
+    "verify_threshold": 0.7,
+    "websearch_mode": "replay",
+    "websearch_results": 6
+  },
+  "metrics": {
+    "cases.run": 8,
+    "cases.skipped": 2,
+    "ops.byok_fallback_steps": 0,
+    "ops.latency.p50_ms": 203,
+    "ops.latency.p95_ms": 570,
+    "ops.reliability.success_rate": 0.0,
+    "ops.websearch.cost_usd_est": 0.0,
+    "retrieval.domain_hit_rate": 0.0,
+    "retrieval.recall_at_k": 0.0,
+    "retrieval.recall_at_k.n": 4,
+    "verify.abstain_rate": 1.0,
+    "verify.abstain_rate.n": 3,
+    "verify.failure_mode_accuracy": 0.0,
+    "verify.loopback_rate": 0.0,
+    "verify.poison_precision": 0.0,
+    "verify.poison_recall": 1.0,
+    "verify.poison_recall.n": 4
+  }
+}

@@ -1,0 +1,66 @@
+  res-ev-battery-risks         research  What are the main risks of investing in Indian EV ba
+    claims 4/8 accepted, 82 passages, 19 searches, loopbacks 1, recall MISS ['reuters.com']
+  res-grid-storage-cost        research  How has the levelised cost of grid-scale battery sto
+    claims 6/10 accepted, 82 passages, 19 searches, loopbacks 1, recall MISS ['nrel.gov']
+  res-sodium-ion-status        research  Is sodium-ion battery technology commercially deploy
+    claims 4/8 accepted, 61 passages, 16 searches, loopbacks 1, recall hit
+  cor-internal-memo            corpus    What does our uploaded market assessment say about c
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cor-figure-not-present       corpus    What 2027 revenue projection does our market assessm
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cnf-market-size              conflict  How large is the Indian stationary battery storage m
+    claims 6/10 accepted, 38 passages, 13 searches, loopbacks 1, recall MISS ['iea.org', 'reuters.com']
+  trp-future-figure            trap      What were Indian EV battery sector revenues in calen
+    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0, abstain ok
+  trp-invented-company         trap      Summarise the Series C funding round of Vantrix Cell
+    claims 5/5 accepted, 27 passages, 9 searches, loopbacks 0, abstain MISSED
+  trp-unanswerable-counterfactual trap      Would Indian cell prices have fallen faster without 
+    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0, abstain ok
+  poi-draft-v1                 poisoned  (fixture)
+Traceback (most recent call last):
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\backend\mesh.py", line 66, in _request
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\urllib\request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\urllib\request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\urllib\request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\urllib\request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\urllib\request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\urllib\request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 402: Payment Required
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\run.py", line 535, in <module>
+    main()
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\run.py", line 499, in main
+    rows, scored = one_pass(cases, args.no_judge, config.WEBSEARCH_MODE)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\run.py", line 440, in one_pass
+    run, extra = execute(case, mesh)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\run.py", line 63, in execute
+    agents.verify(Mesh(run=run), run)
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\backend\agents.py", line 164, in verify
+    answers = m.evaluate(
+              ^^^^^^^^^^^
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\backend\mesh.py", line 141, in evaluate
+    body, headers, ms = self._request("/evaluate", payload)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\backend\mesh.py", line 77, in _request
+    raise MeshError(f"{method} {path} -> {e.code}: {json.dumps(detail)[:400]}") from e
+backend.mesh.MeshError: POST /evaluate -> 402: {"error": {"code": "spend_limit_exceeded", "message": "Spend cap of $5.0000 reached. Current spend: $5.0075. Contact your administrator to increase the cap."}, "request_id": "req_01M52WACH65GN1M8NN9908229Z"}

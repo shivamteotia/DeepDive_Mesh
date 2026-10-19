@@ -1,0 +1,78 @@
+{
+  "cases": [
+    {
+      "case": {
+        "id": "poi-draft-v1",
+        "kind": "poisoned",
+        "draft": "fixtures/poisoned/draft-v1.json",
+        "false_claim_ids": [
+          "c3",
+          "c5",
+          "c8",
+          "c9"
+        ],
+        "notes": [
+          "The headline fixture for this track. A hand-written 10-claim draft fed straight to the",
+          "verifier, bypassing planner, researcher and drafter.",
+          "",
+          "Build it so each false claim fails differently:",
+          "  c3  number contradicts its own cited passage",
+          "  c5  citation points to a real retrieved source that never mentions the claim",
+          "  c8  citation URL was never in the retrieval set at all",
+          "  c9  true statement, wrong attribution (right fact, wrong source)",
+          "",
+          "Scores verify.poison_recall (gate) and verify.poison_precision. The six true claims are",
+          "what stops a reject-everything verifier from scoring 1.0."
+        ]
+      },
+      "extra": {
+        "counts": {
+          "claims": 10,
+          "accepted": 5,
+          "rejected": 3,
+          "needs_evidence": 2,
+          "passages": 6,
+          "web_passages": 6,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": false,
+        "status": "done",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": 0.6666666666666666,
+        "truncated": 0,
+        "passages": 6,
+        "claims": 10,
+        "dangling": 1,
+        "unsupported": 0,
+        "citations": 11,
+        "spans_resolve": 10,
+        "support_mean": 0.561,
+        "poison": {
+          "tp": 4,
+          "fp": 1,
+          "tn": 5,
+          "fn": 0,
+          "modes_right": 3,
+          "n_false": 4
+        }
+      },
+      "totals": {
+        "steps": 10,
+        "prompt_tokens": 6119,
+        "completion_tokens": 866,
+        "latency_ms": 9874,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "",
+      "status": "done"
+    }
+  ],
+  "judged": []
+}

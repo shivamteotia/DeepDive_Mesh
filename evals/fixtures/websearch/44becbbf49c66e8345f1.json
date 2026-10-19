@@ -1,0 +1,62 @@
+{
+  "query": "site:cea.nic.in India energy storage BESS status operational tender awarded",
+  "answer": null,
+  "results": [
+    {
+      "title": "1. Status of BESS projects in India (\u2265 1 MWh)",
+      "url": "https://cea.nic.in/wp-content/uploads/2021/03/Status_of_development_and_deployment_of_BESS_projects_in_India_as_on_31.07.2026.pdf",
+      "content": "Status of development and deployment of Battery Energy Storage Systems (BESS) in India. Awarded Projects 29 7,327.00 25,346.20 4 In Tender ...",
+      "score": 1.0,
+      "published_date": "Jul 31, 2026",
+      "page_content": null,
+      "page_content_truncated": false
+    },
+    {
+      "title": "1. Status of BESS projects in India (\u2265 1 MWh)",
+      "url": "https://cea.nic.in/wp-content/uploads/bess/2026/09/Status_of_development_and_deployment_of_BESS_projects_in_India_as_on_31_08_2026-1.pdf",
+      "content": "Status of development and deployment of Battery Energy Storage Systems (BESS) in India. Awarded Projects 23 7,317.00 24,126.20 4 In Tender ...",
+      "score": 0.95,
+      "published_date": "Aug 31, 2026",
+      "page_content": null,
+      "page_content_truncated": false
+    },
+    {
+      "title": "Report of Committee on \u201cFormulation of Trajectory of ...",
+      "url": "https://cea.nic.in/wp-content/uploads/notification/2026/08/Report_of_Committee_for_trajectory_of_Indeginsation_of_SCADA_system.pdf",
+      "content": "Techno-economic evaluation of Battery Energy Storage System (BESS) in Indian context for providing ancillary frequency services are estimated through dynamic ...",
+      "score": 0.9,
+      "published_date": null,
+      "page_content": null,
+      "page_content_truncated": false
+    },
+    {
+      "title": "Report on Resource Adequacy Plan (Generation) for ...",
+      "url": "https://cea.nic.in/api/dashboardReports/view-pdf/en/d9f893e0-6ef6-4bb8-acb3-c5dca54b784e",
+      "content": "The results reflect additional capacity requirement of BESS and PSP to the extent of 6500 MW and 2843 MW respectively by 2036-37 indicating ...",
+      "score": 0.85,
+      "published_date": "Feb 4, 2026",
+      "page_content": null,
+      "page_content_truncated": false
+    },
+    {
+      "title": "Distribution List (Members of NPC)",
+      "url": "https://cea.nic.in/api/public/link-report/file?path=%2Fhome%2Fcea_website%2Freports%2Fgeneral%2Fen%2FMinutes_of_17th_NPC_Meeting.pdf&mode=view",
+      "content": "BESS and RE generations connections are being established by some developers, where the battery gets connected directly from the solar panels,",
+      "score": 0.8,
+      "published_date": null,
+      "page_content": null,
+      "page_content_truncated": false
+    },
+    {
+      "title": "Report On Resource Adequacy Plan (Generation) For Goa ...",
+      "url": "https://cea.nic.in/api/dashboardReports/view-pdf/en/031abf7b-8c47-42d4-8d86-528e34fccf3c",
+      "content": "The storage requirement can be met through PSP or a combination of PSP and BESS. This capacity shall be able to meet the projected demand with ...",
+      "score": 0.75,
+      "published_date": "Jan 26, 2026",
+      "page_content": null,
+      "page_content_truncated": false
+    }
+  ],
+  "provider": "tinyfish",
+  "request_id": "req_01M52SJFSCGSMR1G0D88ZCM607"
+}

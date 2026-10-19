@@ -1,0 +1,12 @@
+# Judged report metrics only. Everything else in the harness -- deterministic grounding,
+# /v1/evaluate checks, retrieval and ops -- needs nothing beyond the backend's own deps, so
+# `python -m evals.run --no-judge` works without installing this.
+#
+#   pip install -r evals/requirements.txt
+#   python -m evals.run                 # judge routed through MeshAPI (JUDGE_MODEL)
+#   python -m evals.compare             # candidate vs baseline -> PASS / REVIEW / FAIL
+#
+# deepeval needs the openai SDK as its transport; we point it at api.meshapi.ai, so no
+# OpenAI-direct calls are made and hackathon rule 1 holds.
+deepeval>=4.2
+openai>=1.50

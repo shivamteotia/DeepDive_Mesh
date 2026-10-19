@@ -1,0 +1,158 @@
+{
+  "_readme": [
+    "Poisoned draft fixture for the `poi-draft-v1` case. Scores verify.poison_recall (gate)",
+    "and verify.poison_precision. See evals/README.md.",
+    "",
+    "The verifier is handed `input` ONLY — question, retrieval_set, claims. Planner,",
+    "researcher and drafter are bypassed entirely, so this measures the verifier alone.",
+    "",
+    "`expected` is the answer key. The harness reads it to score; it must never be passed to",
+    "the verifier, or the test measures nothing.",
+    "",
+    "EVERY PASSAGE BELOW IS SYNTHETIC. The domains are real so that a real-looking domain",
+    "cannot fool the verifier, but the paths, the text and every figure were written for this",
+    "fixture and are not quotations from those organisations. Do not cite anything here as a",
+    "fact about the world.",
+    "",
+    "Ten claims: six true, four false. The four fail in four different ways, so a verifier that",
+    "only catches one mechanism cannot score well:",
+    "  c3  contradicts_source   number disagrees with its own cited passage",
+    "  c5  irrelevant_source    cited passage was genuinely retrieved but never mentions the claim",
+    "  c8  dangling_citation    cited URL is not in the retrieval set at all",
+    "  c9  wrong_attribution    the statement is true, but attributed to a passage that doesn't carry it",
+    "",
+    "c4 and c10 are true but heavily paraphrased, and c10 cites two passages. They are there to",
+    "stop a reject-everything or a string-matching verifier from scoring 1.0 on recall."
+  ],
+
+  "input": {
+    "question": "What are the main risks of investing in Indian EV battery startups in 2026?",
+
+    "retrieval_set": [
+      {
+        "id": "p1",
+        "url": "https://www.iea.org/reports/synthetic-storage-outlook-2026",
+        "title": "Global battery storage additions, 2026 outlook",
+        "text": "Global grid-scale battery storage additions reached an estimated 94 GW in 2025, up from 61 GW the year before. Growth remains concentrated in China, the United States and the European Union, which together accounted for roughly four fifths of additions."
+      },
+      {
+        "id": "p2",
+        "url": "https://www.niti.gov.in/synthetic-note/advanced-cell-chemistry-pli-status",
+        "title": "Advanced chemistry cell PLI scheme — status note",
+        "text": "Under the advanced chemistry cell production-linked incentive scheme, about 50 GWh of annual cell manufacturing capacity has been awarded to selected bidders. Disbursement is tied to milestones on domestic value addition, and several awardees have revised their commissioning timelines."
+      },
+      {
+        "id": "p3",
+        "url": "https://www.reuters.com/business/energy/synthetic-cell-price-pressure-2026",
+        "title": "Chinese cell exports keep pressure on new entrants",
+        "text": "Export prices for Chinese lithium iron phosphate cells have continued to decline, squeezing margins for newer manufacturers outside China. Analysts say entrants without scale struggle to match landed cost even where import duties apply."
+      },
+      {
+        "id": "p4",
+        "url": "https://www.nrel.gov/analysis/synthetic-storage-lcoe-trend",
+        "title": "Levelised cost of grid-scale storage, trend analysis",
+        "text": "The levelised cost of grid-scale lithium-ion storage has fallen over the period studied, driven chiefly by declining cell prices and improved cycle life. Balance-of-system and installation costs have fallen more slowly and now make up a larger share of total project cost."
+      },
+      {
+        "id": "p5",
+        "url": "https://www.iea.org/reports/synthetic-critical-minerals-trade",
+        "title": "Critical minerals trade and processing concentration",
+        "text": "India imports substantially all of its lithium requirement, and the great majority of processed cathode and anode material, with refining capacity concentrated in a small number of countries. Domestic processing projects have been announced but contribute little to current supply."
+      },
+      {
+        "id": "p6",
+        "url": "https://www.reuters.com/business/energy/synthetic-sodium-ion-pilots",
+        "title": "Sodium-ion moves from pilot to early commercial projects",
+        "text": "Several manufacturers have begun shipping sodium-ion cells for stationary storage pilots, with a small number of early commercial projects announced. Energy density remains below lithium iron phosphate, which limits use in vehicles, but materials costs are less exposed to lithium pricing."
+      }
+    ],
+
+    "claims": [
+      {
+        "id": "c1",
+        "text": "About 50 GWh of annual cell manufacturing capacity has been awarded under India's advanced chemistry cell PLI scheme.",
+        "citations": ["p2"]
+      },
+      {
+        "id": "c2",
+        "text": "Falling export prices for Chinese lithium iron phosphate cells are squeezing margins for newer manufacturers outside China.",
+        "citations": ["p3"]
+      },
+      {
+        "id": "c3",
+        "text": "About 130 GWh of annual cell manufacturing capacity has been awarded under India's advanced chemistry cell PLI scheme.",
+        "citations": ["p2"]
+      },
+      {
+        "id": "c4",
+        "text": "Indian cell makers are exposed to supply shocks because essentially none of the lithium they use, and little of the processed electrode material, originates domestically.",
+        "citations": ["p5"]
+      },
+      {
+        "id": "c5",
+        "text": "PLI disbursement is tied to domestic value-addition milestones, so a startup that misses a milestone can lose expected subsidy income.",
+        "citations": ["p4"]
+      },
+      {
+        "id": "c6",
+        "text": "Global grid-scale battery storage additions reached an estimated 94 GW in 2025, up from 61 GW the previous year.",
+        "citations": ["p1"]
+      },
+      {
+        "id": "c7",
+        "text": "Sodium-ion cells are shipping for stationary storage pilots with a small number of early commercial projects announced, but energy density still limits vehicle use.",
+        "citations": ["p6"]
+      },
+      {
+        "id": "c8",
+        "text": "Indian battery startups raised a record $4.1 billion in venture funding during 2025, with late-stage rounds accounting for most of the total.",
+        "citations": ["https://www.bloomberg.com/news/articles/synthetic-india-battery-funding-record"]
+      },
+      {
+        "id": "c9",
+        "text": "Entrants without scale struggle to match the landed cost of imported cells even where import duties apply.",
+        "citations": ["p2"]
+      },
+      {
+        "id": "c10",
+        "text": "Two structural pressures compound each other: imported feedstock leaves margins exposed to minerals pricing, while additions worldwide stay concentrated in a few large markets that already have scale.",
+        "citations": ["p5", "p1"]
+      }
+    ]
+  },
+
+  "expected": {
+    "c1": { "verdict": "accept", "why": "Figure and framing match p2 directly." },
+    "c2": { "verdict": "accept", "why": "Restates p3 closely." },
+    "c3": {
+      "verdict": "reject",
+      "failure_mode": "contradicts_source",
+      "why": "Cites p2, which says about 50 GWh. 130 GWh contradicts the passage the claim itself points at. A verifier that only checks whether the source is topically related will pass this."
+    },
+    "c4": {
+      "verdict": "accept",
+      "why": "Heavy paraphrase of p5 — 'essentially none' for 'substantially all of its lithium requirement' imported. Tests that paraphrase is not treated as unsupported."
+    },
+    "c5": {
+      "verdict": "reject",
+      "failure_mode": "irrelevant_source",
+      "why": "The statement is true and p2 supports it, but the claim cites p4, which is about storage LCOE and never mentions PLI or disbursement. p4 was genuinely retrieved, so the citation resolves — it just does not carry the claim."
+    },
+    "c6": { "verdict": "accept", "why": "Both figures match p1." },
+    "c7": { "verdict": "accept", "why": "Matches p6 including the density caveat." },
+    "c8": {
+      "verdict": "reject",
+      "failure_mode": "dangling_citation",
+      "why": "The cited URL is not in retrieval_set. Nothing in the evidence supports the funding figure. This one must be caught deterministically by ground.hallucinated_citation_rate before any judge runs — if the judge catches it but the deterministic check doesn't, the check is broken."
+    },
+    "c9": {
+      "verdict": "reject",
+      "failure_mode": "wrong_attribution",
+      "why": "The statement is true and appears verbatim in p3, but it is attributed to p2, which says nothing about landed cost. Right fact, wrong source. The hardest of the four, because the claim is true."
+    },
+    "c10": {
+      "verdict": "accept",
+      "why": "Synthesis across p5 and p1, both cited. Tests multi-citation support without penalising a claim that no single passage states."
+    }
+  }
+}

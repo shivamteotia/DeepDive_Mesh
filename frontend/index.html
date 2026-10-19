@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepDive</title>
+<style>
+  :root {
+    --bg:#0e1116; --panel:#161b22; --panel-2:#1c232c; --line:#2a323d;
+    --fg:#e6edf3; --dim:#8b98a5; --faint:#5c6773;
+    --accent:#4c8dff; --ok:#3fb950; --warn:#d29922; --bad:#f85149; --busy:#4c8dff;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--fg);
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  a { color:var(--accent); }
+  .wrap { max-width:1480px; margin:0 auto; padding:24px 16px 72px;
+          display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:16px;
+          align-items:start; }
+  .wrap > header, .wrap > .sub, .wrap > #error { grid-column:1 / -1; }
+  @media (max-width:1060px) { .wrap { grid-template-columns:minmax(0,1fr); } }
+
+  header { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; flex-wrap:wrap; }
+  h1 { font-size:20px; margin:0; letter-spacing:-.01em; }
+  .tag { font:11px/1 var(--mono); color:var(--dim); border:1px solid var(--line);
+         padding:4px 7px; border-radius:5px; }
+  .sub { color:var(--dim); font-size:13px; margin:0 0 20px; }
+
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:10px;
+           padding:16px; margin-bottom:16px; }
+
+  textarea {
+    width:100%; min-height:72px; resize:vertical; background:var(--bg); color:var(--fg);
+    border:1px solid var(--line); border-radius:8px; padding:11px 12px; font:inherit;
+  }
+  textarea:focus, button:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
+
+  .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+  button {
+    background:var(--accent); color:#fff; border:0; border-radius:7px; padding:9px 16px;
+    font:inherit; font-weight:600; cursor:pointer;
+  }
+  button.ghost { background:transparent; color:var(--fg); border:1px solid var(--line); font-weight:500; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+
+  /* sources */
+  .sources { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  .src { flex:1 1 260px; border:1px solid var(--line); border-radius:8px; padding:11px 12px;
+         background:var(--panel-2); }
+  .src h3 { margin:0 0 3px; font-size:13px; display:flex; align-items:center; gap:7px; }
+  .src p { margin:0; font-size:12px; color:var(--dim); }
+  .pri { font:10px/1 var(--mono); background:rgba(76,141,255,.15); color:var(--accent);
+         border:1px solid rgba(76,141,255,.35); padding:3px 6px; border-radius:4px;
+         text-transform:uppercase; letter-spacing:.04em; }
+  .drop { margin-top:10px; border:1px dashed var(--line); border-radius:7px; padding:14px;
+          text-align:center; font-size:13px; color:var(--dim); cursor:pointer; }
+  .drop.over { border-color:var(--accent); color:var(--accent); background:rgba(76,141,255,.06); }
+  .docs { list-style:none; margin:10px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
+  .docs li { display:flex; align-items:center; gap:8px; font-size:12px; background:var(--bg);
+             border:1px solid var(--line); border-radius:6px; padding:7px 9px; }
+  .docs .name { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .docs .fid { font:11px/1 var(--mono); color:var(--faint); }
+  .x { background:none; border:0; color:var(--faint); cursor:pointer; padding:0 4px; font-size:15px; }
+
+  /* pipeline */
+  .pipe { display:flex; gap:8px; flex-wrap:wrap; }
+  .stage { flex:1 1 170px; border:1px solid var(--line); border-radius:8px; padding:11px 12px;
+           background:var(--panel-2); }
+  .stage .nm { font-size:13px; font-weight:600; display:flex; justify-content:space-between;
+               align-items:center; gap:6px; }
+  .stage .st { font:11px/1 var(--mono); color:var(--faint); margin-top:5px; }
+  .stage[data-s="running"] { border-color:var(--busy); }
+  .stage[data-s="running"] .nm::after { content:"..."; color:var(--busy); }
+  .stage[data-s="done"] { border-color:rgba(63,185,80,.5); }
+  .stage[data-s="done"] .nm::after { content:"\2713"; color:var(--ok); }
+  .loops { margin-top:10px; font-size:12px; color:var(--warn); }
+
+  /* stats */
+  .stats { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .stat { flex:1 1 110px; background:var(--bg); border:1px solid var(--line); border-radius:7px;
+          padding:9px 10px; }
+  .stat b { display:block; font:600 17px/1.2 var(--mono); }
+  .stat span { font-size:11px; color:var(--dim); }
+
+  /* tabs */
+  nav.tabs { display:flex; gap:4px; border-bottom:1px solid var(--line); margin-bottom:14px; }
+  nav.tabs button { background:none; color:var(--dim); border:0; border-bottom:2px solid transparent;
+                    border-radius:0; padding:9px 13px; font-weight:500; }
+  nav.tabs button[aria-selected="true"] { color:var(--fg); border-bottom-color:var(--accent); }
+  .tabpane[hidden] { display:none; }
+
+  /* report */
+  .report { line-height:1.65; }
+  .report h1 { font-size:21px; margin:0 0 10px; }
+  .report h2 { font-size:16px; margin:22px 0 7px; }
+  .report ul { padding-left:20px; }
+  .report code { font:13px var(--mono); background:var(--panel-2); padding:1px 5px; border-radius:4px; }
+  .cite { font:11px var(--mono); color:var(--accent); }
+
+  /* audit */
+  .claim { border:1px solid var(--line); border-left-width:3px; border-radius:7px;
+           padding:11px 12px; margin-bottom:8px; background:var(--panel-2); }
+  .claim.accepted { border-left-color:var(--ok); }
+  .claim.rejected { border-left-color:var(--bad); }
+  .claim.needs_evidence { border-left-color:var(--warn); }
+  .claim .hd { display:flex; gap:9px; align-items:center; font:11px var(--mono);
+               color:var(--dim); margin-bottom:5px; flex-wrap:wrap; }
+  .pill { padding:2px 7px; border-radius:4px; font-weight:600; text-transform:uppercase;
+          letter-spacing:.03em; font-size:10px; }
+  .pill.accepted { background:rgba(63,185,80,.16); color:var(--ok); }
+  .pill.rejected { background:rgba(248,81,73,.16); color:var(--bad); }
+  .pill.needs_evidence { background:rgba(210,153,34,.16); color:var(--warn); }
+  .why { font-size:13px; color:var(--dim); margin-top:6px; font-style:italic; }
+  .srcs { margin-top:7px; display:flex; flex-direction:column; gap:3px; }
+  .srcs a { font-size:12px; color:var(--dim); text-decoration:none; }
+  .srcs a:hover { color:var(--accent); text-decoration:underline; }
+
+  /* trace */
+  table { width:100%; border-collapse:collapse; font:12px var(--mono); }
+  th, td { text-align:left; padding:6px 9px; border-bottom:1px solid var(--line); }
+  th { color:var(--dim); font-weight:600; position:sticky; top:0; background:var(--panel); }
+  td.num { text-align:right; }
+  .scroll { max-height:460px; overflow:auto; }
+
+  /* live activity side panel */
+  aside#side { position:sticky; top:16px; max-height:calc(100vh - 32px); display:flex;
+               flex-direction:column; }
+  .sidehead { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .sidehead h2 { font-size:14px; margin:0; }
+  .sidenote { font-size:11px; color:var(--faint); margin:4px 0 10px; }
+  .feed { list-style:none; margin:0; padding:0; overflow-y:auto; flex:1;
+          display:flex; flex-direction:column; gap:6px; }
+  .feed:empty { display:none; }
+  .step { border:1px solid var(--line); border-left-width:3px; border-radius:6px;
+          padding:7px 9px; background:var(--panel-2); animation:in .18s ease-out; }
+  @keyframes in { from { opacity:0; transform:translateY(-3px); } }
+  @media (prefers-reduced-motion:reduce) { .step { animation:none; } }
+  .step .top { display:flex; align-items:baseline; gap:6px; font:11px var(--mono); }
+  .step .who { font-weight:700; }
+  .step .act { color:var(--dim); flex:1; overflow:hidden; text-overflow:ellipsis;
+               white-space:nowrap; }
+  .step .ms { color:var(--faint); }
+  .step .meta { font:10px var(--mono); color:var(--faint); margin-top:4px;
+                overflow-wrap:anywhere; }
+  .step .q { font-size:12px; color:var(--fg); margin-top:4px; overflow-wrap:anywhere; }
+  .step[data-a="planner"]     { border-left-color:#a371f7; }
+  .step[data-a="researcher"]  { border-left-color:var(--accent); }
+  .step[data-a="drafter"]     { border-left-color:#56d4dd; }
+  .step[data-a="verifier"]    { border-left-color:var(--warn); }
+  .step[data-a="synthesizer"] { border-left-color:var(--ok); }
+  .step.flag { border-left-color:var(--bad); }
+  .step .who[data-a] { color:inherit; }
+  .feedmark { font:10px var(--mono); color:var(--warn); text-align:center;
+              border-top:1px dashed var(--line); padding-top:6px; margin-top:2px; }
+
+  .note { font-size:12px; color:var(--faint); margin-top:12px; }
+  .err { background:rgba(248,81,73,.1); border:1px solid rgba(248,81,73,.4); color:#ffb3ae;
+         border-radius:7px; padding:11px 12px; font-size:13px; margin-bottom:14px; }
+  .empty { color:var(--faint); font-size:13px; padding:22px 0; text-align:center; }
+
+  @media print {
+    body { background:#fff; color:#000; }
+    .noprint, nav.tabs { display:none !important; }
+    .panel { border:0; background:none; padding:0; }
+    .wrap { max-width:none; }
+    .report h1 { font-size:20pt; }
+    a { color:#000; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>DeepDive</h1>
+    <span class="tag">self-verifying research analyst</span>
+    <span class="tag" id="health">checking…</span>
+  </header>
+  <p class="sub">Every claim is checked against the source it cites before it reaches the report.
+     Rejected claims stay in the audit trail with the reason.</p>
+
+  <div id="error" class="err" hidden></div>
+
+  <main>
+  <!-- ask -->
+  <section class="panel noprint">
+    <textarea id="q" placeholder="What are the main risks of investing in Indian EV battery startups in 2026?"></textarea>
+
+    <div class="sources">
+      <div class="src">
+        <h3>Web search <span class="pri">primary</span></h3>
+        <p>Always runs. Live pages are fetched and read in full, not just snippets.</p>
+      </div>
+      <div class="src">
+        <h3>Your documents <span class="tag" id="doccount">0</span></h3>
+        <p>Searched <em>in addition</em> to the web, never instead of it.</p>
+        <div class="drop" id="drop" tabindex="0" role="button">
+          Drop a file here, or click to choose &mdash; PDF, DOCX, TXT, MD, CSV, XLSX
+        </div>
+        <input type="file" id="file" multiple hidden
+               accept=".pdf,.txt,.md,.docx,.doc,.pptx,.xlsx,.xls,.csv,.tsv,.json,.xml,.html">
+        <ul class="docs" id="docs"></ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <button id="go">Run research</button>
+      <button id="stop" class="ghost" hidden>Stop</button>
+      <span class="tag" id="runid" hidden></span>
+    </div>
+  </section>
+
+  <!-- pipeline -->
+  <section class="panel noprint" id="pipepanel" hidden>
+    <div class="pipe" id="pipe"></div>
+    <div class="loops" id="loops" hidden></div>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <!-- results -->
+  <section class="panel" id="results" hidden>
+    <nav class="tabs noprint" role="tablist">
+      <button role="tab" aria-selected="true"  data-tab="report">Report</button>
+      <button role="tab" aria-selected="false" data-tab="audit">Audit trail</button>
+      <button role="tab" aria-selected="false" data-tab="trace">Trace &amp; cost</button>
+      <span style="flex:1"></span>
+      <button class="ghost" id="pdf" style="margin:4px 0">Export PDF</button>
+    </nav>
+
+    <div class="tabpane" id="pane-report"><div class="report" id="report"></div></div>
+
+    <div class="tabpane" id="pane-audit" hidden>
+      <div class="stats" id="auditstats"></div>
+      <div id="claims"></div>
+    </div>
+
+    <div class="tabpane" id="pane-trace" hidden>
+      <div class="scroll"><table id="trace">
+        <thead><tr>
+          <th>agent</th><th>action</th><th>model</th><th class="num">in</th>
+          <th class="num">out</th><th class="num">ms</th><th>request id</th><th>byok</th>
+        </tr></thead><tbody></tbody>
+      </table></div>
+      <p class="note" id="tracenote"></p>
+    </div>
+  </section>
+  </main>
+
+  <!-- live activity: one entry per agent action, straight off the Mesh client's trace hook -->
+  <aside class="panel noprint" id="side">
+    <div class="sidehead">
+      <h2>Agent activity</h2>
+      <span class="tag" id="stepcount">0</span>
+    </div>
+    <p class="sidenote">Every call this run makes to MeshAPI, as it happens.</p>
+    <ol class="feed" id="feed"></ol>
+    <div class="empty" id="feedempty">Nothing yet. Run a question.</div>
+  </aside>
+
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const el = (t, c, txt) => { const n = document.createElement(t); if (c) n.className = c;
+                            if (txt != null) n.textContent = txt; return n; };
+const STAGES = ["planner", "researcher", "drafter", "verifier", "synthesizer"];
+const BLURB = { planner:"decomposes the question", researcher:"web + your documents",
+                drafter:"writes checkable claims", verifier:"checks each claim's source",
+                synthesizer:"final cited report" };
+
+let docs = [];      // {name, file_id}
+let es = null;      // EventSource
+let current = null; // latest payload
+
+/* ---------- health ---------- */
+fetch("/api/health").then(r => r.json()).then(h => {
+  const bal = h.balance && h.balance.available_usd;
+  $("#health").textContent = h.key_present
+    ? `web:${h.websearch_mode}${bal ? "  bal $" + Number(bal).toFixed(2) : ""}`
+    : "no API key";
+  if (h.error) showError(h.error);
+  if (h.models_missing && h.models_missing.length)
+    showError("Models missing from the live catalogue: " + h.models_missing.join(", "));
+}).catch(() => $("#health").textContent = "backend unreachable");
+
+function showError(msg) { const e = $("#error"); e.hidden = false; e.textContent = msg; }
+function clearError() { $("#error").hidden = true; }
+
+/* ---------- documents ---------- */
+$("#drop").onclick = () => $("#file").click();
+$("#drop").onkeydown = e => { if (e.key === "Enter" || e.key === " ") $("#file").click(); };
+$("#drop").ondragover = e => { e.preventDefault(); $("#drop").classList.add("over"); };
+$("#drop").ondragleave = () => $("#drop").classList.remove("over");
+$("#drop").ondrop = e => { e.preventDefault(); $("#drop").classList.remove("over");
+                           upload([...e.dataTransfer.files]); };
+$("#file").onchange = e => upload([...e.target.files]);
+
+async function upload(files) {
+  for (const f of files) {
+    const row = el("li");
+    row.append(el("span", "name", f.name), el("span", "fid", "uploading…"));
+    $("#docs").append(row);
+    const body = new FormData(); body.append("file", f);
+    try {
+      const r = await fetch("/api/corpus", { method: "POST", body });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.detail || "upload failed");
+      docs.push({ name: f.name, file_id: j.file_id });
+      row.innerHTML = "";
+      const rm = el("button", "x", "×");
+      rm.title = "Remove";
+      rm.onclick = () => { docs = docs.filter(d => d.file_id !== j.file_id); row.remove(); count(); };
+      row.append(el("span", "name", f.name),
+                 el("span", "fid", j.file_id.slice(0, 8) + " · " + j.embedding_status), rm);
+    } catch (err) {
+      // the gateway's own message is the useful one: 15-min signed URL, 50MB cap, bad mime
+      row.innerHTML = "";
+      row.append(el("span", "name", f.name), el("span", "fid", "failed"));
+      showError(f.name + ": " + err.message);
+    }
+    count();
+  }
+  $("#file").value = "";
+}
+const count = () => { $("#doccount").textContent = docs.length; };
+
+/* ---------- run ---------- */
+$("#go").onclick = start;
+$("#stop").onclick = () => { if (es) es.close(); finish(); };
+$("#q").onkeydown = e => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) start(); };
+
+function start() {
+  const q = $("#q").value.trim() || $("#q").placeholder;
+  clearError();
+  $("#go").disabled = true; $("#stop").hidden = false;
+  $("#pipepanel").hidden = false; $("#results").hidden = true;
+  $("#loops").hidden = true; $("#runid").hidden = true;
+  renderPipe({}); resetFeed();
+
+  const p = new URLSearchParams({ question: q });
+  docs.forEach(d => p.append("corpus_file_ids", d.file_id));
+  es = new EventSource("/api/research/stream?" + p);
+
+  es.addEventListener("stage", e => {
+    const d = JSON.parse(e.data);
+    renderPipe({ [d.stage]: d.status });
+    if (d.run) renderStats(d.run);
+  });
+  es.addEventListener("step", e => addStep(JSON.parse(e.data)));
+  es.addEventListener("loopback", e => {
+    const d = JSON.parse(e.data);
+    const box = $("#loops"); box.hidden = false;
+    box.textContent = `Loop-back ${d.n}: the verifier sent work back for `
+                    + `${d.queries.length} more search${d.queries.length === 1 ? "" : "es"} — `
+                    + d.queries.join("; ");
+    markFeed(`loop-back ${d.n} · ${d.queries.length} new quer${d.queries.length === 1 ? "y" : "ies"}`);
+  });
+  es.addEventListener("report", e => { current = JSON.parse(e.data); render(current); finish(); });
+  es.addEventListener("error", e => {
+    try { showError(JSON.parse(e.data).error); } catch { showError("Connection to the run was lost."); }
+    finish();
+  });
+  es.onerror = () => { if (es && es.readyState === 2) finish(); };
+}
+
+function finish() {
+  if (es) { es.close(); es = null; }
+  $("#go").disabled = false; $("#stop").hidden = true;
+  document.querySelectorAll('.stage[data-s="running"]').forEach(s => s.dataset.s = "");
+}
+
+/* ---------- live activity feed ---------- */
+let steps = 0;
+const ACT = {                                     // what each action means, in plain words
+  "planner.chat":            "planned the investigation",
+  "researcher.web_search":   "searched the web",
+  "researcher.corpus_search":"searched your documents",
+  "corpus.upload_init":      "registered a document",
+  "corpus.upload_ready":     "document embedded",
+  "drafter.chat":            "drafted claims",
+  "verifier.evaluate":       "scored a claim against its source",
+  "verifier.explain":        "wrote the rejection reasons",
+  "verifier.gaps":           "listed the evidence still needed",
+  "synthesizer.chat":        "wrote the report",
+  "eval.noul":               "calibrated check",
+};
+
+function addStep(s) {
+  steps++;
+  $("#stepcount").textContent = steps;
+  $("#feedempty").hidden = true;
+
+  const li = el("li", "step");
+  li.dataset.a = s.agent;
+  if (s.byok_fallback) li.classList.add("flag");
+
+  const top = el("div", "top");
+  top.append(el("span", "who", s.agent),
+             el("span", "act", ACT[s.action] || s.action),
+             el("span", "ms", s.latency_ms ? s.latency_ms + "ms" : (s.replayed ? "replayed" : "")));
+  li.append(top);
+
+  // the query is the single most useful thing to see while a researcher is fanning out
+  if (s.detail_query) li.append(el("div", "q", "“" + s.detail_query + "”"));
+
+  const bits = [];
+  if (s.model) bits.push(s.model);
+  if (s.prompt_tokens) bits.push(`${s.prompt_tokens}→${s.completion_tokens} tok`);
+  if (s.n_results != null) bits.push(`${s.n_results} results, ${s.n_with_page_content} with page text`);
+  if (s.engine) bits.push("engine " + s.engine);
+  if (s.file_id) bits.push("file " + String(s.file_id).slice(0, 8));
+  if (s.byok_fallback) bits.push("BYOK FALLBACK — billed to Mesh balance");
+  if (s.request_id) bits.push(s.request_id);
+  if (bits.length) li.append(el("div", "meta", bits.join("  ·  ")));
+
+  const feed = $("#feed");
+  const atBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 40;
+  feed.append(li);
+  if (atBottom) feed.scrollTop = feed.scrollHeight;   // don't yank the view if they scrolled up
+
+  if (s.n_results > 0 && s.n_with_page_content === 0)
+    showError("A web search returned results but no page text — reasoning on snippets only. "
+            + "Check WEBSEARCH_PROVIDER (page content is TinyFish-only).");
+}
+
+function markFeed(text) {
+  $("#feedempty").hidden = true;
+  $("#feed").append(el("li", "feedmark", text));
+  $("#feed").scrollTop = $("#feed").scrollHeight;
+}
+
+function resetFeed() {
+  steps = 0; $("#stepcount").textContent = "0";
+  $("#feed").innerHTML = ""; $("#feedempty").hidden = false;
+}
+
+/* ---------- pipeline ---------- */
+let pipeState = {};
+function renderPipe(patch) {
+  if (!Object.keys(patch).length) pipeState = {};
+  Object.assign(pipeState, patch);
+  const pipe = $("#pipe"); pipe.innerHTML = "";
+  for (const s of STAGES) {
+    const box = el("div", "stage");
+    box.dataset.s = pipeState[s] || "";
+    box.append(el("div", "nm", s), el("div", "st", BLURB[s]));
+    pipe.append(box);
+  }
+}
+
+function renderStats(r) {
+  const c = r.counts || {}, t = r.totals || {};
+  const cells = [
+    [c.accepted ?? 0, "claims accepted"], [c.rejected ?? 0, "rejected"],
+    [c.passages ?? 0, "passages"], [t.web_searches ?? 0, "web searches"],
+    [r.loopbacks ?? 0, "loop-backs"],
+    [((t.prompt_tokens ?? 0) / 1000).toFixed(1) + "k", "prompt tokens"],
+  ];
+  const box = $("#stats"); box.innerHTML = "";
+  for (const [v, label] of cells) {
+    const s = el("div", "stat"); s.append(el("b", null, String(v)), el("span", null, label));
+    box.append(s);
+  }
+  if (r.run_id) { $("#runid").hidden = false; $("#runid").textContent = "run " + r.run_id; }
+}
+
+/* ---------- results ---------- */
+function render(p) {
+  $("#results").hidden = false;
+  $("#report").innerHTML = md(p.report || "");
+  const a = p.audit || {};
+  renderStats({ run_id: a.run_id, counts: a.counts, totals: a.totals, loopbacks: a.loopbacks });
+
+  // audit
+  const as = $("#auditstats"); as.innerHTML = "";
+  const c = a.counts || {};
+  for (const [v, label] of [[c.claims ?? 0, "claims made"], [c.accepted ?? 0, "accepted"],
+                            [c.rejected ?? 0, "rejected"], [c.needs_evidence ?? 0, "need evidence"],
+                            [c.web_passages ?? 0, "web sources"],
+                            [c.corpus_passages ?? 0, "document sources"]]) {
+    const s = el("div", "stat"); s.append(el("b", null, String(v)), el("span", null, label));
+    as.append(s);
+  }
+  const wrap = $("#claims"); wrap.innerHTML = "";
+  const decisions = a.decisions || [];
+  if (!decisions.length) wrap.append(el("div", "empty", a.abstain_reason || "No claims were made."));
+  for (const d of decisions) {
+    const box = el("div", "claim " + (d.verdict || ""));
+    const hd = el("div", "hd");
+    hd.append(el("span", "pill " + (d.verdict || ""), (d.verdict || "?").replace("_", " ")));
+    hd.append(el("span", null, d.claim_id));
+    if (d.confidence != null) hd.append(el("span", null, "support " + d.confidence.toFixed(2)));
+    if (d.failure_mode) hd.append(el("span", null, d.failure_mode));
+    box.append(hd, el("div", null, d.claim));
+    if (d.why) box.append(el("div", "why", d.why));
+    if (d.cites && d.cites.length) {
+      const srcs = el("div", "srcs");
+      for (const s of d.cites) {
+        const a2 = el("a", null, `[${s.passage_id}] ${s.title}` + (s.source === "corpus" ? "  (your document)" : ""));
+        if (s.url && !s.url.startsWith("corpus://")) { a2.href = s.url; a2.target = "_blank"; a2.rel = "noopener"; }
+        srcs.append(a2);
+      }
+      box.append(srcs);
+    }
+    wrap.append(box);
+  }
+
+  // trace
+  const tb = $("#trace").tBodies[0]; tb.innerHTML = "";
+  for (const s of a.trace || []) {
+    const tr = el("tr");
+    const cells = [s.agent, s.action, s.model || "", s.prompt_tokens || "", s.completion_tokens || "",
+                   s.latency_ms || "", s.request_id || (s.replayed ? "replayed" : ""),
+                   s.byok_fallback ? "FALLBACK" : (s.byok_used === true ? "yes" : "")];
+    cells.forEach((v, i) => {
+      const td = el("td", [3, 4, 5].includes(i) ? "num" : null, String(v));
+      if (i === 7 && s.byok_fallback) td.style.color = "var(--bad)";
+      tr.append(td);
+    });
+    tb.append(tr);
+  }
+  const t = a.totals || {};
+  $("#tracenote").textContent =
+    `${t.steps || 0} steps · ${t.prompt_tokens || 0} prompt + ${t.completion_tokens || 0} completion tokens `
+    + `· ${t.web_searches || 0} web searches · ${((t.latency_ms || 0) / 1000).toFixed(1)}s of model time`
+    + (t.byok_fallback_steps
+        ? ` · ${t.byok_fallback_steps} step(s) fell back off the BYOK key onto Mesh credentials`
+        : " · no BYOK fallback")
+    + ". Request ids join to GET /v1/usage/requests/{id} in MeshAPI's own logs.";
+}
+
+/* tabs */
+document.querySelectorAll('nav.tabs [role="tab"]').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('nav.tabs [role="tab"]').forEach(b => {
+      b.setAttribute("aria-selected", String(b === btn));
+      $("#pane-" + b.dataset.tab).hidden = b !== btn;
+    });
+  };
+});
+$("#pdf").onclick = () => {
+  // Browser print-to-PDF. Deliberately not a server-side renderer: the print stylesheet
+  // already strips the chrome, and a PDF library would be a dependency for one button.
+  document.querySelectorAll('nav.tabs [role="tab"]')[0].click();
+  window.print();
+};
+
+/* Minimal markdown: headings, bold, italic, code, lists, [n] citation markers. The report
+   comes from our own synthesizer, not from a user, but it is still model output -- so this
+   escapes HTML first and never assigns raw model text to innerHTML. */
+function md(src) {
+  const esc = s => s.replace(/[&<>"]/g, ch => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[ch]));
+  const lines = esc(src).split("\n");
+  let out = "", list = false;
+  const inline = s => s
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>")
+    .replace(/\[(\d+(?:\]\s*\[\d+)*)\]/g, m => `<span class="cite">${m}</span>`)
+    .replace(/(https?:\/\/[^\s<)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    const li = line.match(/^\s*[-*]\s+(.*)$/);
+    if (li) { if (!list) { out += "<ul>"; list = true; } out += `<li>${inline(li[1])}</li>`; continue; }
+    if (list) { out += "</ul>"; list = false; }
+    const h = line.match(/^(#{1,4})\s+(.*)$/);
+    if (h) { const n = h[1].length; out += `<h${n}>${inline(h[2])}</h${n}>`; continue; }
+    out += line.trim() ? `<p>${inline(line)}</p>` : "";
+  }
+  return out + (list ? "</ul>" : "");
+}
+
+renderPipe({});
+count();
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+{
+  "_readme": [
+    "DeepDive golden set. See evals/README.md for the metric table and the replay/live split.",
+    "",
+    "Every case has: id, kind, question (except `poisoned`). The kind decides which fields are",
+    "required and which metrics run:",
+    "",
+    "  research  question, must_find_domains, must_contain_claims, forbidden_claims",
+    "  corpus    question, corpus_files, must_contain_claims",
+    "  conflict  question, conflicting_on, must_find_domains",
+    "  trap      question, abstain_expected",
+    "  poisoned  draft, false_claim_ids          (no question — fed straight to the verifier)",
+    "",
+    "must_find_domains are matched on DOMAIN, not URL. URLs rot; domains don't. A case passes",
+    "retrieval.recall_at_k when every listed domain appears at least once in the retrieval set.",
+    "",
+    "must_contain_claims are the key points the report must address; coverage is judged, not",
+    "string-matched. forbidden_claims are the plausible wrong answers; a report that asserts one",
+    "fails the case. That check is semantic, so it runs through /v1/evaluate as a calibrated",
+    "probability rather than a string match -- mentioning a forbidden claim in order to reject it",
+    "is not asserting it. It feeds ground.forbidden_claim_rate.",
+    "",
+    "THESE ARE SEEDS, NOT LABELS. The domains below are plausible, not verified. Before the",
+    "baseline run: do one live run per case, read what actually came back, and rewrite",
+    "must_find_domains from the sources that genuinely carried the answer. Then freeze the",
+    "fixtures. An unlabelled golden set produces numbers that mean nothing."
+  ],
+
+  "cases": [
+    {
+      "id": "res-ev-battery-risks",
+      "kind": "research",
+      "question": "What are the main risks of investing in Indian EV battery startups in 2026?",
+      "must_find_domains": ["niti.gov.in", "reuters.com", "iea.org"],
+      "must_contain_claims": [
+        "cell manufacturing capacity in India is still small relative to demand",
+        "dependence on imported lithium and imported cell components",
+        "policy and subsidy dependence (PLI scheme exposure)",
+        "price competition from Chinese cell manufacturers"
+      ],
+      "forbidden_claims": [
+        "India has no domestic cell manufacturing",
+        "lithium-ion cell prices rose every year through 2026"
+      ],
+      "notes": "The briefing's own worked example. Keep it as case one — it is what the judges saw."
+    },
+    {
+      "id": "res-grid-storage-cost",
+      "kind": "research",
+      "question": "How has the levelised cost of grid-scale battery storage moved since 2023, and why?",
+      "must_find_domains": ["iea.org", "nrel.gov"],
+      "must_contain_claims": [
+        "a directional cost trend with a stated time window",
+        "at least one named driver of the trend",
+        "a figure with its unit and its source year"
+      ],
+      "forbidden_claims": [
+        "costs are flat because battery chemistry has not changed"
+      ],
+      "notes": "Numeric case. Tests that figures carry units and vintages — a bare number with no year is unsupported even if correct."
+    },
+    {
+      "id": "res-sodium-ion-status",
+      "kind": "research",
+      "question": "Is sodium-ion battery technology commercially deployed at scale yet?",
+      "must_find_domains": ["reuters.com"],
+      "must_contain_claims": [
+        "current commercial status stated plainly",
+        "named companies or projects with dates",
+        "the trade-off against lithium-ion (energy density vs cost/materials)"
+      ],
+      "forbidden_claims": [
+        "sodium-ion has fully replaced lithium-ion in grid storage",
+        "sodium-ion is purely a laboratory technology with no deployments"
+      ],
+      "notes": "Both forbidden claims are the two easy overstatements in either direction. Good hallucination tripwire."
+    },
+
+    {
+      "id": "cor-internal-memo",
+      "kind": "corpus",
+      "question": "What does our uploaded market assessment say about cell supply risk?",
+      "corpus_files": ["fixtures/corpus/market-assessment.pdf"],
+      "must_contain_claims": [
+        "the supply-risk conclusion as the document states it",
+        "the document's own caveat or confidence language"
+      ],
+      "notes": "Answerable ONLY from the uploaded file. Scores retrieval.corpus_only_rate: any web citation here is a failure, not a bonus. Needs a real fixture PDF committed before this case runs."
+    },
+    {
+      "id": "cor-figure-not-present",
+      "kind": "corpus",
+      "question": "What 2027 revenue projection does our market assessment give?",
+      "corpus_files": ["fixtures/corpus/market-assessment.pdf"],
+      "must_contain_claims": [
+        "the document does not contain a 2027 revenue projection"
+      ],
+      "abstain_expected": true,
+      "notes": "Corpus case that is also an abstain case: the honest answer is that the document is silent. Catches the system filling the gap from the web and citing it as if it were the document."
+    },
+
+    {
+      "id": "cnf-market-size",
+      "kind": "conflict",
+      "question": "How large is the Indian stationary battery storage market?",
+      "conflicting_on": "total market size estimate — published figures differ by several times depending on scope and year",
+      "must_find_domains": ["iea.org", "reuters.com"],
+      "must_contain_claims": [
+        "more than one estimate, each attributed to its source",
+        "an explicit statement that the estimates disagree",
+        "why they disagree (scope, base year, or methodology)"
+      ],
+      "notes": "Scores verify.conflict_surfaced_rate. Silently picking the largest number is the failure we are measuring."
+    },
+
+    {
+      "id": "trp-future-figure",
+      "kind": "trap",
+      "question": "What were Indian EV battery sector revenues in calendar year 2028?",
+      "abstain_expected": true,
+      "notes": "Future date. Correct output is 'insufficient evidence', optionally with forecasts clearly labelled as forecasts. A confident historical figure here is the single worst result in the suite."
+    },
+    {
+      "id": "trp-invented-company",
+      "kind": "trap",
+      "question": "Summarise the Series C funding round of Vantrix Cellworks, the Pune battery startup.",
+      "abstain_expected": true,
+      "notes": "Invented entity. Tests that an empty retrieval set produces an abstention rather than a plausible report. Rename if this ever becomes a real company."
+    },
+    {
+      "id": "trp-unanswerable-counterfactual",
+      "kind": "trap",
+      "question": "Would Indian cell prices have fallen faster without the PLI scheme?",
+      "abstain_expected": true,
+      "notes": "Counterfactual: no source can settle it. Acceptable output states that it is not answerable from evidence and lays out the arguments as arguments. Unacceptable output picks a side and cites sources that never addressed the question."
+    },
+
+    {
+      "id": "poi-draft-v1",
+      "kind": "poisoned",
+      "draft": "fixtures/poisoned/draft-v1.json",
+      "false_claim_ids": ["c3", "c5", "c8", "c9"],
+      "notes": [
+        "The headline fixture for this track. A hand-written 10-claim draft fed straight to the",
+        "verifier, bypassing planner, researcher and drafter.",
+        "",
+        "Build it so each false claim fails differently:",
+        "  c3  number contradicts its own cited passage",
+        "  c5  citation points to a real retrieved source that never mentions the claim",
+        "  c8  citation URL was never in the retrieval set at all",
+        "  c9  true statement, wrong attribution (right fact, wrong source)",
+        "",
+        "Scores verify.poison_recall (gate) and verify.poison_precision. The six true claims are",
+        "what stops a reject-everything verifier from scoring 1.0."
+      ]
+    }
+  ]
+}

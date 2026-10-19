@@ -1,0 +1,41 @@
+  res-ev-battery-risks         research  What are the main risks of investing in Indian EV ba
+    FAILED: [WebSearchCacheMiss] no fixture for 'Indian electric vehicle battery industry 2026' (dfaddbfa7787bc852b50). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md).
+  res-grid-storage-cost        research  How has the levelised cost of grid-scale battery sto
+    FAILED: [WebSearchCacheMiss] no fixture for 'grid-scale battery storage cost trends 2023-2026' (4ed0bf865ff3360f1ae6). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md).
+  res-sodium-ion-status        research  Is sodium-ion battery technology commercially deploy
+    FAILED: [WebSearchCacheMiss] no fixture for 'sodium-ion battery technology development status 2026' (7fd40c0961ad7f16786c). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md).
+  cor-internal-memo            corpus    What does our uploaded market assessment say about c
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cor-figure-not-present       corpus    What 2027 revenue projection does our market assessm
+    skipped: missing corpus fixture fixtures/corpus/market-assessment.pdf
+  cnf-market-size              conflict  How large is the Indian stationary battery storage m
+    FAILED: [WebSearchCacheMiss] no fixture for 'Indian stationary battery storage market size 2026' (44acbed4f7df0984be70). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md).
+  trp-future-figure            trap      What were Indian EV battery sector revenues in calen
+    claims 0/0 accepted, 0 passages, 0 searches, loopbacks 0, abstain ok
+  trp-invented-company         trap      Summarise the Series C funding round of Vantrix Cell
+    FAILED: [WebSearchCacheMiss] no fixture for 'Vantrix Cellworks Series C funding round details' (0cb33681d2e7a195311c). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md).
+  trp-unanswerable-counterfactual trap      Would Indian cell prices have fallen faster without 
+    FAILED: [WebSearchCacheMiss] no fixture for 'impact of PLI scheme on Indian cell manufacturing' (06d7b35e3de603351263). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md).
+  poi-draft-v1                 poisoned  (fixture)
+    claims 5/10 accepted, 6 passages, 0 searches, loopbacks 0, poison tp=4/4 fp=1
+
+  snapshot
+  cases.run                                    2
+  cases.skipped                                8
+  ops.byok_fallback_steps                      0
+  ops.latency.p50_ms                           1213
+  ops.latency.p95_ms                           1213
+  ops.reliability.success_rate                 1.0000
+  ops.tokens.completion_total                  941
+  ops.tokens.prompt_total                      6378
+  ops.websearch.cost_usd_est                   0.0000
+  verify.abstain_rate                          1.0000
+  verify.abstain_rate.n                        1
+  verify.failure_mode_accuracy                 0.7500
+  verify.loopback_rate                         0.0000
+  verify.poison_precision                      0.8333
+  verify.poison_recall                         1.0000
+  verify.poison_recall.n                       4
+
+  -> C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\baselines\candidate.json   (compare: python -m evals.compare)
+  -> C:\Users\sw\OneDrive\Desktop\Deepdive Hackathon\evals\report.json

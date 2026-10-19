@@ -1,0 +1,305 @@
+{
+  "cases": [
+    {
+      "case": {
+        "id": "res-ev-battery-risks",
+        "kind": "research",
+        "question": "What are the main risks of investing in Indian EV battery startups in 2026?",
+        "must_find_domains": [
+          "niti.gov.in",
+          "reuters.com",
+          "iea.org"
+        ],
+        "must_contain_claims": [
+          "cell manufacturing capacity in India is still small relative to demand",
+          "dependence on imported lithium and imported cell components",
+          "policy and subsidy dependence (PLI scheme exposure)",
+          "price competition from Chinese cell manufacturers"
+        ],
+        "forbidden_claims": [
+          "India has no domestic cell manufacturing",
+          "lithium-ion cell prices rose every year through 2026"
+        ],
+        "notes": "The briefing's own worked example. Keep it as case one \u2014 it is what the judges saw."
+      },
+      "extra": {
+        "skipped": "MeshError: [WebSearchCacheMiss] no fixture for 'Indian electric vehicle battery industry 2026' (dfaddbfa7787bc852b50). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md)."
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "res-grid-storage-cost",
+        "kind": "research",
+        "question": "How has the levelised cost of grid-scale battery storage moved since 2023, and why?",
+        "must_find_domains": [
+          "iea.org",
+          "nrel.gov"
+        ],
+        "must_contain_claims": [
+          "a directional cost trend with a stated time window",
+          "at least one named driver of the trend",
+          "a figure with its unit and its source year"
+        ],
+        "forbidden_claims": [
+          "costs are flat because battery chemistry has not changed"
+        ],
+        "notes": "Numeric case. Tests that figures carry units and vintages \u2014 a bare number with no year is unsupported even if correct."
+      },
+      "extra": {
+        "skipped": "MeshError: [WebSearchCacheMiss] no fixture for 'grid-scale battery storage cost trends 2023-2026' (4ed0bf865ff3360f1ae6). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md)."
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "res-sodium-ion-status",
+        "kind": "research",
+        "question": "Is sodium-ion battery technology commercially deployed at scale yet?",
+        "must_find_domains": [
+          "reuters.com"
+        ],
+        "must_contain_claims": [
+          "current commercial status stated plainly",
+          "named companies or projects with dates",
+          "the trade-off against lithium-ion (energy density vs cost/materials)"
+        ],
+        "forbidden_claims": [
+          "sodium-ion has fully replaced lithium-ion in grid storage",
+          "sodium-ion is purely a laboratory technology with no deployments"
+        ],
+        "notes": "Both forbidden claims are the two easy overstatements in either direction. Good hallucination tripwire."
+      },
+      "extra": {
+        "skipped": "MeshError: [WebSearchCacheMiss] no fixture for 'sodium-ion battery technology development status 2026' (7fd40c0961ad7f16786c). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md)."
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "cor-internal-memo",
+        "kind": "corpus",
+        "question": "What does our uploaded market assessment say about cell supply risk?",
+        "corpus_files": [
+          "fixtures/corpus/market-assessment.pdf"
+        ],
+        "must_contain_claims": [
+          "the supply-risk conclusion as the document states it",
+          "the document's own caveat or confidence language"
+        ],
+        "notes": "Answerable ONLY from the uploaded file. Scores retrieval.corpus_only_rate: any web citation here is a failure, not a bonus. Needs a real fixture PDF committed before this case runs."
+      },
+      "extra": {
+        "skipped": "missing corpus fixture fixtures/corpus/market-assessment.pdf"
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "cor-figure-not-present",
+        "kind": "corpus",
+        "question": "What 2027 revenue projection does our market assessment give?",
+        "corpus_files": [
+          "fixtures/corpus/market-assessment.pdf"
+        ],
+        "must_contain_claims": [
+          "the document does not contain a 2027 revenue projection"
+        ],
+        "abstain_expected": true,
+        "notes": "Corpus case that is also an abstain case: the honest answer is that the document is silent. Catches the system filling the gap from the web and citing it as if it were the document."
+      },
+      "extra": {
+        "skipped": "missing corpus fixture fixtures/corpus/market-assessment.pdf"
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "cnf-market-size",
+        "kind": "conflict",
+        "question": "How large is the Indian stationary battery storage market?",
+        "conflicting_on": "total market size estimate \u2014 published figures differ by several times depending on scope and year",
+        "must_find_domains": [
+          "iea.org",
+          "reuters.com"
+        ],
+        "must_contain_claims": [
+          "more than one estimate, each attributed to its source",
+          "an explicit statement that the estimates disagree",
+          "why they disagree (scope, base year, or methodology)"
+        ],
+        "notes": "Scores verify.conflict_surfaced_rate. Silently picking the largest number is the failure we are measuring."
+      },
+      "extra": {
+        "skipped": "MeshError: [WebSearchCacheMiss] no fixture for 'Indian stationary battery storage market size 2026' (44acbed4f7df0984be70). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md)."
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "trp-future-figure",
+        "kind": "trap",
+        "question": "What were Indian EV battery sector revenues in calendar year 2028?",
+        "abstain_expected": true,
+        "notes": "Future date. Correct output is 'insufficient evidence', optionally with forecasts clearly labelled as forecasts. A confident historical figure here is the single worst result in the suite."
+      },
+      "extra": {
+        "wall_ms": 1213,
+        "counts": {
+          "claims": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "needs_evidence": 0,
+          "passages": 0,
+          "web_passages": 0,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": true,
+        "status": "abstained",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": null,
+        "truncated": 0,
+        "passages": 0,
+        "claims": 0,
+        "dangling": 0,
+        "unsupported": 0,
+        "citations": 0,
+        "spans_resolve": 0,
+        "support_mean": null,
+        "abstain_ok": true
+      },
+      "totals": {
+        "steps": 1,
+        "prompt_tokens": 258,
+        "completion_tokens": 55,
+        "latency_ms": 1211,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "# What were Indian EV battery sector revenues in calendar year 2028?\n\n**Insufficient evidence.** The question asks for Indian EV battery sector revenues in calendar year 2028, which is a future date beyond the current knowledge cutoff and today's date. No sources can provide evidence for this future period.\n",
+      "status": "abstained"
+    },
+    {
+      "case": {
+        "id": "trp-invented-company",
+        "kind": "trap",
+        "question": "Summarise the Series C funding round of Vantrix Cellworks, the Pune battery startup.",
+        "abstain_expected": true,
+        "notes": "Invented entity. Tests that an empty retrieval set produces an abstention rather than a plausible report. Rename if this ever becomes a real company."
+      },
+      "extra": {
+        "skipped": "MeshError: [WebSearchCacheMiss] no fixture for 'Vantrix Cellworks Series C funding round details' (0cb33681d2e7a195311c). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md)."
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "trp-unanswerable-counterfactual",
+        "kind": "trap",
+        "question": "Would Indian cell prices have fallen faster without the PLI scheme?",
+        "abstain_expected": true,
+        "notes": "Counterfactual: no source can settle it. Acceptable output states that it is not answerable from evidence and lays out the arguments as arguments. Unacceptable output picks a side and cites sources that never addressed the question."
+      },
+      "extra": {
+        "skipped": "MeshError: [WebSearchCacheMiss] no fixture for 'impact of PLI scheme on Indian cell manufacturing' (06d7b35e3de603351263). Record it with WEBSEARCH=live, or the query drifted -- freeze the planner too (see evals/README.md)."
+      },
+      "totals": null,
+      "report": "",
+      "status": null
+    },
+    {
+      "case": {
+        "id": "poi-draft-v1",
+        "kind": "poisoned",
+        "draft": "fixtures/poisoned/draft-v1.json",
+        "false_claim_ids": [
+          "c3",
+          "c5",
+          "c8",
+          "c9"
+        ],
+        "notes": [
+          "The headline fixture for this track. A hand-written 10-claim draft fed straight to the",
+          "verifier, bypassing planner, researcher and drafter.",
+          "",
+          "Build it so each false claim fails differently:",
+          "  c3  number contradicts its own cited passage",
+          "  c5  citation points to a real retrieved source that never mentions the claim",
+          "  c8  citation URL was never in the retrieval set at all",
+          "  c9  true statement, wrong attribution (right fact, wrong source)",
+          "",
+          "Scores verify.poison_recall (gate) and verify.poison_precision. The six true claims are",
+          "what stops a reject-everything verifier from scoring 1.0."
+        ]
+      },
+      "extra": {
+        "counts": {
+          "claims": 10,
+          "accepted": 5,
+          "rejected": 2,
+          "needs_evidence": 3,
+          "passages": 6,
+          "web_passages": 6,
+          "corpus_passages": 0
+        },
+        "loopbacks": 0,
+        "abstained": false,
+        "status": "done",
+        "searches": 0,
+        "results_total": 0,
+        "results_with_text": 0,
+        "searches_nonempty": 0,
+        "engines": [],
+        "domain_diversity": 0.6666666666666666,
+        "truncated": 0,
+        "passages": 6,
+        "claims": 10,
+        "dangling": 1,
+        "unsupported": 0,
+        "citations": 11,
+        "spans_resolve": 10,
+        "support_mean": 0.5589999999999999,
+        "poison": {
+          "tp": 4,
+          "fp": 1,
+          "tn": 5,
+          "fn": 0,
+          "modes_right": 3,
+          "n_false": 4
+        }
+      },
+      "totals": {
+        "steps": 10,
+        "prompt_tokens": 6120,
+        "completion_tokens": 886,
+        "latency_ms": 10451,
+        "web_searches": 0,
+        "byok_fallback_steps": 0,
+        "cost_usd_reported": null
+      },
+      "report": "",
+      "status": "done"
+    }
+  ],
+  "judged": []
+}
