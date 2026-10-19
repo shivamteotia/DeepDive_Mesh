@@ -49,7 +49,8 @@ def run_research(question, corpus_file_ids=None, on_event=None):
         # Gate between retrieval and drafting. Everything downstream verifies claims against
         # the passages we hold; if those passages are about the wrong thing, every check
         # downstream passes and the report is still fabricated.
-        stage("verifier", agents.ground_check, mesh, run)
+        stage("verifier", agents.ground_check, mesh, run,
+              corpus_files=len(corpus_file_ids or []))
         if run.abstained:
             run.status = "abstained"
             run.report = _abstain_report(question, run.abstain_reason)

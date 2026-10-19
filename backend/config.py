@@ -89,6 +89,8 @@ VERIFY_ACCEPT_THRESHOLD = float(_env("VERIFY_ACCEPT_THRESHOLD", "0.70"))  # noul
 #   four real questions  subject 0.89-0.96  pertinence 0.82-0.90
 # 0.55 sits in an empty gap. Anything from 0.45 to 0.75 would separate these cases.
 GROUNDING_THRESHOLD = float(_env("GROUNDING_THRESHOLD", "0.55"))
+# How many chunks to pull per corpus query. High on purpose: see agents.research().
+CORPUS_TOP_K = int(_env("CORPUS_TOP_K", "15"))
 MAX_LOOPBACKS = int(_env("MAX_LOOPBACKS", "2"))      # hard stop: a loop that never converges must still end
 MAX_SUBQUESTIONS = int(_env("MAX_SUBQUESTIONS", "5"))
 

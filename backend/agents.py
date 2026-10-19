@@ -128,8 +128,13 @@ def research(mesh, run, queries=None, corpus_file_ids=None):
             ))
 
     if corpus_file_ids:
+        # top_k is deliberately high. Vector ranking on this gateway is weak enough that an
+        # exact phrase from the document can return an unrelated chunk at score 1.000, so the
+        # right passage is often present but not in the top few. Over-retrieving is cheap --
+        # one embedding call, no per-chunk charge -- and the verifier drops what does not
+        # support a claim anyway. See meshapi.md.
         for query in corpus_queries:
-            for r in m.corpus_search(query, file_ids=corpus_file_ids):
+            for r in m.corpus_search(query, top_k=config.CORPUS_TOP_K, file_ids=corpus_file_ids):
                 n += 1
                 run.passages.append(Passage(
                     id=Passage.new_id(n), url=f"corpus://{r.get('file_name', 'file')}#{r.get('chunk_index')}",
@@ -141,7 +146,7 @@ def research(mesh, run, queries=None, corpus_file_ids=None):
 
 
 # ---- 2b. grounding gate ----
-def ground_check(mesh, run):
+def ground_check(mesh, run, corpus_files=0):
     """Do the retrieved passages actually concern the question that was asked?
 
     Per-claim verification cannot answer this. Every claim in a report about the wrong company
@@ -164,6 +169,16 @@ def ground_check(mesh, run):
         return run
 
     m = mesh.as_("verifier")
+
+    # A document-scoped question is judged differently, and the order matters. "Is this
+    # evidence about the subject the question names?" is the right test for a question about
+    # the world; for "what does my document say about X" it is the wrong one, because the
+    # document is the right source by definition however well it covers X. Asking it anyway
+    # falsely abstained on a question the document answers in full.
+    if corpus_files and any(p.source == "corpus" for p in run.passages):
+        if _corpus_scope_check(m, run, config.GROUNDING_THRESHOLD):
+            return run
+
     sample = sorted(run.passages, key=lambda p: -(p.score or 0))[:12]
     answers = m.evaluate(
         state={"question": run.question,
@@ -197,6 +212,63 @@ def ground_check(mesh, run):
             f"Answering from this evidence would produce a confident report about the wrong "
             f"thing.")
     return run
+
+
+def _corpus_scope_check(m, run, floor):
+    """Decide whether this is a document-scoped question, and if so whether the documents
+    carry it. Returns True when it has taken responsibility for the verdict, so the caller
+    skips the general subject/pertinence gate.
+
+    When the question asks what the user's own documents say, answer from those documents or
+    say they are silent -- never quietly substitute the web.
+
+    Asked what an uploaded report said about lithium imports, a subject it never mentions, the
+    system returned a well-sourced and entirely accurate account of India's lithium imports
+    built from sixteen web passages. Nothing in it was false and no citation was fabricated,
+    which is exactly why nothing downstream objected. It was still the wrong answer: the user
+    asked what their document said, and the honest answer was "nothing".
+    """
+    corpus = [p for p in run.passages if p.source == "corpus"]
+    if not corpus:
+        return False
+
+    answers = m.evaluate(
+        state={"question": run.question,
+               "document_evidence": [{"title": p.title, "text": p.text[:2000]} for p in corpus[:12]]},
+        questions={
+            "scope": {"type": "choice", "instructions":
+                "Is the QUESTION asking what the user's own uploaded documents say, or asking "
+                "about the world in general?",
+                "criteria": {
+                    "documents": "It asks what the uploaded document, file, report or attachment "
+                                 "says, states, reports or contains.",
+                    "general": "It asks about the world, and any document is only one source "
+                               "among others."}},
+            "covered": {"type": "noul", "instructions":
+                "Probability that the DOCUMENT_EVIDENCE contains material that actually answers "
+                "the question. Judge only what these passages contain. If they are on the "
+                "general topic but never address the specific thing asked, this is low."},
+        },
+        action="verifier.corpus_scope")
+
+    scope = answers.get("scope", {}).get("choice", "general")
+    covered = float(answers.get("covered", {}).get("noul", 1.0))
+    run.grounding["document_scoped"] = scope == "documents"
+    run.grounding["corpus_covers"] = round(covered, 3)
+
+    if scope != "documents":
+        return False  # an ordinary question that happens to have documents attached
+
+    if covered < floor:
+        web = sum(1 for p in run.passages if p.source == "web")
+        run.abstained = True
+        run.abstain_reason = (
+            f"The uploaded document does not address this question "
+            f"(coverage {covered:.2f}, floor {floor:.2f}). You asked what the document says, so "
+            f"answering from other sources would misattribute them to it."
+            + (f" {web} web source{'s' if web != 1 else ''} did discuss the topic; ask without "
+               f"referring to the document and they will be used." if web else ""))
+    return True
 
 
 # ---- 3. drafter ----
