@@ -20,18 +20,27 @@
     "probability rather than a string match -- mentioning a forbidden claim in order to reject it",
     "is not asserting it. It feeds ground.forbidden_claim_rate.",
     "",
-    "THESE ARE SEEDS, NOT LABELS. The domains below are plausible, not verified. Before the",
     "baseline run: do one live run per case, read what actually came back, and rewrite",
     "must_find_domains from the sources that genuinely carried the answer. Then freeze the",
-    "fixtures. An unlabelled golden set produces numbers that mean nothing."
+    "fixtures. An unlabelled golden set produces numbers that mean nothing.",
+    "",
+    "LABELLING STATUS. must_find_domains on the four research/conflict cases were relabelled on",
+    "2026-10-19 from what retrieval actually returns: each listed domain appeared in every",
+    "recorded run of that question. The original seeds named reuters.com, niti.gov.in and",
+    "nrel.gov, which sound right and never appear in results - that held recall_at_k at 0.00 for",
+    "a labelling reason rather than a retrieval one. If retrieval changes, relabel from observed",
+    "results again rather than from what seems authoritative."
   ],
-
   "cases": [
     {
       "id": "res-ev-battery-risks",
       "kind": "research",
       "question": "What are the main risks of investing in Indian EV battery startups in 2026?",
-      "must_find_domains": ["niti.gov.in", "reuters.com", "iea.org"],
+      "must_find_domains": [
+        "iea.org",
+        "ibef.org",
+        "ieefa.org"
+      ],
       "must_contain_claims": [
         "cell manufacturing capacity in India is still small relative to demand",
         "dependence on imported lithium and imported cell components",
@@ -42,13 +51,18 @@
         "India has no domestic cell manufacturing",
         "lithium-ion cell prices rose every year through 2026"
       ],
-      "notes": "The briefing's own worked example. Keep it as case one — it is what the judges saw."
+      "notes": "The briefing's own worked example. Keep it as case one — it is what the judges saw.",
+      "domains_labelled": "2026-10-19, from domains present in every recorded run"
     },
     {
       "id": "res-grid-storage-cost",
       "kind": "research",
       "question": "How has the levelised cost of grid-scale battery storage moved since 2023, and why?",
-      "must_find_domains": ["iea.org", "nrel.gov"],
+      "must_find_domains": [
+        "iea.org",
+        "osti.gov",
+        "ember-energy.org"
+      ],
       "must_contain_claims": [
         "a directional cost trend with a stated time window",
         "at least one named driver of the trend",
@@ -57,13 +71,18 @@
       "forbidden_claims": [
         "costs are flat because battery chemistry has not changed"
       ],
-      "notes": "Numeric case. Tests that figures carry units and vintages — a bare number with no year is unsupported even if correct."
+      "notes": "Numeric case. Tests that figures carry units and vintages — a bare number with no year is unsupported even if correct.",
+      "domains_labelled": "2026-10-19, from domains present in every recorded run"
     },
     {
       "id": "res-sodium-ion-status",
       "kind": "research",
       "question": "Is sodium-ion battery technology commercially deployed at scale yet?",
-      "must_find_domains": ["reuters.com"],
+      "must_find_domains": [
+        "iea.org",
+        "sciencedirect.com",
+        "news.stanford.edu"
+      ],
       "must_contain_claims": [
         "current commercial status stated plainly",
         "named companies or projects with dates",
@@ -73,14 +92,16 @@
         "sodium-ion has fully replaced lithium-ion in grid storage",
         "sodium-ion is purely a laboratory technology with no deployments"
       ],
-      "notes": "Both forbidden claims are the two easy overstatements in either direction. Good hallucination tripwire."
+      "notes": "Both forbidden claims are the two easy overstatements in either direction. Good hallucination tripwire.",
+      "domains_labelled": "2026-10-19, from domains present in every recorded run"
     },
-
     {
       "id": "cor-internal-memo",
       "kind": "corpus",
       "question": "What does our uploaded market assessment say about cell supply risk?",
-      "corpus_files": ["fixtures/corpus/market-assessment.pdf"],
+      "corpus_files": [
+        "fixtures/corpus/market-assessment.pdf"
+      ],
       "must_contain_claims": [
         "the supply-risk conclusion as the document states it",
         "the document's own caveat or confidence language"
@@ -91,28 +112,33 @@
       "id": "cor-figure-not-present",
       "kind": "corpus",
       "question": "What 2027 revenue projection does our market assessment give?",
-      "corpus_files": ["fixtures/corpus/market-assessment.pdf"],
+      "corpus_files": [
+        "fixtures/corpus/market-assessment.pdf"
+      ],
       "must_contain_claims": [
         "the document does not contain a 2027 revenue projection"
       ],
       "abstain_expected": true,
       "notes": "Corpus case that is also an abstain case: the honest answer is that the document is silent. Catches the system filling the gap from the web and citing it as if it were the document."
     },
-
     {
       "id": "cnf-market-size",
       "kind": "conflict",
       "question": "How large is the Indian stationary battery storage market?",
       "conflicting_on": "total market size estimate — published figures differ by several times depending on scope and year",
-      "must_find_domains": ["iea.org", "reuters.com"],
+      "must_find_domains": [
+        "ieefa.org",
+        "mordorintelligence.com",
+        "marketsandmarkets.com"
+      ],
       "must_contain_claims": [
         "more than one estimate, each attributed to its source",
         "an explicit statement that the estimates disagree",
         "why they disagree (scope, base year, or methodology)"
       ],
-      "notes": "Scores verify.conflict_surfaced_rate. Silently picking the largest number is the failure we are measuring."
+      "notes": "Scores verify.conflict_surfaced_rate. Silently picking the largest number is the failure we are measuring.",
+      "domains_labelled": "2026-10-19, from domains present in every recorded run"
     },
-
     {
       "id": "trp-future-figure",
       "kind": "trap",
@@ -134,12 +160,16 @@
       "abstain_expected": true,
       "notes": "Counterfactual: no source can settle it. Acceptable output states that it is not answerable from evidence and lays out the arguments as arguments. Unacceptable output picks a side and cites sources that never addressed the question."
     },
-
     {
       "id": "poi-draft-v1",
       "kind": "poisoned",
       "draft": "fixtures/poisoned/draft-v1.json",
-      "false_claim_ids": ["c3", "c5", "c8", "c9"],
+      "false_claim_ids": [
+        "c3",
+        "c5",
+        "c8",
+        "c9"
+      ],
       "notes": [
         "The headline fixture for this track. A hand-written 10-claim draft fed straight to the",
         "verifier, bypassing planner, researcher and drafter.",
